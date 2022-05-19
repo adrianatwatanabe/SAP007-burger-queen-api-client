@@ -2,7 +2,7 @@
 BURGER QUEEN
 
 
-## 1. SOBRE O GALAXY BURGER QUEEN
+## 1. SOBRE BURGER QUEEN
 
   * **BURGER QUEEN** é um fast food 24hrs que necessita de um sistema que os ajudem a receber pedidos de seus clientes. Nesse sistema deve existir dois cardápios, um para o café da manhã e outro para o restante do dia, podendo ter algumas opções adicionais. O sistema sempre deve ser atulizado, para caso algum cliente mude o seu pedido antes de finalizar a compra. Além do usuário poder escolher que produtos adicionar, possibilitando que a interface mostre o resumo do pedido com o custo total.
 
@@ -99,3 +99,18 @@ _**Definição de pronto:**_
 * Você deu deploy de seu aplicativo e marcou sua versão (tag git).
 * Os dados devem ser mantidos intactos, mesmo depois que um pedido for finalizado. Tudo isso para poder ter estatísticas no futuro.
 
+## 3. DESENVOLVEDORA DO APLICATIVO
+
+<table>
+<td>
+  <div align= "center">
+    <img alt="Adriana Tiemi Watanabe" height="150" src="https://avatars.githubusercontent.com/u/97361694?v=4"> 
+  </div>
+  <h3 align="center"><a href="https://github.com/adrianatwatanabe">Adriana Tiemi Watanabe</a></h3>
+  <h4 align="center">Projeto do Bootcamp da <em><a href="https://hub.laboratoria.la/br">Laboratoria</a></em></h4>
+  <div align="center">
+    <a href = "mailto:adriana.t.watanabe@gmail.com" target="_blank"><img src="https://img.shields.io/badge/Gmail-D14836?style=for-the-badge&logo=gmail&logoColor=white"></a>
+    <a href="https://www.linkedin.com/in/adrianatwatanabe" target="_blank"><img src="https://img.shields.io/badge/-LinkedIn-%230077B5?style=for-the-badge&logo=linkedin&logoColor=white"></a>
+  </div>
+</td>
+</table>
