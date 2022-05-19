@@ -1,13 +1,29 @@
+<div align="center">
+   <img alt="Logo BURGUER Queen" src="/src/img/logo-burger-queen.png" height=400>
 
-BURGER QUEEN
+## 
+  
+**Status do Projeto:** _Em andamento_
+ 
+</div>
+
+---
+  
+## ÍNDICE
+
+- [1. SOBRE O BURGER QUEEN](#1-sobre-o-burger-queen)
+- [2. REQUISITOS MÍNIMOS PARA O SISTEMA](#2-requisitos-mínimos-para-o-sistema)
+  - [2.1. Histórias de Usuários](#21-histórias-de-usuários)
+- [3. DESENVOLVEDORA DO APLICATIVO](#3-desenvolvedora-do-aplicativo)
+
+---
+
+## 1. SOBRE O BURGER QUEEN
+
+  * **BURGER QUEEN** é uma empresa de fast food 24hrs que necessita de um sistema que os ajudem a receber pedidos de seus clientes. Nesse sistema deve existir dois cardápios, um para o café da manhã e outro para o restante do dia, podendo ter algumas opções adicionais. O sistema sempre deve ser atulizado, para caso algum cliente mude o seu pedido antes de finalizar a compra. Além do usuário poder escolher que produtos adicionar, possibilitando que a interface mostre o resumo do pedido com o custo total.
 
 
-## 1. SOBRE BURGER QUEEN
-
-  * **BURGER QUEEN** é um fast food 24hrs que necessita de um sistema que os ajudem a receber pedidos de seus clientes. Nesse sistema deve existir dois cardápios, um para o café da manhã e outro para o restante do dia, podendo ter algumas opções adicionais. O sistema sempre deve ser atulizado, para caso algum cliente mude o seu pedido antes de finalizar a compra. Além do usuário poder escolher que produtos adicionar, possibilitando que a interface mostre o resumo do pedido com o custo total.
-
-
-## 2. CRITÉRIOS MÍNIMOS DE ACEITAÇÃO DO PROJETO
+## 2. REQUISITOS MÍNIMOS PARA O SISTEMA
 
 ### 2.1 HISTÓRIAS DE USUÁRIOS
 
