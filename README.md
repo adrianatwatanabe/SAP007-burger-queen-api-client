@@ -20,7 +20,13 @@
 
 - [1. SOBRE O BURGER QUEEN](#1-sobre-o-burger-queen)
 - [2. REQUISITOS DO PROJETO](#2-requisitos-do-projeto)
-  - [2.1. Histórias de Usuários](#21-histórias-de-usuários)
+  - [2.1. HISTÓRIAS DE USUÁRIOS](#21-histórias-de-usuários)
+- [3. DESIGN DO SITE BURGER QUEEN](#3-design-do-site-burger-queen)
+  - [3.1. FLUXOGRAMA DO SITE](#31-fluxograma-do-site)
+  - [3.2. CORES DO SITE](#32-cores-do-site)
+- [4. PROTÓTIPOS](#4-protótipos)
+  - [4.1. PROTÓTIPO DE BAIXA FIDELIDADE](#41-protótipo-de-baixa-fidelidade)
+  - [4.2. PROTÓTIPO DE ALTA FIDELIDADE](#42-protótipo-de-alta-fidelidade)
 - [5. DESENVOLVEDORA DO APLICATIVO](#5-desenvolvedora-do-aplicativo)
 
 ---
@@ -201,33 +207,8 @@ _**Definição de pronto:**_
            834px x 1112px                          (medida referente a um smartphone).
           1024px x 1366px
 
-### 4.2.1. Smartphone
 
-   <table>
-         <tr>
-            <td>
-               <h4>Páginas acessadas por atendentes:</h4>
-            </td>
-            <td>
-               <div>
-                  <img alt="Protótipo smartphone de alta fidelidade dos Atendentes" src="/src/img/to-readme/attendant-mobile-prototype.gif">
-               </div>
-            </td>
-         </tr>
-         <tr>
-            <td>
-               <h4>Páginas acessadas por cozinheiros(as):</h4>
-            </td>
-            <td>
-               <div>
-                  <img alt="Protótipo smartphone de alta fidelidade do Cozinheiro" src="/src/img/to-readme/cooker-mobile-prototype.gif">
-               </div>
-            </td>
-         </tr>
-   </table>
-
-
-### 4.2.2. Tablet
+### 4.2.1. Tablet
 
    <table>
          <tr>
