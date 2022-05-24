@@ -1,5 +1,5 @@
 <div align="center">
-   <img alt="Logo BURGUER Queen" src="/src/img/logo-burger-queen.png" height=400>
+   <img alt="Logo BURGUER Queen" src="/src/img/logo-burger-queen.png" height=350>
 
 ## 
   
@@ -21,6 +21,8 @@
 ## 1. SOBRE O BURGER QUEEN
 
   * **BURGER QUEEN** é uma empresa de fast food 24hrs que necessita de um sistema que os ajudem a receber pedidos de seus clientes. Nesse sistema deve existir dois cardápios, um para o café da manhã e outro para o restante do dia, podendo ter algumas opções adicionais. O sistema sempre deve ser atulizado, para caso algum cliente mude o seu pedido antes de finalizar a compra. Além do usuário poder escolher que produtos adicionar, possibilitando que a interface mostre o resumo do pedido com o custo total.
+
+  * O aplicativo será usado em um dispositivo TABLET, porém, caso não haja um tablet, devido por diversos motivos, inclusive um tablet reserva, será usado em um smartphone.
 
 
 ## 2. REQUISITOS MÍNIMOS PARA O SISTEMA
@@ -115,7 +117,51 @@ _**Definição de pronto:**_
 * Você deu deploy de seu aplicativo e marcou sua versão (tag git).
 * Os dados devem ser mantidos intactos, mesmo depois que um pedido for finalizado. Tudo isso para poder ter estatísticas no futuro.
 
-## 3. DESENVOLVEDORA DO APLICATIVO
+## 3. DESIGN DO SITE BURGER QUEEN
+
+   * No site BURGER Queen será usado dois estilos de design, o primeiro é o estilo outline que estará presente na maior parte do site, como áreas formadas por caixas que separarão o conteúdo e nos estilos dos botões, apresentando um visual voltado aos contornos das formas. Já o segundo, é o filled, que será aplicado em planos de fundo que separam um conteúdo do outro. 
+
+### 3.1. FLUXOGRAMA DO SITE
+
+
+
+### 3.2. CORES DO SITE
+
+   * As cores utilizadas são referentes ao logo existente do BURGER Queen, que são em tons quentes, como: vermelho, amarelo e laranja, além do verde puxado para o amarelo. Para o site são utilizados duas cartelas, a primeira com cores mais vivas, semelhantes a do logo e a segunda são tons mais opacos. As cores preta e branco são usadas para textos.
+
+#### 3.2.1. Cores Principais
+
+   <div>
+     <img alt="Cartela de cores principais do site BURGER Queen" src="/src/img/main-colors.png">
+   </div>
+
+#### 3.2.2. Cores Secundárias
+
+   <div>
+     <img alt="Cartela de cores secundárias do site BURGER Queen" src="/src/img/secondary-colors.png">
+   </div>
+   
+## 4. PROTÓTIPOS
+
+### 4.1. PROTÓTIPO DE BAIXA FIDELIDADE
+
+   * O protótipo de baixa fidelidade serve para demonstrar e organizar as ideias de como os elementos estarão na página em um projeto inicial. É possíve identificar alguns problemas de usabilidade, testando conceitos e descobrindo o valor que o produto final pode gerar aos seus clientes. A seguir, estará o protótipo de baixa fidelidade do site BURGER Queen feito para a menor tela, no caso, um smartphone com 320px de largura de área visível.
+
+   <div>
+      <img alt="Protótipo de baixa fidelidade dos Atendentes" src="/src/img/to-readme/attendant-paper-prototype.gif" height="400">
+      <p>Páginas que um(a) atendente do BURGER Queen pode acessar.</p>
+   </div>
+   
+   <div>
+      <img alt="Protótipo de baixa fidelidade do Cozinheiro" src="/src/img/to-readme/cooker-paper-prototype.gif" height="400">
+      <p>Páginas que um(a) cozinheiro(a) do BURGER Queen pode acessar.</p>
+   </div>
+   
+### 4.2. PROTÓTIPO DE ALTA FIDELIDADE  
+
+####
+
+## 5. DESENVOLVEDORA DO APLICATIVO
 
 <table>
 <td>
