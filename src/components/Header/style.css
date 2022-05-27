@@ -1,0 +1,24 @@
+.container-header {
+  max-width: 1300px;
+  width: 90%;
+  margin-top: 2rem;
+  display: flex;
+  align-items: center;
+  column-gap: 2rem;
+  color: var(--color-green-highlight);
+}
+.logo {
+  width: 5rem;
+  height: 5rem;
+}
+.header-text {
+  font-family: var(--font-header);
+  font-size: 3rem;
+  font-weight: 400;
+}
+
+@media screen and (max-width: 400px) {
+  .header-text {
+    font-size: 2rem;
+  }
+}
