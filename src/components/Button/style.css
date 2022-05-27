@@ -2,7 +2,7 @@
   width: 100%;
   height: 4rem;
   border-radius: 0.625rem;
-  background-color: rgba(30, 129, 0, 0.3);
+  background-color: var(--color-green-opacity);
   border: 6px solid var(--color-green-highlight);
   color: var(--color-yellow-highlight);
   font-size: 1.375rem;

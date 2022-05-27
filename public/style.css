@@ -38,4 +38,6 @@ body {
 
   --color-dark-orange: #cf6500;
   --color-dark-green: #008138;
+
+  --color-green-opacity: rgba(30, 129, 0, 0.3);
 }
