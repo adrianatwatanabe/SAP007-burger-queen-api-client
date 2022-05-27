@@ -11,7 +11,7 @@
 #message {
   width: 100%;
   color: var(--color-gray-background);
-  font-size: 2rem;
+  font-size: 1.5rem;
   font-weight: 600;
   text-align: center;
 }
