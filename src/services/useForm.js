@@ -1,7 +1,10 @@
 import React from 'react';
-import { createUser } from './user';
+import { useLocation } from 'react-router-dom';
+import { createUser, loginUser } from './user';
 
 function useForm() {
+  const location = useLocation();
+
   const [form, setForm] = React.useState({
     name: '',
     email: '',
@@ -20,7 +23,6 @@ function useForm() {
   function validatedForm() {
     const regex = /[\w.\-+]+@[\w-]+\.[\w-.]/gi;
     const validatedEmail = regex.test(form.email);
-
     if (form.name && form.email && validatedEmail && form.password && form.passwordRepeat && role) {
       if (form.password !== form.passwordRepeat) {
         setError('As duas senhas não coincidem. Digite-as novamente!');
@@ -32,11 +34,11 @@ function useForm() {
     } else if (form.email && validatedEmail && form.password) {
       setError(null);
       return true;
-    } else if(form.email !== validatedEmail) {
-      setError('Preencha o campo de email corretamente!');
+    } else if(!form.email || !form.password) {
+      setError('Preencha todos os campos!');
       return false;
     } else {
-      setError('Preencha todos os campos!');
+      setError('Preencha o campo de email corretamente!');
       return false;
     }
   }
@@ -45,18 +47,35 @@ function useForm() {
     e.preventDefault();
     const validation = validatedForm();
     if (validation) {
-      createUser(form.name, form.email, form.password, role).then((response) => {
-        switch (response.status) {
-          case 200:
-            alert('página de menu');
-            break;
-          case 403:
-            setError('Email já cadastrado!');
-            break;
-          default:
-            setError('Erro, tente novamente!');
-        }
-      });
+      if(location.pathname === '/user-register') {
+        createUser(form.name, form.email, form.password, role)
+        .then((response) => {
+          switch (response.status) {
+            case 200:
+              alert('página de menu');
+              break;
+            case 403:
+              setError('Email já cadastrado!');
+              break;
+            default:
+              setError('Erro, tente novamente!');
+          }
+        });
+      } else {
+        loginUser(form.email, form.password)
+        .then((response) => {
+          switch (response.status) {
+            case 200:
+              alert('página garçom');
+              break;
+            case 400:
+              setError('Email e/ou senha incorretos. Tente novamente!');
+              break;
+            default:
+              setError('Erro, tente novamente!');
+          }
+        });
+      }
     }
   }
 
