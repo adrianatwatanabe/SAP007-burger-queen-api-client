@@ -2,7 +2,7 @@ const baseURL = 'https://lab-api-bq.herokuapp.com';
 const createUserURL = `${baseURL}/users`;
 const loginUserURL = `${baseURL}/auth`;
 
-export const createUser = (nameUser, emailUser, passwordUser, role) => {
+export const createUser = async (nameUser, emailUser, passwordUser, role) => {
   const config = {
     method: 'POST',
     headers: {
@@ -16,7 +16,7 @@ export const createUser = (nameUser, emailUser, passwordUser, role) => {
       restaurant: 'BURGER Queen',
     }),
   };
-  return fetch(createUserURL, config);
+  return await fetch(createUserURL, config);
 };
 
 export const loginUser = (emailUser, passwordUser) => {

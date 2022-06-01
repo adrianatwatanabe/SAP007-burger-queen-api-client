@@ -3,10 +3,21 @@ import './style.css';
 
 const Radio = (props) => {
   return (
-    <label className="form-label-radio">
-      <input className='input-radio' name={props.name} type="radio" value={props.selectedValue} onChange={props.onChange} />{props.text}
-    </label>
-  )
-}
+    <>
+      {props.options.map((option, index) => (
+        <label className={props.label} key={option}>
+          <input
+            type='radio'
+            className={props.class}
+            value={option}
+            checked={props.value === option}
+            onChange={({ target }) => props.setValue(target.value)}
+          />
+          {props.text[index]}
+        </label>
+      ))}
+    </>
+  );
+};
 
 export default Radio;
