@@ -1,12 +1,9 @@
 .form-user {
-  max-width: 1300px;
-  width: 90%;
-  margin-top: 3rem;
+  width: 100%;
   display: grid;
   grid-template-columns: 1fr;
   row-gap: 1.6rem;
   justify-items: center;
-  padding-bottom: 20px;
 }
 #message {
   width: 100%;
@@ -14,4 +11,10 @@
   font-size: 1.5rem;
   font-weight: 600;
   text-align: center;
+}
+
+@media screen and (max-width: 400px) {
+  .form-user {
+    padding: 5rem 0;
+  }
 }

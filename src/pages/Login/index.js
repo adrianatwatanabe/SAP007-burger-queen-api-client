@@ -3,13 +3,51 @@ import Logo from '../../components/Logo';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
 import useForm from '../../services/useForm';
+import { loginUser } from '../../services/user';
+import { useNavigate } from 'react-router-dom';
 import './style.css';
 
 function Login() {
-  const { addInputValue, sendForm, form, error } = useForm();
+  const navigate = useNavigate();
+  const { addInputValue, validatedForm, form, error, setError } = useForm();
+
+  function sendForm(e) {
+    e.preventDefault();
+    const validation = validatedForm();
+    if (validation) {
+      loginUser(form.email, form.password)
+        .then((response) => {
+          switch (response.status) {
+            case 200:
+              setError('Funcionário(a) cadastrado!');
+              return response.json();
+            case 400:
+              setError('Email e/ou senha incorretos. Tente novamente!');
+              break;
+            default:
+              setError('Erro, tente novamente!');
+          }
+        })
+        .then((data) => {
+          switch (data.role) {
+            case 'admin':
+              navigate('../administracao');
+              break;
+            case 'waiter':
+              navigate('../pedidos');
+              break;
+            case 'cook':
+              navigate('../pedidos-andamento');
+              break;
+            default:
+              navigate('../');
+          }
+        });
+    }
+  }
 
   return (
-    <form className='form-user'>
+    <form className='form-login'>
       <Logo />
       <Input
         label='form-label'

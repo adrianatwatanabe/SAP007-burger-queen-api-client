@@ -1,9 +1,6 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
-import { createUser, loginUser } from './user';
 
 function useForm() {
-  const location = useLocation();
 
   const [form, setForm] = React.useState({
     name: '',
@@ -43,44 +40,7 @@ function useForm() {
     }
   }
 
-  function sendForm(e) {
-    e.preventDefault();
-    const validation = validatedForm();
-    if (validation) {
-      if(location.pathname === '/user-register') {
-        createUser(form.name, form.email, form.password, role)
-        .then((response) => {
-          switch (response.status) {
-            case 200:
-              alert('página de menu');
-              break;
-            case 403:
-              setError('Email já cadastrado!');
-              break;
-            default:
-              setError('Erro, tente novamente!');
-          }
-        });
-      } else {
-        loginUser(form.email, form.password)
-        .then((response) => {
-          switch (response.status) {
-            case 200:
-              alert('página garçom');
-              break;
-            case 400:
-              setError('Email e/ou senha incorretos. Tente novamente!');
-              break;
-            default:
-              setError('Erro, tente novamente!');
-          }
-        });
-      }
-    }
-  }
-
-  function cleanForm(e) {
-    e.preventDefault();
+  function cleanForm() {
     setForm({
       name: '',
       email: '',
@@ -92,7 +52,7 @@ function useForm() {
     setError('');
   }
 
-  return { addInputValue, sendForm, cleanForm, form, role, error, setRole };
+  return { addInputValue, validatedForm, cleanForm, form, role, error, setRole, setError };
 }
 
 export default useForm;
