@@ -19,6 +19,7 @@ function Register() {
     e.preventDefault();
     validation = validatedForm();
     if (validation === '') {
+      
       createUser(form.name, form.email, form.password, role)
       .then((data) => {
 

@@ -19,7 +19,9 @@ function Login() {
     if (validation === '') {
       userLogin(form.email, form.password)
       .then((data) => {
+
         if(data !== '') setMessage(data);
+        
         switch (data.role) {
           case 'admin':
             navigate('../menu');
