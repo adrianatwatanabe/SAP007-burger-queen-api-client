@@ -19,7 +19,7 @@ export const createUser = async (nameUser, emailUser, passwordUser, role) => {
   return await fetch(createUserURL, config);
 };
 
-export const loginUser = (emailUser, passwordUser) => {
+export const loginUser = async (emailUser, passwordUser) => {
   const config = {
     method: 'POST',
     headers: {
@@ -30,5 +30,5 @@ export const loginUser = (emailUser, passwordUser) => {
       password: passwordUser,
     }),
   };
-  return fetch(loginUserURL, config);
+  return await fetch(loginUserURL, config);
 };

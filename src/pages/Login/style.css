@@ -1,4 +1,4 @@
-.form-user {
+.form-login {
   max-width: 1300px;
   width: 90%;
   margin-top: 3rem;
@@ -6,7 +6,6 @@
   grid-template-columns: 1fr;
   row-gap: 1.6rem;
   justify-items: center;
-  padding-bottom: 20px;
 }
 #message {
   width: 100%;
@@ -14,4 +13,10 @@
   font-size: 2rem;
   font-weight: 600;
   text-align: center;
+}
+
+@media screen and (max-width: 400px) {
+  .form-user {
+    margin-top: 1.375rem;
+  }
 }
