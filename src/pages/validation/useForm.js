@@ -9,7 +9,6 @@ function useForm() {
     passwordRepeat: '',
   });
   const [role, setRole] = React.useState('');
-  const [error, setError] = React.useState('');
 
   function addInputValue(e) {
     const name = e.target.name;
@@ -22,21 +21,16 @@ function useForm() {
     const validatedEmail = regex.test(form.email);
     if (form.name && form.email && validatedEmail && form.password && form.passwordRepeat && role) {
       if (form.password !== form.passwordRepeat) {
-        setError('As duas senhas não coincidem. Digite-as novamente!');
-        return false;
+        return 'As duas senhas não coincidem. Digite-as novamente!';
       } else {
-        setError(null);
-        return true;
+        return '';
       }
     } else if (form.email && validatedEmail && form.password) {
-      setError(null);
-      return true;
+      return '';
     } else if(!form.email || !form.password) {
-      setError('Preencha todos os campos!');
-      return false;
+      return 'Preencha todos os campos!';
     } else {
-      setError('Preencha o campo de email corretamente!');
-      return false;
+      return 'Preencha o campo de email corretamente!';
     }
   }
 
@@ -49,10 +43,9 @@ function useForm() {
       role: '',
     });
     setRole('');
-    setError('');
   }
 
-  return { addInputValue, validatedForm, cleanForm, form, role, error, setRole, setError };
+  return { addInputValue, validatedForm, cleanForm, form, role, setRole };
 }
 
 export default useForm;

@@ -1,34 +1,57 @@
+import { setToken } from './storage';
 const baseURL = 'https://lab-api-bq.herokuapp.com';
-const createUserURL = `${baseURL}/users`;
-const loginUserURL = `${baseURL}/auth`;
 
-export const createUser = async (nameUser, emailUser, passwordUser, role) => {
+function error(status) {
+  switch (status) {
+    case 200:
+      return '';
+    case 400:
+      return 'Email e/ou senha incorretos. Tente novamente!';
+    case 403:
+      return 'Email já cadastrado!';
+    default:
+      return 'Erro, tente novamente!';
+  }
+}
+
+export const createUser = (name, email, password, role) => {
   const config = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      name: nameUser,
-      email: emailUser,
-      password: passwordUser,
-      role: role,
+      name,
+      email,
+      password,
+      role,
       restaurant: 'BURGER Queen',
     }),
   };
-  return await fetch(createUserURL, config);
+  return fetch(`${baseURL}/users`, config)
+  .then((response) => {
+    return error(response.status);
+  });
 };
 
-export const loginUser = async (emailUser, passwordUser) => {
+export const userLogin = (email, password) => {
   const config = {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
     },
     body: JSON.stringify({
-      email: emailUser,
-      password: passwordUser,
+      email,
+      password,
     }),
   };
-  return await fetch(loginUserURL, config);
+  return fetch(`https://lab-api-bq.herokuapp.com/auth`, config)
+    .then((response) => { 
+      const errors = error(response.status);
+      if(errors !== '') return errors;
+      return response.json();
+    })
+    .then((data) => {
+      setToken(data.token);
+    });
 };

@@ -1,37 +1,36 @@
-import Input from '../../../components/Input';
-import Radio from '../../../components/Radio';
-import Button from '../../../components/Button';
-import useForm from '../../../services/useForm';
-import Header from '../../../components/Header';
-import Menu from '../../../components/Menu';
-import Container from '../../../components/Container';
-import { createUser } from '../../../services/user';
+import React from 'react';
+import Input from '../../components/Input';
+import Radio from '../../components/Radio';
+import Button from '../../components/Button';
+import Header from '../../components/Header';
+import Menu from '../../components/Menu';
+import Container from '../../components/Container';
+import useForm from '../validation/useForm';
+import { createUser } from '../../services/user';
 
 import './style.css';
 
 function Register() {
-  const { addInputValue, validatedForm, cleanForm, form, role, error, setRole, setError } = useForm();
+  const { addInputValue, validatedForm, cleanForm, form, role, setRole } = useForm();
+  const [message, setMessage] = React.useState();
+  let validation = '';
 
   function sendForm(e) {
     e.preventDefault();
-    const validation = validatedForm();
-    if (validation) {
-      createUser(form.name, form.email, form.password, role).then((response) => {
-        switch (response.status) {
-          case 200:
-            setError('Funcionário(a) cadastrado!');
-            setTimeout(() => {
-              cleanForm();
-            }, '3000');
-            break;
-          case 403:
-            setError('Email já cadastrado!');
-            break;
-          default:
-            setError('Erro, tente novamente!');
-        }
+    validation = validatedForm();
+    if (validation === '') {
+      createUser(form.name, form.email, form.password, role)
+      .then((data) => {
+
+        data === '' ? setMessage('Funcionário(a) cadastrado(a)!') : setMessage(data);
+
+        data === '' ? validation = 'Funcionário(a) cadastrado(a)!' : validation = data;
+        
+        console.log(data);
       });
     }
+    console.log(validation);
+    setMessage(validation);
   }
 
   return (
@@ -46,8 +45,8 @@ function Register() {
                 label={'form-label-radio'}
                 class={'input-radio'}
                 name={'role'}
-                text={['ATENDIMENTO', 'COZINHA']}
-                options={['waiter', 'cook']}
+                text={['ADMINISTRADOR', 'ATENDIMENTO', 'COZINHA']}
+                options={['admin', 'waiter', 'cook']}
                 value={role}
                 setValue={setRole}
                 onChange={addInputValue}
@@ -94,7 +93,7 @@ function Register() {
             placeholder='Digite a senha novamente'
             onChange={addInputValue}
           />
-          {error && <p id='message'>{error}</p>}
+          {message && <p id='message'>{message}</p>}
           <Button type={'submit'} text={'CADASTRAR'} onClick={sendForm} />
           <Button type={'button'} text={'LIMPAR'} onClick={cleanForm} />
         </form>

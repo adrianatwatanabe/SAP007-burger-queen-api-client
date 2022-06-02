@@ -2,48 +2,40 @@ import React from 'react';
 import Logo from '../../components/Logo';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
-import useForm from '../../services/useForm';
-import { loginUser } from '../../services/user';
+import useForm from '../validation/useForm';
+import { userLogin } from '../../services/user';
 import { useNavigate } from 'react-router-dom';
 import './style.css';
 
 function Login() {
   const navigate = useNavigate();
-  const { addInputValue, validatedForm, form, error, setError } = useForm();
+  const { addInputValue, validatedForm, form } = useForm();
+  const [message, setMessage] = React.useState();
+  let validation = '';
 
   function sendForm(e) {
     e.preventDefault();
-    const validation = validatedForm();
-    if (validation) {
-      loginUser(form.email, form.password)
-        .then((response) => {
-          switch (response.status) {
-            case 200:
-              setError('Funcionário(a) cadastrado!');
-              return response.json();
-            case 400:
-              setError('Email e/ou senha incorretos. Tente novamente!');
-              break;
-            default:
-              setError('Erro, tente novamente!');
-          }
-        })
-        .then((data) => {
-          switch (data.role) {
-            case 'admin':
-              navigate('../administracao');
-              break;
-            case 'waiter':
-              navigate('../pedidos');
-              break;
-            case 'cook':
-              navigate('../pedidos-andamento');
-              break;
-            default:
-              navigate('../');
-          }
-        });
+    validation = validatedForm();
+    if (validation === '') {
+      userLogin(form.email, form.password)
+      .then((data) => {
+        if(data !== '') setMessage(data);
+        switch (data.role) {
+          case 'admin':
+            navigate('../menu');
+            break;
+          case 'waiter':
+            navigate('../orders');
+            break;
+          case 'cook':
+            navigate('../orders-progress');
+            break;
+          default:
+            navigate('../');
+        }
+      })
     }
+    setMessage(validation);
   }
 
   return (
@@ -69,8 +61,8 @@ function Login() {
         placeholder='Digite a senha'
         onChange={addInputValue}
       />
-      {error && <p id='message'>{error}</p>}
-      <Button type={'submit'} text={'CADASTRAR'} onClick={sendForm} />
+      {message && <p id='message'>{message}</p>}
+      <Button type={'submit'} text={'ENTRAR'} onClick={sendForm} />
     </form>
   );
 }

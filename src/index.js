@@ -2,28 +2,27 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Login from './pages/Login';
-import Management from './pages/admin/Management';
-import Register from './pages/admin/Register';
-import UsersList from './pages/admin/UsersList';
-import OrdersProgress from './pages/kitchen/OrdersProgress';
-import Orders from './pages/attendance/Orders';
-import OrdersDelivered from './pages/attendance/OrdersDelivered';
+import Management from './pages/Management';
+import Register from './pages/Register';
+import UsersList from './pages/UsersList';
+import OrdersProgress from './pages/OrdersProgress';
+import Orders from './pages/Orders';
+import OrdersDelivered from './pages/OrdersDelivered';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route path="/" element={<Login />} />
-        <Route path="administracao" element={<Management />} />
-        <Route path="cadastro-funcionarios" element={<Register />} />
-        <Route path="lista-funcionarios" element={<UsersList />} />
-        <Route path="pedidos-andamento" element={<OrdersProgress />} />
-        <Route path="pedidos" element={<Orders />} />
-        <Route path="pedidos-entregues" element={<OrdersDelivered />} />
+        <Route exact path='/' element={<Login />} />
+        <Route exact path='menu' element={<Management />} />
+        <Route exact path='register' element={<Register />} />
+        <Route exact path='employee' element={<UsersList />} />
+        <Route exact path='orders-progress' element={<OrdersProgress />} />
+        <Route exact path='orders' element={<Orders />} />
+        <Route exact path='delivery' element={<OrdersDelivered />} />
+        <Route exact path='finish' element={<Orders />} />
       </Routes>
     </BrowserRouter>
   </React.StrictMode>
 );
-
-//finalizar pedido

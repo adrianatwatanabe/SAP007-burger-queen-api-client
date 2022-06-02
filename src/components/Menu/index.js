@@ -15,16 +15,16 @@ const Menu = () => {
   return (
     <nav className='menu'>
       <ul className='list-container'>
-        <Icon src={Logout} alt='Sair da conta BURGER Queen' class='icon' href='/' />
+        <Icon src={Logout} alt='Sair da conta BURGER Queen' class='icon' href='/finish' />
         { adminIcons ?
-          <Icon src={Back} alt='Voltar para o Menu' class='icon' href='/administracao' />
+          <Icon src={Back} alt='Voltar para o Menu' class='icon' href='/menu' />
           : null
         }
         { attendanceIcons ? 
           <>
-            <Icon src={OrdersDelivered} alt='Ir para a seção de Pedidos Entregues' class='icon' href='/pedidos-entregues' />
+            <Icon src={OrdersDelivered} alt='Ir para a seção de Pedidos Entregues' class='icon' href='/delivery' />
             <Icon src={FinalizeOrders} alt='Ir para a seção de Finalizar Pedidos' class='icon' href='finalizar-pedido'/>
-            <Icon src={OrdersList} alt='Ir para a seção de Pedidos' class='icon' href='/pedidos' />
+            <Icon src={OrdersList} alt='Ir para a seção de Pedidos' class='icon' href='/orders' />
           </> 
           : null
         }
