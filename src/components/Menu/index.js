@@ -9,22 +9,22 @@ import './style.css';
 
 const Menu = () => {
 
-  let kitchenIcons = false;
-  let adminIcons = true;
+  let attendanceIcons = false;
+  let adminIcons = false;
 
   return (
     <nav className='menu'>
       <ul className='list-container'>
-        <Icon src={Logout} alt='Sair da conta BURGER Queen' class='icon' />
+        <Icon src={Logout} alt='Sair da conta BURGER Queen' class='icon' href='/' />
         { adminIcons ?
-          <Icon src={Back} alt='Voltar para o Menu' class='icon'  />
+          <Icon src={Back} alt='Voltar para o Menu' class='icon' href='/administracao' />
           : null
         }
-        { kitchenIcons ? 
+        { attendanceIcons ? 
           <>
-            <Icon src={OrdersDelivered} alt='Ir para a seção de Pedidos Entregues' class='icon'  />
-            <Icon src={FinalizeOrders} alt='Ir para a seção de Finalizar Pedidos' class='icon' />
-            <Icon src={OrdersList} alt='Ir para a seção de Pedidos' class='icon' />
+            <Icon src={OrdersDelivered} alt='Ir para a seção de Pedidos Entregues' class='icon' href='/pedidos-entregues' />
+            <Icon src={FinalizeOrders} alt='Ir para a seção de Finalizar Pedidos' class='icon' href='finalizar-pedido'/>
+            <Icon src={OrdersList} alt='Ir para a seção de Pedidos' class='icon' href='/pedidos' />
           </> 
           : null
         }
