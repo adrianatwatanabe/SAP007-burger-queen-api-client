@@ -11,17 +11,14 @@ function Login() {
   const navigate = useNavigate();
   const { addInputValue, validatedForm, form } = useForm();
   const [message, setMessage] = React.useState();
-  let validation = '';
 
   function sendForm(e) {
     e.preventDefault();
-    validation = validatedForm();
+    let validation = validatedForm();
     if (validation === '') {
       userLogin(form.email, form.password)
       .then((data) => {
-
-        if(data !== '') setMessage(data);
-        
+        data === '' ? validation = 'Funcionário(a) cadastrado(a)!' : validation = data;
         switch (data.role) {
           case 'admin':
             navigate('../menu');
