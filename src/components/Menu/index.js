@@ -1,5 +1,7 @@
 import React from 'react';
+import { useLocation } from 'react-router-dom';
 import Icon from '../MenuIcon'
+import { getUserData } from '../../services/storage';
 import OrdersList from '../../img/icons/orders-list.png';
 import FinalizeOrders from '../../img/icons/finalize-orders.png';
 import OrdersDelivered from '../../img/icons/orders-delivered.png';
@@ -8,19 +10,20 @@ import Back from '../../img/icons/back.png';
 import './style.css';
 
 const Menu = () => {
-
-  let attendanceIcons = false;
-  let adminIcons = false;
+  const location = useLocation();
+  const page = location.pathname === '/menu';
+  let waiterIcons = (getUserData()[2] === 'waiter');
+  let adminIcons = (getUserData()[2] === 'admin');
 
   return (
     <nav className='menu'>
       <ul className='list-container'>
         <Icon src={Logout} alt='Sair da conta BURGER Queen' class='icon' href='/finish' />
-        { adminIcons ?
+        { adminIcons !== page ?
           <Icon src={Back} alt='Voltar para o Menu' class='icon' href='/menu' />
           : null
         }
-        { attendanceIcons ? 
+        { waiterIcons ? 
           <>
             <Icon src={OrdersDelivered} alt='Ir para a seção de Pedidos Entregues' class='icon' href='/delivery' />
             <Icon src={FinalizeOrders} alt='Ir para a seção de Finalizar Pedidos' class='icon' href='finalizar-pedido'/>

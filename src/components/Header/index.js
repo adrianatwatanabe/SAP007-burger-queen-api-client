@@ -1,13 +1,11 @@
 import React from 'react';
 import './style.css';
-import logoBurgerQueen from '../../img/logo-burger-queen.png';
+import Logo from '../Logo';
 
 const Header = (props) => {
   return (
     <header className='container-header'>
-      <picture>
-        <img src={logoBurgerQueen} alt='Logotipo BURGER Queen' className='header-logo' />
-      </picture>
+      <Logo />
       <p className='header-text'>{props.text}</p>
     </header>
   );
