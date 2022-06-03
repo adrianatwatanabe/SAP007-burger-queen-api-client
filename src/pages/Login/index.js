@@ -61,7 +61,7 @@ const Login = () => {
         onChange={addInputValue}
       />
       {message && <p id='message'>{message}</p>}
-      <Button type={'submit'} text={'ENTRAR'} onClick={sendForm} />
+      <Button type='submit' class='button' text='ENTRAR' onClick={sendForm} />
     </form>
   );
 }

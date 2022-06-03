@@ -88,8 +88,8 @@ const Register = () => {
             onChange={addInputValue}
           />
           {message && <p id='message'>{message}</p>}
-          <Button type={'submit'} text={'CADASTRAR'} onClick={sendForm} />
-          <Button type={'button'} text={'LIMPAR'} onClick={cleanForm} />
+          <Button type='submit' class='button' text='CADASTRAR' onClick={sendForm} />
+          <Button type='button' class='button' text='LIMPAR' onClick={cleanForm} />
         </form>
       </Container>
       <Menu />
