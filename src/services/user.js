@@ -1,4 +1,4 @@
-import { setToken } from './storage';
+import { setUserData } from './storage';
 const baseURL = 'https://lab-api-bq.herokuapp.com';
 
 function error(status) {
@@ -14,7 +14,7 @@ function error(status) {
   }
 }
 
-export const createUser = (name, email, password, role) => {
+export function createUser (name, email, password, role) {
   const config = {
     method: 'POST',
     headers: {
@@ -34,7 +34,7 @@ export const createUser = (name, email, password, role) => {
   });
 };
 
-export const userLogin = (email, password) => {
+export function userLogin (email, password) {
   const config = {
     method: 'POST',
     headers: {
@@ -52,7 +52,7 @@ export const userLogin = (email, password) => {
       return response.json();
     })
     .then((data) => {
-      setToken(data.token);
+      setUserData(data.name, data.token, data.role);
       return data;
     });
 };

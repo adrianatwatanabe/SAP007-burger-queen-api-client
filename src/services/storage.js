@@ -1,9 +1,11 @@
-export function setToken(value) {
-  return localStorage.setItem('token', value);
+export function setUserData(name, token, role) {
+  localStorage.setItem('name', name);
+  localStorage.setItem('token', token);
+  localStorage.setItem('role', role);
 }
 
-export function getToken() {
-  return localStorage.getItem('token');
+export function getUserData() {
+  return [localStorage.getItem('name'), localStorage.getItem('token'), localStorage.getItem('role')];
 }
 
 export function deleteUserData() {
