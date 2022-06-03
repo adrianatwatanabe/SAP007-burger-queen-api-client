@@ -5,32 +5,25 @@ import Button from '../../components/Button';
 import Header from '../../components/Header';
 import Menu from '../../components/Menu';
 import Container from '../../components/Container';
-import useForm from '../validation/useForm';
+import useForm from '../../hooks/useForm';
 import { createUser } from '../../services/user';
 
 import './style.css';
 
-function Register() {
+const Register = () => {
   const { addInputValue, validatedForm, cleanForm, form, role, setRole } = useForm();
   const [message, setMessage] = React.useState();
-  let validation = '';
 
-  function sendForm(e) {
+  const sendForm = (e) => {
     e.preventDefault();
-    validation = validatedForm();
+    let validation = validatedForm();
     if (validation === '') {
-      
       createUser(form.name, form.email, form.password, role)
       .then((data) => {
-
-        data === '' ? setMessage('Funcionário(a) cadastrado(a)!') : setMessage(data);
-
         data === '' ? validation = 'Funcionário(a) cadastrado(a)!' : validation = data;
-        
-        console.log(data);
-      });
+      })
+      .then(() => setMessage(validation));
     }
-    console.log(validation);
     setMessage(validation);
   }
 

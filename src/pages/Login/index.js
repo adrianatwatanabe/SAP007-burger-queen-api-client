@@ -2,26 +2,23 @@ import React from 'react';
 import Logo from '../../components/Logo';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
-import useForm from '../validation/useForm';
+import useForm from '../../hooks/useForm';
 import { userLogin } from '../../services/user';
 import { useNavigate } from 'react-router-dom';
 import './style.css';
 
-function Login() {
+const Login = () => {
   const navigate = useNavigate();
   const { addInputValue, validatedForm, form } = useForm();
   const [message, setMessage] = React.useState();
-  let validation = '';
 
-  function sendForm(e) {
+  const sendForm = (e) => {
     e.preventDefault();
-    validation = validatedForm();
+    let validation = validatedForm();
     if (validation === '') {
       userLogin(form.email, form.password)
       .then((data) => {
-
-        if(data !== '') setMessage(data);
-        
+        data === '' ? validation = 'Funcionário(a) cadastrado(a)!' : validation = data;
         switch (data.role) {
           case 'admin':
             navigate('../menu');

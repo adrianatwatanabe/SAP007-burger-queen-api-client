@@ -1,6 +1,9 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
+import Admin from './components/PrivateComponent/admin';
+import Cook from './components/PrivateComponent/cook';
+import Waiter from './components/PrivateComponent/waiter';
 import Login from './pages/Login';
 import Management from './pages/Management';
 import Register from './pages/Register';
@@ -14,14 +17,20 @@ root.render(
   <React.StrictMode>
     <BrowserRouter>
       <Routes>
-        <Route exact path='/' element={<Login />} />
-        <Route exact path='menu' element={<Management />} />
-        <Route exact path='register' element={<Register />} />
-        <Route exact path='employee' element={<UsersList />} />
-        <Route exact path='orders-progress' element={<OrdersProgress />} />
-        <Route exact path='orders' element={<Orders />} />
-        <Route exact path='delivery' element={<OrdersDelivered />} />
-        <Route exact path='finish' element={<Orders />} />
+        <Route exact path='/' end element={<Login />}/>
+        <Route path="/*" element={<Admin />}>
+          <Route exact path='menu' element={<Management />} />
+          <Route exact path='register' element={<Register />} />
+          <Route exact path='employee' element={<UsersList />} />
+        </Route>
+        <Route path="/*" element={<Cook />}>
+          <Route exact path='orders-progress' element={<OrdersProgress />} />
+        </Route>
+        <Route path="/*" element={<Waiter />}>
+          <Route exact path='orders' element={<Orders />} />
+          <Route exact path='delivery' element={<OrdersDelivered />} />
+          <Route exact path='finish' element={<Orders />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   </React.StrictMode>

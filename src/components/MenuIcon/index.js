@@ -1,13 +1,14 @@
-import React from 'react'
+import React from 'react';
+import { NavLink } from 'react-router-dom';
 import './style.css';
 
 const Icon = (props) => {
 
   return (
     <li>
-      <a className='icon-button' href={props.href}>
+      <NavLink to={props.href} className='icon-button'>
         <img src={props.src} alt={props.alt} className={props.class} />
-      </a>
+      </NavLink>
     </li>
   )
 }
