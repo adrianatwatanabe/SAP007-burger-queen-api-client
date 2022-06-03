@@ -1,7 +1,8 @@
 import React from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import Icon from '../MenuIcon'
-import { getUserData } from '../../services/storage';
+import { getUserData, deleteUserData } from '../../services/storage';
+
 import OrdersList from '../../img/icons/orders-list.png';
 import FinalizeOrders from '../../img/icons/finalize-orders.png';
 import OrdersDelivered from '../../img/icons/orders-delivered.png';
@@ -11,23 +12,31 @@ import './style.css';
 
 const Menu = () => {
   const location = useLocation();
+  const navigate = useNavigate();
+
   const page = location.pathname === '/menu';
   let waiterIcons = (getUserData()[2] === 'waiter');
   let adminIcons = (getUserData()[2] === 'admin');
 
+  const logout = (e) => {
+    e.preventDefault();
+    deleteUserData();
+    navigate('/');
+  }
+
   return (
     <nav className='menu'>
       <ul className='list-container'>
-        <Icon src={Logout} alt='Sair da conta BURGER Queen' classLink='icon-button' class='icon' href='/finish' />
+        <Icon src={Logout} alt='Sair da conta BURGER Queen' classLink='icon-button' class='icon' href='#' onClick={logout} />
         { adminIcons !== page ?
-          <Icon src={Back} alt='Voltar para o Menu' classLink='icon-button' class='icon' href='/menu' />
+          <Icon src={Back} alt='Voltar para o Menu' classLink='icon-button' class='icon' href='/menu' onClick={null} />
           : null
         }
         { waiterIcons ? 
           <>
-            <Icon src={OrdersDelivered} alt='Ir para a seção de Pedidos Entregues' classLink='icon-button' class='icon' href='/delivery' />
-            <Icon src={FinalizeOrders} alt='Ir para a seção de Finalizar Pedidos' classLink='icon-button' class='icon' href='finalizar-pedido'/>
-            <Icon src={OrdersList} alt='Ir para a seção de Pedidos' classLink='icon-button' class='icon' href='/orders' />
+            <Icon src={OrdersDelivered} alt='Ir para a seção de Pedidos Entregues' classLink='icon-button' class='icon' href='/delivery' onClick={null} />
+            <Icon src={FinalizeOrders} alt='Ir para a seção de Finalizar Pedidos' classLink='icon-button' class='icon' href='finalizar-pedido' onClick={null} />
+            <Icon src={OrdersList} alt='Ir para a seção de Pedidos' classLink='icon-button' class='icon' href='/orders' onClick={null} />
           </> 
           : null
         }

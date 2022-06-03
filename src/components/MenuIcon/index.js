@@ -6,7 +6,7 @@ const Icon = (props) => {
 
   return (
     <li>
-      <NavLink to={props.href} className={props.classLink}>
+      <NavLink to={props.href} className={props.classLink} onClick={props.onClick}>
         <img src={props.src} alt={props.alt} className={props.class} />
       </NavLink>
     </li>
