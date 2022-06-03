@@ -1,6 +1,6 @@
 import React from 'react';
 
-function useForm() {
+const useForm = () => {
 
   const [form, setForm] = React.useState({
     name: '',
@@ -10,13 +10,13 @@ function useForm() {
   });
   const [role, setRole] = React.useState('');
 
-  function addInputValue(e) {
+  const addInputValue = (e) => {
     const name = e.target.name;
     const value = e.target.value;
     setForm({ ...form, [name]: value });
   };
 
-  function validatedForm() {
+  const validatedForm = () => {
     const regex = /[\w.\-+]+@[\w-]+\.[\w-.]/gi;
     const validatedEmail = regex.test(form.email);
     if (form.name && form.email && validatedEmail && form.password && form.passwordRepeat && role) {
@@ -34,7 +34,7 @@ function useForm() {
     }
   }
 
-  function cleanForm() {
+  const cleanForm = () => {
     setForm({
       name: '',
       email: '',

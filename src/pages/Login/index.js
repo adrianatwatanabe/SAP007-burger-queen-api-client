@@ -2,17 +2,17 @@ import React from 'react';
 import Logo from '../../components/Logo';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
-import useForm from '../validation/useForm';
+import useForm from '../../hooks/useForm';
 import { userLogin } from '../../services/user';
 import { useNavigate } from 'react-router-dom';
 import './style.css';
 
-function Login() {
+const Login = () => {
   const navigate = useNavigate();
   const { addInputValue, validatedForm, form } = useForm();
   const [message, setMessage] = React.useState();
 
-  function sendForm(e) {
+  const sendForm = (e) => {
     e.preventDefault();
     let validation = validatedForm();
     if (validation === '') {

@@ -2,7 +2,7 @@ import React from 'react';
 import './style.css';
 import logoBurgerQueen from '../../img/logo-burger-queen.png';
 
-function Header(props) {
+const Header = (props) => {
   return (
     <header className='container-header'>
       <picture>
