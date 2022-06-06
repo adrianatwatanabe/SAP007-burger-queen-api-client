@@ -5,7 +5,7 @@ import Admin from './components/PrivateComponent/admin';
 import Cook from './components/PrivateComponent/cook';
 import Waiter from './components/PrivateComponent/waiter';
 import Login from './pages/Login';
-import Management from './pages/Management';
+import Menu from './pages/Menu';
 import Register from './pages/Register';
 import UsersList from './pages/UsersList';
 import OrdersProgress from './pages/OrdersProgress';
@@ -19,7 +19,7 @@ root.render(
       <Routes>
         <Route exact path='/' end element={<Login />}/>
         <Route path="/*" element={<Admin />}>
-          <Route exact path='menu' element={<Management />} />
+          <Route exact path='menu' element={<Menu />} />
           <Route exact path='register' element={<Register />} />
           <Route exact path='employee' element={<UsersList />} />
         </Route>

@@ -1,12 +1,13 @@
 import React from 'react';
+import useForm from '../../hooks/useForm';
+import { createUser } from '../../services/user';
 import Input from '../../components/Input';
 import Radio from '../../components/Radio';
 import Button from '../../components/Button';
 import Header from '../../components/Header';
-import Menu from '../../components/Menu';
+import Footer from '../../components/Footer';
 import Container from '../../components/Container';
-import useForm from '../../hooks/useForm';
-import { createUser } from '../../services/user';
+import TableContainer from '../../components/Table';
 
 import './style.css';
 
@@ -88,11 +89,17 @@ const Register = () => {
             onChange={addInputValue}
           />
           {message && <p id='message'>{message}</p>}
-          <Button type='submit' class='button' text='CADASTRAR' onClick={sendForm} />
-          <Button type='button' class='button' text='LIMPAR' onClick={cleanForm} />
+          <TableContainer class='register-button'>
+            <Button href='#' classLink={null} type='button' class='cancell-button' onClick={cleanForm}>
+              LIMPAR
+            </Button>
+            <Button href='#' classLink={null} type='submit' class='confirm-button' onClick={sendForm}>
+              CADASTRAR
+            </Button>
+          </TableContainer>
         </form>
       </Container>
-      <Menu />
+      <Footer />
     </>
   );
 }

@@ -12,9 +12,3 @@
   font-weight: 600;
   text-align: center;
 }
-
-@media screen and (max-width: 400px) {
-  .form-user {
-    padding: 5rem 0;
-  }
-}

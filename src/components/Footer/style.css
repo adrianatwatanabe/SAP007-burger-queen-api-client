@@ -1,7 +1,7 @@
-.menu {
+#footer-menu {
   max-width: 1300px;
   width: 90%;
-  padding: 20px 0;
+  padding: 10px 0;
   position: fixed;
   bottom: 0;
   background: var(--color-wine-background);
@@ -10,6 +10,7 @@
 .list-container {
   width: 100%;
   display: flex;
+  align-items: center;
   flex-direction: row-reverse;
   justify-content: space-between;
 }
@@ -17,8 +18,8 @@
   list-style: none;
 }
 
-@media screen and (max-width: 400px) {
-  .menu {
-    padding: 8px 0;
+@media screen and (min-width: 600px) {
+  #footer-menu {
+    padding: 15px 0;
   }
 }

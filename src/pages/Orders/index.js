@@ -1,6 +1,6 @@
 import React from 'react';
 import Header from '../../components/Header';
-import Menu from '../../components/Menu';
+import Footer from '../../components/Footer';
 import Container from '../../components/Container';
 import './style.css';
 
@@ -9,7 +9,7 @@ const Orders = () => {
     <>
       <Header text='PEDIDOS' />
       <Container></Container>
-      <Menu />
+      <Footer/>
     </>
   );
 };

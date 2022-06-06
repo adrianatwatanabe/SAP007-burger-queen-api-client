@@ -1,12 +1,13 @@
 .text-radio {
   width: 100%;
-  color: var(--color-yellow-highlight);
+  color: var(--color-orange-highlight);
   font-size: 1.25rem;
   font-weight: 600;
 }
 .container-radio {
-  display: inline-block;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.625rem;
   margin-top: 1rem;
 }
 .form-label-radio {
@@ -40,10 +41,9 @@
   opacity: 1;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (min-width: 600px) {
   .container-radio {
-    display: flex;
-    flex-direction: column;
-    row-gap: 0.625rem;
+    display: inline-block;
+    width: 100%;
   }
 }

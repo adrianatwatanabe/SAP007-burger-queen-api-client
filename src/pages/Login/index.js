@@ -39,7 +39,7 @@ const Login = () => {
 
   return (
     <form className='form-login'>
-      <Logo />
+      <Logo class='login-logo'/>
       <Input
         label='form-label'
         name='email'
@@ -61,7 +61,9 @@ const Login = () => {
         onChange={addInputValue}
       />
       {message && <p id='message'>{message}</p>}
-      <Button type='submit' class='button' text='ENTRAR' onClick={sendForm} />
+      <Button href='#' classLink='button-link' type='submit' class='button' onClick={sendForm}>
+        ENTRAR
+      </Button>
     </form>
   );
 }
