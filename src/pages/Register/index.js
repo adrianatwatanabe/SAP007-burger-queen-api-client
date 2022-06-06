@@ -1,6 +1,7 @@
 import React from 'react';
 import useForm from '../../hooks/useForm';
 import { createUser } from '../../services/user';
+import Form from '../../components/Form';
 import Input from '../../components/Input';
 import Radio from '../../components/Radio';
 import Button from '../../components/Button';
@@ -8,8 +9,7 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Container from '../../components/Container';
 import TableContainer from '../../components/Table';
-
-import './style.css';
+import Text from '../../components/Text';
 
 const Register = () => {
   const { addInputValue, validatedForm, cleanForm, form, role, setRole } = useForm();
@@ -32,7 +32,7 @@ const Register = () => {
     <>
       <Header text='CADASTRO DE FUNCIONÁRIOS' />
       <Container>
-        <form className='form-user'>
+        <Form class='form-user'>
           <p className='text-radio'>
             CADASTRO DO (A):
             <span className='container-radio'>
@@ -88,16 +88,19 @@ const Register = () => {
             placeholder='Digite a senha novamente'
             onChange={addInputValue}
           />
-          {message && <p id='message'>{message}</p>}
+          {message && <Text class='form-message'>{message}</Text>}
           <TableContainer class='register-button'>
-            <Button href='#' classLink={null} type='button' class='cancell-button' onClick={cleanForm}>
+            <Button href='#' classLink={null} type='button' class='cancell-button' onClick={(e) => {
+              cleanForm();
+              setMessage(''); 
+            }}>
               LIMPAR
             </Button>
             <Button href='#' classLink={null} type='submit' class='confirm-button' onClick={sendForm}>
               CADASTRAR
             </Button>
           </TableContainer>
-        </form>
+        </Form>
       </Container>
       <Footer />
     </>

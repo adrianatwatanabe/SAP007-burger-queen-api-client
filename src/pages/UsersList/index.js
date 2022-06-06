@@ -7,7 +7,7 @@ import './style.css';
 const UsersList = () => {
   return (
     <>
-      <Header text='LISTA DE FUNCIONÁRIOS' />
+      <Header text='LISTA DE FUNCIONÁRIOS (AS)' />
       <Container></Container>
       <Footer />
     </>
