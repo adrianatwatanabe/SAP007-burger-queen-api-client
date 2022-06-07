@@ -32,7 +32,7 @@ export function createUser (name, email, password, role) {
   .then((response) => {
     return error(response.status);
   });
-};
+}
 
 export function userLogin (email, password) {
   const config = {
@@ -44,8 +44,9 @@ export function userLogin (email, password) {
       email,
       password,
     }),
-  };
-  return fetch(`https://lab-api-bq.herokuapp.com/auth`, config)
+  }
+
+  return fetch('https://lab-api-bq.herokuapp.com/auth', config)
     .then((response) => { 
       const errors = error(response.status);
       if(errors !== '') return errors;
@@ -55,4 +56,4 @@ export function userLogin (email, password) {
       setUserData(data.name, data.token, data.role);
       return data;
     });
-};
+}

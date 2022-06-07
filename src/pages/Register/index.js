@@ -90,7 +90,7 @@ const Register = () => {
           />
           {message && <Text class='form-message'>{message}</Text>}
           <TableContainer class='register-button'>
-            <Button href='#' classLink={null} type='button' class='cancell-button' onClick={(e) => {
+            <Button href='#' classLink={null} type='button' class='cancell-button' onClick={() => {
               cleanForm();
               setMessage(''); 
             }}>
