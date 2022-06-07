@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import Button from '../../components/Button';
+import ButtonLink from '../../components/ButtonLink';
 //import * as ReactRouterDom from 'react-router-dom';
 import { NavLink } from 'react-router-dom';
 
@@ -12,7 +12,7 @@ describe('Button component', () => {
   NavLink.mockImplementation((children) => <p>{children}</p>);
   it('Deve renderizar um botão com o texto fornecido', () => {
     console.log(NavLink('text'));
-    render(<Button>ENTRAR</Button>);
+    render(<ButtonLink>ENTRAR</ButtonLink>);
     screen.debug();
     const buttonTest = screen.getByText('ENTRAR')
     expect(buttonTest).toBeInTheDocument();
