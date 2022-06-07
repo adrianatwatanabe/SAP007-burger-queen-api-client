@@ -14,7 +14,6 @@ const Footer = () => {
   const location = useLocation();
   const navigate = useNavigate();
 
-  const page = location.pathname === '/menu';
   let waiterIcons = getUserData()[2] === 'waiter';
   let adminIcons = getUserData()[2] === 'admin';
 
@@ -27,7 +26,7 @@ const Footer = () => {
   return (
     <nav id='footer-menu'>
       <ul className='list-container'>
-        <Button href='/' classLink={null} class='icon-button' onClick={logout}>
+        <Button href='/home' classLink={null} class='icon-button' onClick={logout}>
           <img src={Logout} alt='Sair da conta BURGER Queen' className='icon' />
         </Button>
         {waiterIcons ? (
@@ -43,7 +42,7 @@ const Footer = () => {
             </Button>
           </>
         ) : null}
-        {adminIcons !== page ? (
+        {adminIcons !== (location.pathname === '/menu') ? (
           <Button href='/menu' classLink={null} class='icon-button' onClick={null}>
             <img src={Back} alt='Voltar para o Menu' className='icon' />
           </Button>

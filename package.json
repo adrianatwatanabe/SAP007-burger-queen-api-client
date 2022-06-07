@@ -39,6 +39,7 @@
   },
   "devDependencies": {
     "@testing-library/react": "^13.3.0",
+    "eslint": "^8.17.0",
     "gh-pages": "^4.0.0",
     "jest": "^28.1.0"
   }
