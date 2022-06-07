@@ -15,22 +15,22 @@ const Footer = () => {
   const navigate = useNavigate();
 
   const page = location.pathname === '/menu';
-  let waiterIcons = (getUserData()[2] === 'waiter');
-  let adminIcons = (getUserData()[2] === 'admin');
+  let waiterIcons = getUserData()[2] === 'waiter';
+  let adminIcons = getUserData()[2] === 'admin';
 
   const logout = (e) => {
     e.preventDefault();
     deleteUserData();
     navigate('/');
-  }
+  };
 
   return (
     <nav id='footer-menu'>
       <ul className='list-container'>
-        <Button href='#' classLink={null} class='icon-button' onClick={logout}>
+        <Button href='/' classLink={null} class='icon-button' onClick={logout}>
           <img src={Logout} alt='Sair da conta BURGER Queen' className='icon' />
         </Button>
-        { waiterIcons ? 
+        {waiterIcons ? (
           <>
             <Button href='/delivery' classLink={null} class='icon-button' onClick={null}>
               <img src={OrdersDelivered} alt='Ir para a seção de Pedidos Entregues' className='icon' />
@@ -41,15 +41,13 @@ const Footer = () => {
             <Button href='/orders' classLink={null} class='icon-button' onClick={null}>
               <img src={OrdersList} alt='Ir para a seção de Pedidos' className='icon' />
             </Button>
-          </> 
-          : null
-        }
-        { adminIcons !== page ?
+          </>
+        ) : null}
+        {adminIcons !== page ? (
           <Button href='/menu' classLink={null} class='icon-button' onClick={null}>
             <img src={Back} alt='Voltar para o Menu' className='icon' />
           </Button>
-          : null
-        }
+        ) : null}
       </ul>
     </nav>
   );
