@@ -1,11 +1,12 @@
 import React from 'react';
+import { userLogin } from '../../services/user';
+import { useNavigate } from 'react-router-dom';
+import useForm from '../../hooks/useForm';
+import Form from '../../components/Form';
 import Logo from '../../components/Logo';
 import Input from '../../components/Input';
 import Button from '../../components/Button';
-import useForm from '../../hooks/useForm';
-import { userLogin } from '../../services/user';
-import { useNavigate } from 'react-router-dom';
-import './style.css';
+import Text from '../../components/Text';
 
 const Login = () => {
   const navigate = useNavigate();
@@ -38,8 +39,8 @@ const Login = () => {
   }
 
   return (
-    <form className='form-login'>
-      <Logo />
+    <Form class='form-login'>
+      <Logo class='login-logo'/>
       <Input
         label='form-label'
         name='email'
@@ -60,9 +61,11 @@ const Login = () => {
         placeholder='Digite a senha'
         onChange={addInputValue}
       />
-      {message && <p id='message'>{message}</p>}
-      <Button type='submit' class='button' text='ENTRAR' onClick={sendForm} />
-    </form>
+      {message && <Text class='form-message'>{message}</Text>}
+      <Button href='#' classLink='button-link' type='submit' class='button' onClick={sendForm}>
+        ENTRAR
+      </Button>
+    </Form>
   );
 }
 

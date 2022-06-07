@@ -1,11 +1,11 @@
 import React from 'react';
-import './style.css';
 import Logo from '../Logo';
+import './style.css';
 
 const Header = (props) => {
   return (
-    <header className='container-header'>
-      <Logo />
+    <header id='container-header'>
+      <Logo class='login-header'/>
       <p className='header-text'>{props.text}</p>
     </header>
   );

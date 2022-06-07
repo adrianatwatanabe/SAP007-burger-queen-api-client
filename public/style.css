@@ -12,6 +12,7 @@ body {
 }
 #root {
   height: 100vh;
+  width: 100vw;
   display: flex;
   flex-direction: column;
   justify-content: flex-start;
@@ -22,7 +23,7 @@ body {
   --font-default: 'Lato', sans-serif;
   --font-header: 'Caesar Dressing', cursive;
   --color-black-text: #292929;
-  --color-white-text: #fdfdfd;
+  --color-white-text: #c0c0c0;
 
   --color-green-highlight: #418a2f;
   --color-yellow-highlight: #ffb649;
@@ -31,7 +32,7 @@ body {
 
   --color-wine-background: #4f0a0a;
   --color-red-background: #a60000;
-  --color-orange-background: #ca8b50;
+  --color-orange-background: #ff9735;
   --color-green-background: #065535;
   --color-dark-red-background: #971a1a;
   --color-gray-background: #ababab;
@@ -40,4 +41,5 @@ body {
   --color-dark-green: #008138;
 
   --color-green-opacity: rgba(30, 129, 0, 0.3);
+  --color-orange-opacity: rgba(196, 103, 16, 0.3);
 }

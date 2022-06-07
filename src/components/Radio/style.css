@@ -1,25 +1,28 @@
 .text-radio {
   width: 100%;
-  color: var(--color-yellow-highlight);
-  font-size: 1.25rem;
+  color: var(--color-orange-highlight);
+  font-size: 0.875rem;
   font-weight: 600;
 }
 .container-radio {
-  display: inline-block;
-  width: 100%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.625rem;
   margin-top: 1rem;
 }
 .form-label-radio {
   width: 100%;
   color: var(--color-white-text);
-  font-size: 1rem;
+  font-size: 0.875rem;
 }
+
+/* tag input radio */
 .input-radio {
   appearance: none;
   margin-left: 2.5rem;
   margin-right: 0.625rem;
-  width: 20px;
-  height: 20px;
+  width: 18px;
+  height: 18px;
   border-radius: 50%;
   background-color: var(--color-orange-background);
   vertical-align: text-bottom;
@@ -29,8 +32,8 @@
   opacity: 0;
   content: '';
   background-color: var(--color-green-background);
-  width: 14px;
-  height: 14px;
+  width: 12px;
+  height: 12px;
   border-radius: 50%;
   position: absolute;
   top: 3px;
@@ -40,10 +43,23 @@
   opacity: 1;
 }
 
-@media screen and (max-width: 400px) {
+@media screen and (min-width: 600px) {
   .container-radio {
-    display: flex;
-    flex-direction: column;
-    row-gap: 0.625rem;
+    display: inline-block;
+    width: 100%;
+  }
+  .text-radio {
+    font-size: 1.25rem;
+  }
+  .form-label-radio {
+    font-size: 1rem;
+  }
+  .input-radio {
+    width: 20px;
+    height: 20px;
+  }
+  .input-radio:before {
+    width: 14px;
+    height: 14px;
   }
 }

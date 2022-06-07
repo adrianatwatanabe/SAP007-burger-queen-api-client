@@ -1,0 +1,14 @@
+.register-button {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  column-gap: 20%;
+  row-gap: 2rem;
+  margin-top: 2rem;
+}
+
+@media screen and (max-width: 600px) {
+  .register-button {
+    grid-template-columns: 1fr;
+  }
+}

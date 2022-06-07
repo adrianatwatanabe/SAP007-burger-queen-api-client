@@ -1,6 +1,33 @@
+#container-general {
+  width: 100%;
+  height: 100vh;
+  padding: 97px 0 60px 0;
+  overflow-y: scroll;
+  overflow-x: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
 #container {
   max-width: 1300px;
   width: 90%;
-  padding-top: 6rem;
-  padding-bottom: 7rem;
+}
+#container-general::-webkit-scrollbar {
+  width: 8px;
+}
+#container-general::-webkit-scrollbar-track {
+  background: var(--color-black-text);
+  border-radius: 10px;
+}
+#container-general::-webkit-scrollbar-thumb {
+  background-color: var(--color-gray-background);
+  border-radius: 20px;
+}
+
+@media screen and (min-width: 600px) {
+  #container-general {
+    padding-top: 123px;
+    padding-bottom: 90px;
+  }
 }

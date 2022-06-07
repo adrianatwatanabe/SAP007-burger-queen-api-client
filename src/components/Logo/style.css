@@ -1,4 +1,19 @@
-.logo {
-  width: 10rem;
-  height: 10rem;
+.login-logo {
+  width: 9rem;
+  height: 9rem;
+}
+.login-header {
+  width: 4rem;
+  height: 4rem;
+}
+
+@media screen and (min-width: 600px) {
+  .login-logo {
+    width: 10rem;
+    height: 10rem;
+  }
+  .login-header {
+    width: 5rem;
+    height: 5rem;
+  }
 }
