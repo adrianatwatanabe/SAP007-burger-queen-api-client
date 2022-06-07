@@ -9,13 +9,14 @@
 .form-message {
   width: 100%;
   color: var(--color-gray-background);
-  font-size: 2rem;
+  font-size: 1.125rem;
   font-weight: 600;
   text-align: center;
 }
 
 @media screen and (min-width: 600px) {
-  .text-menu {
+  .text-menu,
+  .form-message {
     font-size: 1.375rem;
   }
 }

@@ -2,7 +2,7 @@ import React from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Container from '../../components/Container';
-import Button from '../../components/Button';
+import ButtonLink from '../../components/ButtonLink';
 import Text from '../../components/Text'
 
 const Management = () => {
@@ -13,24 +13,24 @@ const Management = () => {
         <Text class='text-menu'>
           SEÇÃO DE ADMINISTRAÇÃO:
         </Text>
-        <Button href='/register' classLink='button-link' type='button' class='menu-button' onClick={null}>
+        <ButtonLink href='/register' class='menu-button'>
           CADASTRAR FUNCIONÁRIOS (AS)
-        </Button>
-        <Button href='/employee' classLink='button-link' type='button' class='menu-button' onClick={null}>
+        </ButtonLink>
+        <ButtonLink href='/employee' class='menu-button'>
           LISTA DE FUNCIONÁRIOS (AS)
-        </Button>
+        </ButtonLink>
         <Text class='text-menu'>
           SEÇÃO DE ATENDIMENTO E COZINHA:
         </Text>
-        <Button href='/orders' classLink='button-link' type='button' class='menu-button' onClick={null}>
+        <ButtonLink href='/orders' class='menu-button'>
           PEDIDOS
-        </Button>
-        <Button href='/orders-progress' classLink='button-link' type='button' class='menu-button' onClick={null}>
+        </ButtonLink>
+        <ButtonLink href='/orders-progress' class='menu-button'>
           PEDIDOS EM ANDAMENTO
-        </Button>
-        <Button href='/delivery' classLink='button-link' type='button' class='menu-button' onClick={null}>
+        </ButtonLink>
+        <ButtonLink href='/delivery' class='menu-button'>
           PEDIDOS ENTREGUES
-        </Button>
+        </ButtonLink>
       </Container>
       <Footer />
     </>

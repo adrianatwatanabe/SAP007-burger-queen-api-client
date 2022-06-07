@@ -8,6 +8,7 @@ import OrdersDelivered from '../../img/icons/orders-delivered.png';
 import Logout from '../../img/icons/logout.png';
 import Back from '../../img/icons/back.png';
 import Button from '../Button';
+import ButtonLink from '../ButtonLink';
 import './style.css';
 
 const Footer = () => {
@@ -26,26 +27,26 @@ const Footer = () => {
   return (
     <nav id='footer-menu'>
       <ul className='list-container'>
-        <Button href='/home' classLink={null} class='icon-button' onClick={logout}>
+        <Button type='submit' class='icon-button' onClick={logout} >
           <img src={Logout} alt='Sair da conta BURGER Queen' className='icon' />
         </Button>
         {waiterIcons ? (
           <>
-            <Button href='/delivery' classLink={null} class='icon-button' onClick={null}>
+            <ButtonLink href='/delivery' class='icon-button' >
               <img src={OrdersDelivered} alt='Ir para a seção de Pedidos Entregues' className='icon' />
-            </Button>
-            <Button href='/finish' classLink={null} class='icon-button' onClick={null}>
+            </ButtonLink>
+            <ButtonLink href='/finish' class='icon-button' >
               <img src={FinalizeOrders} alt='Ir para a seção de Finalizar Pedidos' className='icon' />
-            </Button>
-            <Button href='/orders' classLink={null} class='icon-button' onClick={null}>
+            </ButtonLink>
+            <ButtonLink href='/orders' class='icon-button' >
               <img src={OrdersList} alt='Ir para a seção de Pedidos' className='icon' />
-            </Button>
+            </ButtonLink>
           </>
         ) : null}
         {adminIcons !== (location.pathname === '/menu') ? (
-          <Button href='/menu' classLink={null} class='icon-button' onClick={null}>
+          <ButtonLink href='/menu' class='icon-button' >
             <img src={Back} alt='Voltar para o Menu' className='icon' />
-          </Button>
+          </ButtonLink>
         ) : null}
       </ul>
     </nav>
