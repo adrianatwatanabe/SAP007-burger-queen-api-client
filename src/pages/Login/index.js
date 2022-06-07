@@ -62,7 +62,7 @@ const Login = () => {
         onChange={addInputValue}
       />
       {message && <Text class='form-message'>{message}</Text>}
-      <Button href='#' classLink='button-link' type='submit' class='button' onClick={sendForm}>
+      <Button type='submit' class='button' onClick={sendForm}>
         ENTRAR
       </Button>
     </Form>
