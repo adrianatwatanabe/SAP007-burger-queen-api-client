@@ -94,10 +94,10 @@ const Register = () => {
               cleanForm();
               setMessage(''); 
             }}>
-              LIMPAR
+              <p>LIMPAR</p>
             </Button>
             <Button href='#' classLink={null} type='submit' class='confirm-button' onClick={sendForm}>
-              CADASTRAR
+              <p>CADASTRAR</p>
             </Button>
           </TableContainer>
         </Form>

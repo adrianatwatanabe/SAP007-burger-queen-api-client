@@ -4,7 +4,7 @@ import './style.css';
 const Input = (props) => {
   return (
     <label htmlFor={props.id} className={props.label}>
-      {props.text}
+      <p>{props.text}</p>
       <input
         type={props.type}
         name={props.name}

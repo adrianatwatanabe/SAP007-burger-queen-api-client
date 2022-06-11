@@ -63,7 +63,7 @@ const Login = () => {
       />
       {message && <Text class='form-message'>{message}</Text>}
       <Button type='submit' class='button' onClick={sendForm}>
-        ENTRAR
+        <p>ENTRAR</p>
       </Button>
     </Form>
   );
