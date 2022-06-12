@@ -48,7 +48,7 @@ const Login = () => {
         value={form.email}
         text='EMAIL'
         type='text'
-        placeholder='Digite o email'
+        placeholder='Digite o seu email'
         onChange={addInputValue}
       />
       <Input
@@ -58,11 +58,11 @@ const Login = () => {
         value={form.password}
         text='SENHA'
         type='password'
-        placeholder='Digite a senha'
+        placeholder='Digite a sua senha'
         onChange={addInputValue}
       />
       {message && <Text class='form-message'>{message}</Text>}
-      <Button type='submit' class='button' onClick={sendForm}>
+      <Button type='submit' class='button' onClick={sendForm} role="login">
         ENTRAR
       </Button>
     </Form>

@@ -16,11 +16,11 @@ describe('Input component', () => {
   });
   
   it('Deve chamar uma função sempre que o seu valor é alterado', () => {
-    const sendForm = jest.fn();
-    render(<Input onChange={sendForm} type="text" placeholder="Digite aqui" />);
+    const addInputValue = jest.fn();
+    render(<Input onChange={addInputValue} type="text" placeholder="Digite aqui" />);
     const inputTest = screen.getByPlaceholderText('Digite aqui');
     const text = 'oi';
     user.type(inputTest, text);
-    expect(sendForm).toHaveBeenCalledTimes(text.length);
+    expect(addInputValue).toHaveBeenCalledTimes(text.length);
   });
 })
