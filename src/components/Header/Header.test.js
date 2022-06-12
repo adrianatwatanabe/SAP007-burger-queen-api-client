@@ -7,6 +7,7 @@ describe("<Header Component />", () => {
     const title = screen.getByText("Pedidos");
     expect(title).toBeInTheDocument();
   });
+  
   it('Renderiza uma imagem corretamente', () => {
     render(<Header/>);
     const img = screen.getByAltText("Logotipo BURGER Queen");

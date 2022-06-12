@@ -5,7 +5,7 @@ import Container from '../../components/Container';
 import Link from '../../components/Link';
 import Text from '../../components/Text'
 
-const Management = () => {
+const Menu = () => {
   return (
     <>
       <Header text='MENU' />
@@ -37,4 +37,4 @@ const Management = () => {
   );
 };
 
-export default Management;
+export default Menu;

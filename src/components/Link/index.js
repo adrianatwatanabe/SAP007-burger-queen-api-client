@@ -4,7 +4,7 @@ import './style.css';
 
 const Link = (props) => {
   return (
-    <NavLink to={props.href} className={props.class}>
+    <NavLink to={props.href} className={props.class} role="link">
       {props.children}
     </NavLink>
   );

@@ -8,6 +8,7 @@ describe('Button component', () => {
     const buttonTest = screen.getByText('ENTRAR');
     expect(buttonTest).toBeInTheDocument();
   });
+  
   it('O botão deve chamar a função senForm()', () => {
     const sendForm = jest.fn();
     render(<Button onClick={sendForm}>ENTRAR</Button>);

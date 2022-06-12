@@ -15,6 +15,7 @@ describe('Grid component', () => {
     expect(elementOne).toBeInTheDocument();
     expect(elementTwo).toBeInTheDocument();
   });
+
   it('Deve aplicar a classe na tag Grid', () => {
     render(
       <>
@@ -27,6 +28,7 @@ describe('Grid component', () => {
       return expect(element).toHaveClass('register-button');
     });
   });
+  
   it('Deve aplicar o display grid ou flex na tag Grid', () => {
     render(
       <>

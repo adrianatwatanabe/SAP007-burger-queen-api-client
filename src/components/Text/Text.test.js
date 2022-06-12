@@ -7,6 +7,7 @@ describe('Text component', () => {
     const element = screen.getByText('Texto curto');
     expect(element).toBeInTheDocument();
   });
+  
   it('Deve renderizar um texto de um mais de um parágrafo', () => {
     render(
     <>
