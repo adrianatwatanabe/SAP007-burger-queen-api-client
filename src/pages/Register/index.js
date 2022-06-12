@@ -12,14 +12,14 @@ import Grid from '../../components/Grid';
 import Text from '../../components/Text';
 
 const Register = () => {
-  const { addInputValue, validatedForm, cleanForm, form, role, setRole } = useForm();
+  const { addInputValue, validatedForm, cleanForm, form} = useForm();
   const [message, setMessage] = React.useState();
 
   const sendForm = (e) => {
     e.preventDefault();
     let validation = validatedForm();
     if (validation === '') {
-      createUser(form.name, form.email, form.password, role)
+      createUser(form.name, form.email, form.password, form.role)
       .then((data) => {
         data === '' ? validation = 'Funcionário(a) cadastrado(a)!' : validation = data;
       })
@@ -37,13 +37,11 @@ const Register = () => {
             CADASTRO DO (A):
             <span className='container-radio'>
               <Radio
-                label={'form-label-radio'}
-                class={'input-radio'}
-                name={'role'}
+                label='form-label-radio'
+                class='input-radio'
+                name='role'
                 text={['ADMINISTRADOR', 'ATENDIMENTO', 'COZINHA']}
                 options={['admin', 'waiter', 'cook']}
-                value={role}
-                setValue={setRole}
                 onChange={addInputValue}
               />
             </span>
@@ -56,7 +54,7 @@ const Register = () => {
             text='NOME'
             type='text'
             placeholder='Digite o nome do(a) funcionário(a)'
-            onChange={addInputValue}
+            onChange={addInputValue} 
           />
           <Input
             label='form-label'

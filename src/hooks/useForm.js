@@ -7,8 +7,8 @@ const useForm = () => {
     email: '',
     password: '',
     passwordRepeat: '',
+    role: '',
   });
-  const [role, setRole] = React.useState('');
 
   const addInputValue = (e) => {
     const name = e.target.name;
@@ -19,7 +19,7 @@ const useForm = () => {
   const validatedForm = () => {
     const regex = /[\w.\-+]+@[\w-]+\.[\w-.]/gi;
     const validatedEmail = regex.test(form.email);
-    if (form.name && form.email && validatedEmail && form.password && form.passwordRepeat && role) {
+    if (form.name && form.email && validatedEmail && form.password && form.passwordRepeat && form.role) {
       if (form.password !== form.passwordRepeat) {
         return 'As duas senhas não coincidem. Digite-as novamente!';
       } else {
@@ -42,10 +42,14 @@ const useForm = () => {
       passwordRepeat: '',
       role: '',
     });
-    setRole('');
+    const checked = window.document.querySelectorAll('[name="role"]');
+    let index = 0;
+    checked.forEach((radio, position) => { return radio.checked === true ? index = position : null});
+    checked[index].checked = false;
+    checked[index].classList.remove('input-radio:checked:before');
   }
 
-  return { addInputValue, validatedForm, cleanForm, form, role, setRole };
+  return { addInputValue, validatedForm, cleanForm, form };
 }
 
 export default useForm;

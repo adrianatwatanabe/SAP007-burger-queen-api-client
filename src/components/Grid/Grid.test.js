@@ -28,8 +28,15 @@ describe('Grid component', () => {
     });
   });
   it('Deve aplicar o display grid ou flex na tag Grid', () => {
-    render(<Grid class='register-button' />);
-    const elements = screen.getByRole('grid', { class: /register-button/i });
-    expect(elements).toHaveStyle(`display: block;`);
+    render(
+      <>
+        <Grid style={{display: 'flex'}} />
+        <Grid style={{display: 'grid'}} />
+      </>
+    );
+    const elements = screen.getAllByRole('grid');
+    elements.filter((element) => {
+      return expect(element).toHaveStyle(`display: block;`);
+    });
   });
 });
