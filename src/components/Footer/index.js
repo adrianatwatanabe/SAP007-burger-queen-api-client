@@ -12,22 +12,22 @@ import Link from '../Link';
 import './style.css';
 
 const Footer = () => {
-  const location = useLocation();
   const navigate = useNavigate();
 
+  const logout = async (e) => {
+    e.preventDefault();
+    await deleteUserData()
+    .then(() => navigate('/'));
+  };
+
+  const location = useLocation();
   let waiterIcons = getUserData()[2] === 'waiter';
   let adminIcons = getUserData()[2] === 'admin';
-
-  const logout = (e) => {
-    e.preventDefault();
-    deleteUserData();
-    navigate('/');
-  };
 
   return (
       <nav id='footer-menu'>
         <ul className='list-container'>
-          <Button type='submit' class='icon-button' onClick={logout}>
+          <Button type='submit' class='icon-button' onClick={logout} title="logout">
             <img src={Logout} alt='Sair da conta BURGER Queen' className='icon' />
           </Button>
           {waiterIcons ? (

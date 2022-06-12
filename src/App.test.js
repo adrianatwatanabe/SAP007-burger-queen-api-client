@@ -31,5 +31,8 @@ describe('App and Privete Component', () => {
     /* Page Menu */
     const menu = loginStatus ? createMemoryHistory({ initialEntries: ['/menu']}) : null;
     expect(menu.location.pathname).toBe('/menu');
+
+    /* Cleaning Local Storage */
+    storage.deleteUserData();
   });
 });
