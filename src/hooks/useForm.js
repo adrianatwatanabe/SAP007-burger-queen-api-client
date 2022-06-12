@@ -1,7 +1,6 @@
 import React from 'react';
 
 const useForm = () => {
-
   const [form, setForm] = React.useState({
     name: '',
     email: '',
@@ -49,7 +48,7 @@ const useForm = () => {
     checked[index].classList.remove('input-radio:checked:before');
   }
 
-  return { addInputValue, validatedForm, cleanForm, form };
+  return { addInputValue, validatedForm, cleanForm, form, setForm };
 }
 
 export default useForm;
