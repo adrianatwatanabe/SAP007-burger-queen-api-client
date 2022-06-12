@@ -25,31 +25,31 @@ const Footer = () => {
   };
 
   return (
-    <nav id='footer-menu'>
-      <ul className='list-container'>
-        <Button type='submit' class='icon-button' onClick={logout} >
-          <img src={Logout} alt='Sair da conta BURGER Queen' className='icon' />
-        </Button>
-        {waiterIcons ? (
-          <>
-            <Link href='/delivery' class='icon-button' >
-              <img src={OrdersDelivered} alt='Ir para a seção de Pedidos Entregues' className='icon' />
+      <nav id='footer-menu'>
+        <ul className='list-container'>
+          <Button type='submit' class='icon-button' onClick={logout}>
+            <img src={Logout} alt='Sair da conta BURGER Queen' className='icon' />
+          </Button>
+          {waiterIcons ? (
+            <>
+              <Link href='/delivery' class='icon-button'>
+                <img src={OrdersDelivered} alt='Ir para a seção de Pedidos Entregues' className='icon' />
+              </Link>
+              <Link href='/finish' class='icon-button'>
+                <img src={FinalizeOrders} alt='Ir para a seção de Finalizar Pedidos' className='icon' />
+              </Link>
+              <Link href='/orders' class='icon-button'>
+                <img src={OrdersList} alt='Ir para a seção de Pedidos' className='icon' />
+              </Link>
+            </>
+          ) : null}
+          {adminIcons !== (location.pathname === '/menu') ? (
+            <Link href='/menu' class='icon-button'>
+              <img src={Back} alt='Voltar para o Menu' className='icon' />
             </Link>
-            <Link href='/finish' class='icon-button' >
-              <img src={FinalizeOrders} alt='Ir para a seção de Finalizar Pedidos' className='icon' />
-            </Link>
-            <Link href='/orders' class='icon-button' >
-              <img src={OrdersList} alt='Ir para a seção de Pedidos' className='icon' />
-            </Link>
-          </>
-        ) : null}
-        {adminIcons !== (location.pathname === '/menu') ? (
-          <Link href='/menu' class='icon-button' >
-            <img src={Back} alt='Voltar para o Menu' className='icon' />
-          </Link>
-        ) : null}
-      </ul>
-    </nav>
+          ) : null}
+        </ul>
+      </nav>
   );
 };
 

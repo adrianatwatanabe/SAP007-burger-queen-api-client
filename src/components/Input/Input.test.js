@@ -13,7 +13,6 @@ describe('Input component', () => {
     const inputTest = screen.getByPlaceholderText('Digite aqui');
     expect(inputTest).toBeInTheDocument();
   });
-
   it('Deve chamar uma função sempre que o seu valor é alterado', () => {
     const sendForm = jest.fn();
     render(<Input onChange={sendForm} type="text" placeholder="Digite aqui" />);

@@ -8,7 +8,7 @@ import Button from '../../components/Button';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Container from '../../components/Container';
-import TableContainer from '../../components/Table';
+import Grid from '../../components/Grid';
 import Text from '../../components/Text';
 
 const Register = () => {
@@ -89,17 +89,17 @@ const Register = () => {
             onChange={addInputValue}
           />
           {message && <Text class='form-message'>{message}</Text>}
-          <TableContainer class='register-button'>
+          <Grid class='register-button'>
             <Button href='#' classLink={null} type='button' class='cancell-button' onClick={() => {
               cleanForm();
               setMessage(''); 
             }}>
-              <p>LIMPAR</p>
+              LIMPAR
             </Button>
             <Button href='#' classLink={null} type='submit' class='confirm-button' onClick={sendForm}>
-              <p>CADASTRAR</p>
+              CADASTRAR
             </Button>
-          </TableContainer>
+          </Grid>
         </Form>
       </Container>
       <Footer />

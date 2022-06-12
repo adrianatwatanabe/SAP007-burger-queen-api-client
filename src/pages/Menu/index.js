@@ -14,22 +14,22 @@ const Management = () => {
           SEÇÃO DE ADMINISTRAÇÃO:
         </Text>
         <Link href='/register' class='menu-button'>
-          <p>CADASTRAR FUNCIONÁRIOS (AS)</p>
+          CADASTRAR FUNCIONÁRIOS (AS)
         </Link>
         <Link href='/employee' class='menu-button'>
-          <p>LISTA DE FUNCIONÁRIOS (AS)</p>
+          LISTA DE FUNCIONÁRIOS (AS)
         </Link>
         <Text class='text-menu'>
           SEÇÃO DE ATENDIMENTO E COZINHA:
         </Text>
         <Link href='/orders' class='menu-button'>
-          <p>PEDIDOS</p>
+          PEDIDOS
         </Link>
         <Link href='/orders-progress' class='menu-button'>
-          <p>PEDIDOS EM ANDAMENTO</p>
+          PEDIDOS EM ANDAMENTO
         </Link>
         <Link href='/delivery' class='menu-button'>
-          <p>PEDIDOS ENTREGUES</p>
+          PEDIDOS ENTREGUES
         </Link>
       </Container>
       <Footer />

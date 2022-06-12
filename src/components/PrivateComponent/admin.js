@@ -2,7 +2,7 @@ import React from 'react';
 import { Navigate, Outlet } from 'react-router-dom';
 import { getUserData } from '../../services/storage';
 
-const AdminPrivatePage = () => {
+const Admin = () => {
   const loginStatus = (getUserData()[1] !== null) && (getUserData()[2] === 'admin');
   return loginStatus ? (
     <Outlet />
@@ -10,4 +10,4 @@ const AdminPrivatePage = () => {
   )
 };
 
-export default AdminPrivatePage;
+export default Admin;
