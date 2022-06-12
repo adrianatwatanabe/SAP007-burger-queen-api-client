@@ -10,7 +10,9 @@
   font-size: 1rem;
   margin-top: 1rem;
 }
-.button:active {
+.button:active,
+.cancell-button:active,
+.confirm-button:active {
   transform: translateY(3px);
 }
 .button,

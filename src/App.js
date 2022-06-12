@@ -15,19 +15,19 @@ const App = () => {
   return (
     <BrowserRouter>
       <Routes>
-        <Route exact path='/' end element={<Login />} />
+        <Route path='/' end element={<Login />} />
         <Route path='/*' element={<Admin />}>
-          <Route exact path='menu' element={<Menu />} />
-          <Route exact path='register' element={<Register />} />
-          <Route exact path='employee' element={<UsersList />} />
+          <Route path='menu' element={<Menu />} />
+          <Route path='register' element={<Register />} />
+          <Route path='employee' element={<UsersList />} />
         </Route>
         <Route path='/*' element={<Cook />}>
-          <Route exact path='orders-progress' element={<OrdersProgress />} />
+          <Route path='orders-progress' element={<OrdersProgress />} />
         </Route>
         <Route path='/*' element={<Waiter />}>
-          <Route exact path='orders' element={<Orders />} />
-          <Route exact path='delivery' element={<OrdersDelivered />} />
-          <Route exact path='finish' element={<Orders />} />
+          <Route path='orders' element={<Orders />} />
+          <Route path='delivery' element={<OrdersDelivered />} />
+          <Route path='finish' element={<Orders />} />
         </Route>
       </Routes>
     </BrowserRouter>

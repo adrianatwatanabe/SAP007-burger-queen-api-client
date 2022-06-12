@@ -29,6 +29,7 @@
   position: relative;
 }
 .input-radio:before {
+  display: block;
   opacity: 0;
   content: '';
   background-color: var(--color-green-background);

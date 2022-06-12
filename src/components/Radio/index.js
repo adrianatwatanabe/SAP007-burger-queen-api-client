@@ -2,16 +2,18 @@ import React from 'react';
 import './style.css';
 
 const Radio = (props) => {
+  const options = props.options;
   return (
     <>
-      {props.options.map((option, index) => (
+      {options && options.map((option, index) => (
         <label className={props.label} key={option}>
           <input
             type='radio'
+            role={option}
             className={props.class}
+            name={props.name}
             value={option}
-            checked={props.value === option}
-            onChange={({ target }) => props.setValue(target.value)}
+            onChange={props.onChange}
           />
           {props.text[index]}
         </label>
