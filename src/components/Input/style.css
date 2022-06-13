@@ -1,11 +1,14 @@
-.form-label {
+.form-label,
+.orders-label {
   width: 100%;
   color: var(--color-orange-highlight);
   font-size: 0.875rem;
   font-weight: 600;
   margin-top: 0.75rem;
 }
-.form-input {
+.form-input,
+.orders-input,
+.payment-input {
   width: 100%;
   margin-top: 0.625rem;
   padding: 8px 10px;
@@ -15,10 +18,32 @@
   color: var(--color-yellow-highlight);
   font-size: 1rem;
 }
-.form-input::placeholder {
+.form-input::placeholder,
+.orders-input::placeholder {
   color: var(--color-orange-background);
   opacity: 0.7;
   font-size: 0.875rem;
+}
+.table-label {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr 8fr;
+  column-gap: 1rem;
+  justify-content: start;
+  align-items: center;
+  color: var(--color-orange-highlight);
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+.table-input,
+.orders-label {
+  margin-top: 0;
+}
+.payment-input {
+  border-radius: 0;
+  border-right-style: none;
+  border-bottom-style: none;
+  border-left-style: none;
 }
 
 @media screen and (min-width: 600px) {
