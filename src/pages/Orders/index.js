@@ -25,7 +25,7 @@ const Orders = () => {
         <Form class='form-orders'>
           <Input
             label='table-label'
-            class='orders-input'
+            class='orders-input table-input'
             name='table'
             value={form.table}
             text='MESA'
@@ -44,10 +44,8 @@ const Orders = () => {
             onChange={addInputValue}
           />
           <Text class='text-menu'>CARDÁPIO</Text>
-          <Grid>
-            <FoodCard />
-            <FoodCard />
-            <FoodCard />
+          <Grid class="menu-section">
+            <FoodCard text="HAMBURGUER EXTRA GRANDE" counter="05" total="35,00"/>
           </Grid>
           <Input
             label='orders-label'

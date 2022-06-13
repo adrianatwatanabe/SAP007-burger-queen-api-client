@@ -26,18 +26,20 @@
 }
 .table-label {
   width: 100%;
-  display: grid;
-  grid-template-columns: 1fr 8fr;
+  display: flex;
+  flex-direction: row;
   column-gap: 1rem;
-  justify-content: start;
+  justify-content: flex-start;
   align-items: center;
   color: var(--color-orange-highlight);
   font-size: 1.5rem;
   font-weight: 600;
 }
-.table-input,
 .orders-label {
   margin-top: 0;
+}
+.table-input {
+  max-width: 300px;
 }
 .payment-input {
   border-radius: 0;

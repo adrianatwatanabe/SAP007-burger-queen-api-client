@@ -10,18 +10,27 @@ const FoodCard = (props) => {
 
   return (
     <Grid class='food-card'>
-      <Text class='text'>{props.text}</Text>
+      <Text class='title'>{props.text}</Text>
       <Grid class='counter-container'>
-        <Button type='button' class='counter counter-green' onClick={changeCount} role='counter'>
+        <Button type='button' class='button-counter counter-green' onClick={changeCount} role='counter'>
           +
         </Button>
-        <Text class='counter'>{props.counter}</Text>
-        <Button type='button' class='counter counter-red' onClick={changeCount} role='counter'>
+        <Text class='text text-counter'>{props.counter}</Text>
+        <Button type='button' class='button-counter counter-red' onClick={changeCount} role='counter'>
           -
         </Button>
-        <Text class='total'>{props.total}</Text>
+        <Text class='text text-total'>{'R$' + props.total}</Text>
       </Grid>
-      <Radio />
+      <Grid class='options-container'>
+        <Radio
+          label='label-menu'
+          class='input-menu'
+          name='menu'
+          text={['meat', 'chicken', 'Vegetariano']}
+          options={['admin', 'waiter', 'vegetarian']}
+          onChange={null}
+        />
+      </Grid>
       <Grid class='ingredient-container'>
         <Button type='button' class='ingredient add-cheese' onClick={changeCount} role='cheese'>
           Mais Queijo
