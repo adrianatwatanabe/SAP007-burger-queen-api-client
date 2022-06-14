@@ -1,53 +1,77 @@
 .food-card {
-  width: 265px;
-  height: 190px;
-  border-radius: 5px;
-  border: 1px solid salmon;
+  width: 275px;
+  height: 120px;
+  border-radius: 15px;
+  background: rgb(184, 81, 22);
   display: grid;
   grid-template-columns: 1fr 1fr;
-  justify-items: start;
-  align-content: space-around;
-  padding: 10px;
-  gap: 10px;
+  padding: 15px;
+  column-gap: 10px;
 }
-.text {
-  font-weight: 600;
-  font-size: 1.125rem;
+.text-container {
+  display: grid;
 }
 .title {
   font-size: 0.875rem;
+  text-align: left;
   font-weight: 600;
+  color: var(--color-white);
+  align-self: start;
+}
+.text {
+  font-size: 1.125rem;
+  text-align: center;
+  color: var(--color-white);
 }
 .counter-container {
-  width: 100%;
   display: grid;
-
-  grid-template-areas: 'add counter remove' 'total total total';
-}
-.button-counter {
-  width: 30px;
-  height: 30px;
-  border-radius: 50%;
-  font-size: 1.25rem;
-  font-weight: 600;
-  display: flex;
-  flex-direction: row;
-}
-.counter-green {
-  grid-area: add;
-}
-.counter-red {
-  grid-area: remove;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+  align-self: start;
   justify-self: end;
+  column-gap: 10px;
+  row-gap: 15px;
 }
 .text-counter {
-  grid-area: counter;
+  font-size: 1.275rem;
 }
-.text-total {
-  grid-area: total;
-  text-align: right;
+.button-counter {
+  width: 25px;
+  height: 25px;
+  border-radius: 50%;
+  border: none;
+  font-size: 1.625rem;
+  font-weight: 600;
+  color: var(--color-white);
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  align-items: center;
+}
+.counter-green {
+  background: var(--color-green-highlight);
+}
+.counter-red {
+  background: var(--color-red-highlight);
+  font-size: 2rem;
 }
 .options-container {
   display: flex;
   flex-direction: column;
+}
+.text-total {
+  width: 100%;
+  grid-column: 1/4;
+  font-size: 1.25rem;
+  align-self: start;
+  text-align: right;
+}
+.text-complement {
+  padding: 5px 0;
+  font-weight: 600;
+  color: var(--color-black-text);
+  background: var(--color-orange-background);
+  border-radius: 5px;
+  align-self: end;
 }

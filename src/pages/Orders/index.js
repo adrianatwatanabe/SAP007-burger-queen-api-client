@@ -9,6 +9,7 @@ import './style.css';
 import Button from '../../components/Button';
 import Form from '../../components/Form';
 import FoodCard from '../../components/FoodCard';
+import { getAllProducts } from '../../services/products';
 
 const Orders = () => {
   const form = {
@@ -17,6 +18,9 @@ const Orders = () => {
     payment: '',
   };
   const addInputValue = '';
+
+  getAllProducts()
+  .then((data) => console.log(data));
 
   return (
     <>
@@ -45,7 +49,7 @@ const Orders = () => {
           />
           <Text class='text-menu'>CARDÁPIO</Text>
           <Grid class="menu-section">
-            <FoodCard text="HAMBURGUER EXTRA GRANDE" counter="05" total="35,00"/>
+            <FoodCard text="HAMBURGUER EXTRA GRANDE" counter="05" total="35,00" complement='queijo'/>
           </Grid>
           <Input
             label='orders-label'
