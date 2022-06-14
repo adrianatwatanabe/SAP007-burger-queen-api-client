@@ -88,13 +88,13 @@ const Register = () => {
           />
           {message && <Text class='form-message'>{message}</Text>}
           <Grid class='register-button'>
-            <Button href='#' classLink={null} type='button' class='cancell-button' onClick={() => {
+            <Button type='button' class='cancell-button' onClick={() => {
               cleanForm();
               setMessage(''); 
-            }}>
+            }} role={null}>
               LIMPAR
             </Button>
-            <Button href='#' classLink={null} type='submit' class='confirm-button' onClick={sendForm}>
+            <Button type='submit' class='confirm-button' onClick={sendForm} role={null}>
               CADASTRAR
             </Button>
           </Grid>

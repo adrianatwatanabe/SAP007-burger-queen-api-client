@@ -22,6 +22,7 @@ body {
 :root {
   --font-default: 'Lato', sans-serif;
   --font-header: 'Caesar Dressing', cursive;
+  --color-white: #fdfdfd;
   --color-black-text: #292929;
   --color-white-text: #c0c0c0;
 

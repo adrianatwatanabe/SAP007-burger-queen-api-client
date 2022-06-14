@@ -1,7 +1,7 @@
 import { setUserData } from './storage';
 const baseURL = 'https://lab-api-bq.herokuapp.com';
 
-function error(status) {
+const error = (status) => {
   switch (status) {
     case 200:
       return '';
@@ -14,7 +14,7 @@ function error(status) {
   }
 }
 
-export function createUser (name, email, password, role) {
+export const createUser = (name, email, password, role) => {
   const config = {
     method: 'POST',
     headers: {
@@ -34,7 +34,7 @@ export function createUser (name, email, password, role) {
   });
 }
 
-export function userLogin (email, password) {
+export const userLogin = (email, password) => {
   const config = {
     method: 'POST',
     headers: {
@@ -45,7 +45,6 @@ export function userLogin (email, password) {
       password,
     }),
   }
-
   return fetch('https://lab-api-bq.herokuapp.com/auth', config)
     .then((response) => { 
       const errors = error(response.status);
