@@ -10,11 +10,6 @@
   font-size: 1rem;
   margin-top: 1rem;
 }
-.button:active,
-.cancell-button:active,
-.confirm-button:active {
-  transform: translateY(3px);
-}
 .button,
 .confirm-button {
   background-color: var(--color-green-opacity);
@@ -33,6 +28,28 @@
   font-size: 1rem;
   margin: 0;
 }
+.option-button,
+.sub-option-button {
+  width: 100%;
+  padding: 10px 0;
+  background: var(--color-red-background);
+  border: none;
+  border-radius: 0.625rem;
+  font-size: 0.875rem;
+  font-weight: 600;
+  color: var(--color-white-text);
+}
+.sub-option-button {
+  background: var(--color-orange-background);
+  color: var(--color-black-text);
+}
+.button:active,
+.cancell-button:active,
+.confirm-button:active,
+.option-button:active,
+.sub-option-button {
+  transform: translateY(3px);
+}
 
 @media screen and (min-width: 600px) {
   .button {
@@ -48,5 +65,12 @@
   .cancell-button {
     font-size: 1.375rem;
     height: 3.5rem;
+  }
+}
+
+@media screen and (min-width: 785px) {
+  .option-button,
+  .sub-option-button {
+    width: 150px;
   }
 }

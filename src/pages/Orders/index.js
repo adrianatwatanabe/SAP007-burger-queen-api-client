@@ -48,6 +48,17 @@ const Orders = () => {
             onChange={addInputValue}
           />
           <Text class='text-menu text-orders'>CARDÁPIO</Text>
+          <Grid class='option-container'>
+            <Button type='button' class='option-button' onClick={null}>CAFÉ DA MANHÃ</Button>
+            <Button type='button' class='option-button' onClick={null}>HAMBÚRGUERES</Button>
+            <Button type='button' class='option-button' onClick={null}>PORÇÕES</Button>
+            <Button type='button' class='option-button' onClick={null}>BEBIDAS</Button>
+          </Grid>
+          <Grid class='sub-option-container'>
+            <Button type='button' class='sub-option-button' onClick={null}>CARNE</Button>
+            <Button type='button' class='sub-option-button' onClick={null}>FRANGO</Button>
+            <Button type='button' class='sub-option-button' onClick={null}>VEGETARIANO</Button>
+          </Grid>
           <Grid class="menu-section">
             <FoodCard text="HAMBURGUER EXTRA GRANDE" counter="05" total="35,00" complement='queijo'/>
           </Grid>
@@ -63,10 +74,10 @@ const Orders = () => {
             disabled="false"
           />
           <Grid class='register-button'>
-            <Button href='#' type='button' class='cancell-button' onClick={null}>
-              CANCELAR{' '}
+            <Button type='button' class='cancell-button' onClick={null}>
+              CANCELAR
             </Button>
-            <Button href='#' type='submit' class='confirm-button' onClick={null}>
+            <Button type='submit' class='confirm-button' onClick={null}>
               FINALIZAR
             </Button>
           </Grid>

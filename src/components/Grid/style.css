@@ -17,6 +17,21 @@
   column-gap: 20px;
   row-gap: 35px;
 }
+.option-container,
+.sub-option-container {
+  width: 100%;
+  justify-self: start;
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: center;
+  row-gap: 20px;
+  column-gap: 30px;
+}
+.sub-option-container {
+  justify-content: center;
+  column-gap: 20px;
+}
 
 @media screen and (max-width: 600px) {
   .register-button {

@@ -71,7 +71,7 @@
   padding: 5px 0;
   font-weight: 600;
   color: var(--color-black-text);
-  background: var(--color-orange-background);
+  background: var(--color-yellow-highlight);
   border-radius: 5px;
   align-self: end;
 }
