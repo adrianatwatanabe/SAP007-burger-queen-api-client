@@ -47,20 +47,20 @@ const Orders = () => {
             placeholder='Digite o nome do cliente'
             onChange={addInputValue}
           />
-          <Text class='text-menu'>CARDÁPIO</Text>
+          <Text class='text-menu text-orders'>CARDÁPIO</Text>
           <Grid class="menu-section">
             <FoodCard text="HAMBURGUER EXTRA GRANDE" counter="05" total="35,00" complement='queijo'/>
           </Grid>
           <Input
-            label='orders-label'
+            label='payment-label'
             class='payment-input'
             name='payment'
             value={form.payment}
             text='TOTAL'
             type='number'
-            placeholder={null}
+            placeholder='0,00'
             onChange={addInputValue}
-            disabled="true"
+            disabled="false"
           />
           <Grid class='register-button'>
             <Button href='#' type='button' class='cancell-button' onClick={null}>
