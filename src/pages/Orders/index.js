@@ -13,7 +13,7 @@ import { getAllProducts } from '../../services/products';
 const Orders = () => {
   const [subMenu, setSubMenu] = React.useState(false);
   const [sortProducts, setSortProducts] = React.useState([]);
-  const [products,] = React.useState([]);
+  const [products, setProducts ] = React.useState([]);
   const [refleshMenu, setRefleshMenu] = React.useState(false);
 
   React.useEffect(() => {
@@ -26,18 +26,9 @@ const Orders = () => {
 
   const loadMenu = (option) => {
     option === 'hamburguer' ? setSubMenu(true) : setSubMenu(false);
-    sortProducts.forEach((item) => {
-      if (item.sub_type === option) products.push(item);
-      return setRefleshMenu(true);
-    });    
+    setProducts(sortProducts.filter((item) => item.sub_type === option));
+    setRefleshMenu(true);
   };
-
-  const form = {
-    table: '',
-    name: '',
-    payment: '',
-  };
-  const addInputValue = '';
 
   return (
     <>
@@ -48,34 +39,34 @@ const Orders = () => {
             label='table-label'
             class='orders-input table-input'
             name='table'
-            value={form.table}
+            value={null}
             text='MESA'
             type='text'
             placeholder='Digite o número da mesa'
-            onChange={addInputValue}
+            onChange={null}
           />
           <Input
             label='orders-label'
             class='orders-input'
             name='client'
-            value={form.name}
+            value={null}
             text='NOME DO CLIENTE'
             type='text'
             placeholder='Digite o nome do cliente'
-            onChange={addInputValue}
+            onChange={null}
           />
           <Text class='text-menu text-orders'>CARDÁPIO</Text>
           <Grid class='option-container'>
-            <Button type='button' class='option-button' onClick={(e) => { e.preventDefault(); loadMenu('breakfast'); }}>
+            <Button type='button' class='option-button' onClick={() =>loadMenu('breakfast')}>
               CAFÉ DA MANHÃ
             </Button>
-            <Button type='button' class='option-button' onClick={(e) => { e.preventDefault(); loadMenu('hamburguer'); }}>
+            <Button type='button' class='option-button' onClick={() => loadMenu('hamburguer')}>
               HAMBÚRGUERES
             </Button>
-            <Button type='button' class='option-button' onClick={(e) => { e.preventDefault(); loadMenu('side'); }}>
+            <Button type='button' class='option-button' onClick={() => loadMenu('side')}>
               PORÇÕES
             </Button>
-            <Button type='button' class='option-button' onClick={(e) => { e.preventDefault(); loadMenu('drinks'); }}>
+            <Button type='button' class='option-button' onClick={() => loadMenu('drinks')}>
               BEBIDAS
             </Button>
           </Grid>
@@ -93,20 +84,20 @@ const Orders = () => {
             </Grid>
           )}
           <Grid class='menu-section'>
-            {refleshMenu && (
-              <FoodCard text='HAMBURGUER EXTRA GRANDE' counter='05' total='35,00' complement='queijo' />
-            )}
+            {refleshMenu && products.map((item) => {
+              return (<FoodCard text={item.name} counter='05' total={item.price} complement={item.complement} />)
+            })}
           </Grid>
           <Input
             label='payment-label'
             class='payment-input'
             name='payment'
-            value={form.payment}
+            value={null}
             text='TOTAL'
             type='number'
             placeholder='0,00'
-            onChange={addInputValue}
-            disabled='false'
+            onChange={null}
+            disabled
           />
           <Grid class='register-button'>
             <Button type='button' class='cancell-button' onClick={null}>
