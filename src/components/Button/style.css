@@ -44,10 +44,11 @@
   color: var(--color-black-text);
 }
 .button:active,
+.button-counter:active,
 .cancell-button:active,
 .confirm-button:active,
 .option-button:active,
-.sub-option-button {
+.sub-option-button:active {
   transform: translateY(3px);
 }
 

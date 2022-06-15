@@ -11,7 +11,7 @@ const FoodCard = (props) => {
     <li class='food-card'>
       <Grid class='text-container'>
         <Text class='title'>{props.text}</Text>
-        <Text class='text text-complement'>{'+ ' + props.complement}</Text>
+        <Text class='text text-complement'>{props.complement}</Text>
       </Grid>
       <Grid class='counter-container'>
         <Button type='submit' class='button-counter counter-red' onClick={changeCount} role='counter'>-</Button>

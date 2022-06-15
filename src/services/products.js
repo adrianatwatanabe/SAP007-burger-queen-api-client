@@ -14,7 +14,7 @@ const error = (status) => {
   }
 }
 
-export const getAllProducts = async () => {
+export const getAllProducts = () => {
   const config = {
     method: 'GET',
     headers: { 'Content-type': 'application/json', Authorization: getUserData()[1] },
@@ -26,6 +26,6 @@ export const getAllProducts = async () => {
     return response.json();
   })
   .then((data) => {
-    return data;
+    return data.sort((a, b) => a.name.localeCompare(b.name));
   });
 };
