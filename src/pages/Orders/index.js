@@ -20,15 +20,22 @@ const Orders = () => {
     getProducts();
     async function getProducts() {
       const azProducts = await getAllProducts();
+      console.log(azProducts);
       return setSortProducts(azProducts);
     }
   }, []);
 
-  const loadMenu = (option) => {
-    option === 'hamburguer' ? setSubMenu(true) : setSubMenu(false);
+  const showProducts = (option) => {
+    setSubMenu(false);
     setProducts(sortProducts.filter((item) => item.sub_type === option));
     setRefleshMenu(true);
   };
+
+  const showHamburguer = (option) => {
+    setSubMenu(true);
+    setProducts(sortProducts.filter((item) => item.flavor === option));
+    setRefleshMenu(true);
+  }
 
   return (
     <>
@@ -57,35 +64,35 @@ const Orders = () => {
           />
           <Text class='text-menu text-orders'>CARDÁPIO</Text>
           <Grid class='option-container'>
-            <Button type='button' class='option-button' onClick={() =>loadMenu('breakfast')}>
+            <Button type='button' class='option-button' onClick={() => showProducts('breakfast')}>
               CAFÉ DA MANHÃ
             </Button>
-            <Button type='button' class='option-button' onClick={() => loadMenu('hamburguer')}>
+            <Button type='button' class='option-button' onClick={() =>  showHamburguer()}>
               HAMBÚRGUERES
             </Button>
-            <Button type='button' class='option-button' onClick={() => loadMenu('side')}>
+            <Button type='button' class='option-button' onClick={() =>  showProducts('side')}>
               PORÇÕES
             </Button>
-            <Button type='button' class='option-button' onClick={() => loadMenu('drinks')}>
+            <Button type='button' class='option-button' onClick={() =>  showProducts('drinks')}>
               BEBIDAS
             </Button>
           </Grid>
           {subMenu && (
             <Grid class='sub-option-container'>
-              <Button type='button' class='sub-option-button' onClick={null}>
+              <Button type='button' class='sub-option-button' onClick={() => showHamburguer('carne')}>
                 CARNE
               </Button>
-              <Button type='button' class='sub-option-button' onClick={null}>
+              <Button type='button' class='sub-option-button' onClick={() => showHamburguer('frango')}>
                 FRANGO
               </Button>
-              <Button type='button' class='sub-option-button' onClick={null}>
+              <Button type='button' class='sub-option-button' onClick={() => showHamburguer('vegetariano')}>
                 VEGETARIANO
               </Button>
             </Grid>
           )}
           <Grid class='menu-section'>
             {refleshMenu && products.map((item) => {
-              return (<FoodCard text={item.name} counter='05' total={item.price} complement={item.complement} />)
+              return (<FoodCard text={item.name} flavor={item.flavor} counter='05' price={item.price} complement={item.complement} />)
             })}
           </Grid>
           <Input

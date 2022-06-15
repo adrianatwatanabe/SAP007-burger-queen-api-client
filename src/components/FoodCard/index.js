@@ -10,7 +10,10 @@ const FoodCard = (props) => {
   return (
     <li class='food-card'>
       <Grid class='text-container'>
-        <Text class='title'>{props.text}</Text>
+        {props.flavor ? 
+         <Text class='title'>{props.text} {props.flavor.toUpperCase()}</Text> :
+         <Text class='title'>{props.text}</Text>
+        }
         {props.complement &&
           <Text class='text text-complement'>{props.complement}</Text>
         }
@@ -19,7 +22,7 @@ const FoodCard = (props) => {
         <Button type='submit' class='button-counter counter-red' onClick={changeCount} role='counter'>-</Button>
         <Text class='text text-counter'>{props.counter}</Text>
         <Button type='submit' class='button-counter counter-green' onClick={changeCount} role='counter'>+</Button>
-        <Text class='text text-total'>{'R$' + props.total}</Text>
+        <Text class='text text-total'>{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(props.price)}</Text>
       </Grid>
     </li>
   );
