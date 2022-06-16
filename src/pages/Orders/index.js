@@ -13,14 +13,14 @@ import { getAllProducts } from '../../services/products';
 const Orders = () => {
   const [subMenu, setSubMenu] = React.useState(false);
   const [sortProducts, setSortProducts] = React.useState([]);
-  const [products, setProducts ] = React.useState([]);
+  const [products, setProducts] = React.useState([]);
   const [refleshMenu, setRefleshMenu] = React.useState(false);
+  const [counter, setCounter] = React.useState(0);
 
   React.useEffect(() => {
     getProducts();
     async function getProducts() {
       const azProducts = await getAllProducts();
-      console.log(azProducts);
       return setSortProducts(azProducts);
     }
   }, []);
@@ -35,7 +35,14 @@ const Orders = () => {
     setSubMenu(true);
     setProducts(sortProducts.filter((item) => item.flavor === option));
     setRefleshMenu(true);
-  }
+  };
+
+  const productCounter = (id, action) => {
+    let counterNumber = counter;
+    if (action === 'add') counterNumber += 1;
+    if (action === 'remove' && counterNumber > 0) counterNumber -= 1;
+    setCounter(counterNumber);
+  };
 
   return (
     <>
@@ -67,13 +74,13 @@ const Orders = () => {
             <Button type='button' class='option-button' onClick={() => showProducts('breakfast')}>
               CAFÉ DA MANHÃ
             </Button>
-            <Button type='button' class='option-button' onClick={() =>  showHamburguer()}>
+            <Button type='button' class='option-button' onClick={() => showHamburguer()}>
               HAMBÚRGUERES
             </Button>
-            <Button type='button' class='option-button' onClick={() =>  showProducts('side')}>
+            <Button type='button' class='option-button' onClick={() => showProducts('side')}>
               PORÇÕES
             </Button>
-            <Button type='button' class='option-button' onClick={() =>  showProducts('drinks')}>
+            <Button type='button' class='option-button' onClick={() => showProducts('drinks')}>
               BEBIDAS
             </Button>
           </Grid>
@@ -91,9 +98,20 @@ const Orders = () => {
             </Grid>
           )}
           <Grid class='menu-section'>
-            {refleshMenu && products.map((item) => {
-              return (<FoodCard text={item.name} flavor={item.flavor} counter='05' price={item.price} complement={item.complement} />)
-            })}
+            {refleshMenu &&
+              products.map((item) => {
+                return (
+                  <FoodCard
+                    text={item.name}
+                    flavor={item.flavor}
+                    counter={counter}
+                    price={item.price}
+                    complement={item.complement}
+                    addCounter={() => productCounter(item.id, 'remove')}
+                    removeCounter={() => productCounter(item.id, 'add')}
+                  />
+                );
+              })}
           </Grid>
           <Input
             label='payment-label'

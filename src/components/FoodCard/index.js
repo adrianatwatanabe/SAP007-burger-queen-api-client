@@ -5,8 +5,6 @@ import Button from '../Button';
 import './style.css';
 
 const FoodCard = (props) => {
-  const changeCount = '';
-
   return (
     <li class='food-card'>
       <Grid class='text-container'>
@@ -19,9 +17,9 @@ const FoodCard = (props) => {
         }
       </Grid>
       <Grid class='counter-container'>
-        <Button type='submit' class='button-counter counter-red' onClick={changeCount} role='counter'>-</Button>
+        <Button type='button' class='button-counter counter-red' onClick={props.addCounter} role='counter'>-</Button>
         <Text class='text text-counter'>{props.counter}</Text>
-        <Button type='submit' class='button-counter counter-green' onClick={changeCount} role='counter'>+</Button>
+        <Button type='button' class='button-counter counter-green' onClick={props.removeCounter} role='counter'>+</Button>
         <Text class='text text-total'>{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(props.price)}</Text>
       </Grid>
     </li>
