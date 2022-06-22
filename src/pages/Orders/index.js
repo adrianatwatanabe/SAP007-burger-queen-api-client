@@ -15,7 +15,7 @@ const Orders = () => {
   const [sortProducts, setSortProducts] = React.useState([]);
   const [products, setProducts] = React.useState([]);
   const [refleshMenu, setRefleshMenu] = React.useState(false);
-  const [counter, setCounter] = React.useState(0);
+  const [counter, setCounter] = React.useState([]);
 
   React.useEffect(() => {
     getProducts();
@@ -37,11 +37,38 @@ const Orders = () => {
     setRefleshMenu(true);
   };
 
-  const productCounter = (id, action) => {
-    let counterNumber = counter;
+  const productCounter = (idProduct, action) => {
+    //add or remove
+    let counterNumber = 0;
+    let indexCounter = 0;
     if (action === 'add') counterNumber += 1;
-    if (action === 'remove' && counterNumber > 0) counterNumber -= 1;
-    setCounter(counterNumber);
+    if (action === 'remove' && counterNumber > 0) counterNumber -= 0;
+    //product always exists
+    let product = products.find((item) => item.id === idProduct);
+    //product index in count collection
+    counter.map((item, index) => {
+      // console.log(item[index]);
+      // console.log(product);
+      if(item[index] === product) indexCounter = index;
+    });
+    console.log(indexCounter);
+    //add value
+    setCounter([...counter, [product, counterNumber]]);
+    console.log(counter);
+    // if(index !== false) counterNumber = counter[index];
+    // console.log(counter);
+
+
+
+    //verifica se o objeto encontra-se na coleção de contagem: -1 é igual a false
+    // console.log(index);
+    // if(index !== -1){
+    //   index = counter[index];
+    //   counter.map(() => {
+    //     return counter[index]= [product ,counterNumber];
+    //   })
+    // }else setCounter([...counter, [product, counterNumber]]);
+    // console.log(counter);
   };
 
   return (
@@ -104,11 +131,11 @@ const Orders = () => {
                   <FoodCard
                     text={item.name}
                     flavor={item.flavor}
-                    counter={counter}
+                    counter='0'
                     price={item.price}
                     complement={item.complement}
-                    addCounter={() => productCounter(item.id, 'remove')}
-                    removeCounter={() => productCounter(item.id, 'add')}
+                    removeCounter={() => productCounter(item.id, 'remove')}
+                    addCounter={() => productCounter(item.id, 'add')}
                   />
                 );
               })}
