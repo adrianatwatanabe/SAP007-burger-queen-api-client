@@ -91,10 +91,10 @@ const Register = () => {
             <Button type='button' class='cancell-button' onClick={() => {
               cleanForm();
               setMessage(''); 
-            }} role={null}>
+            }} role='clean'>
               LIMPAR
             </Button>
-            <Button type='submit' class='confirm-button' onClick={sendForm} role={null}>
+            <Button type='submit' class='confirm-button' onClick={sendForm} role='register'>
               CADASTRAR
             </Button>
           </Grid>
