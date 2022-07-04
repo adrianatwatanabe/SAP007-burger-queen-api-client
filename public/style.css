@@ -24,14 +24,14 @@ body {
   --font-header: 'Caesar Dressing', cursive;
   --color-white: #fdfdfd;
   --color-black-text: #292929;
-  --color-white-text: #c0c0c0;
+  --color-white-text: #cacaca;
 
   --color-green-highlight: #418a2f;
   --color-yellow-highlight: #ffb649;
   --color-orange-highlight: #fb8c25;
   --color-red-highlight: #d71515;
 
-  --color-wine-background: #4f0a0a;
+  --color-wine-background: #500f0f;
   --color-red-background: #a60000;
   --color-orange-background: #ff9735;
   --color-green-background: #065535;
