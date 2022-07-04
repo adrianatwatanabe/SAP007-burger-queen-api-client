@@ -1,15 +1,16 @@
-.form-label,
-.orders-label,
-.payment-label {
+.formLabel,
+.ordersLabel,
+.paymentLabel {
   width: 100%;
   color: var(--color-orange-highlight);
   font-size: 0.875rem;
   font-weight: 600;
   margin-top: 0.75rem;
 }
-.form-input,
-.orders-input,
-.payment-input {
+.formInput,
+.ordersInput,
+.paymentInput,
+.tableInput {
   width: 100%;
   margin-top: 0.625rem;
   padding: 8px 10px;
@@ -19,29 +20,29 @@
   color: var(--color-yellow-highlight);
   font-size: 1rem;
 }
-.form-input::placeholder,
-.orders-input::placeholder,
-.payment-input::placeholder {
+.formInput::placeholder,
+.ordersInput::placeholder,
+.tableInput::placeholder {
   color: var(--color-orange-background);
   opacity: 0.7;
   font-size: 0.875rem;
 }
-.payment-input,
-.payment-input::placeholder {
+.paymentInput,
+.paymentInput::placeholder {
   font-size: 2rem;
   color: var(--color-white);
   text-align: right;
 }
-.table-input {
+.tableInput {
   max-width: 300px;
 }
-.payment-input {
+.paymentInput {
   border-radius: 0;
   border-right-style: none;
   border-bottom-style: none;
   border-left-style: none;
 }
-.table-label {
+.tableLabel {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -52,23 +53,23 @@
   font-size: 1.25rem;
   font-weight: 600;
 }
-.orders-label,
-.payment-label {
+.ordersLabel,
+.paymentLabel {
   margin-top: 0;
 }
-.payment-label {
+.paymentLabel {
   font-size: 1.25rem;
 }
 
 @media screen and (min-width: 600px) {
-  .form-label {
+  .formLabel {
     font-size: 1.25rem;
   }
-  .form-input {
+  .formInput {
     padding: 12px 16px;
     font-size: 1.125rem;
   }
-  .form-input::placeholder {
+  .formInput::placeholder {
     font-size: 1rem;
   }
 }

@@ -1,0 +1,9 @@
+.foodCard {
+  width: 275px;
+  border-radius: 15px;
+  background: rgb(207 100 38);
+  display: grid;
+  grid-template-columns: 1.2fr 1fr;
+  padding: 15px;
+  column-gap: 10px;
+}

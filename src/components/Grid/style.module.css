@@ -1,4 +1,4 @@
-.register-button {
+.registerButton {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr 1fr;
@@ -6,7 +6,7 @@
   row-gap: 2rem;
   margin: 1.5rem 0;
 }
-.menu-section {
+.menuSection {
   width: 100%;
   margin: 20px 0;
   display: grid;
@@ -16,8 +16,8 @@
   row-gap: 35px;
   column-gap: 35px;
 }
-.option-container,
-.sub-option-container {
+.optionContainer,
+.subOptionContainer {
   width: 100%;
   justify-self: start;
   display: flex;
@@ -27,13 +27,26 @@
   row-gap: 20px;
   column-gap: 30px;
 }
-.sub-option-container {
+.subOptionContainer {
   justify-content: center;
   column-gap: 20px;
 }
+.textContainer {
+  display: grid;
+}
+.counterContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  justify-items: center;
+  align-items: center;
+  align-self: start;
+  justify-self: end;
+  column-gap: 15px;
+  row-gap: 10px;
+}
 
 @media screen and (max-width: 600px) {
-  .register-button {
+  .registerButton {
     grid-template-columns: 1fr;
   }
 }

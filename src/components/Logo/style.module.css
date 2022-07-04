@@ -1,18 +1,18 @@
-.login-logo {
+.loginLogo {
   width: 9rem;
   height: 9rem;
 }
-.login-header {
+.loginHeader {
   width: 4rem;
   height: 4rem;
 }
 
 @media screen and (min-width: 600px) {
-  .login-logo {
+  .loginLogo {
     width: 10rem;
     height: 10rem;
   }
-  .login-header {
+  .loginHeader {
     width: 5rem;
     height: 5rem;
   }

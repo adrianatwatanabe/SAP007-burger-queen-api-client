@@ -12,7 +12,7 @@ import Grid from '../../components/Grid';
 import Text from '../../components/Text';
 
 const Register = () => {
-  const { addInputValue, validatedForm, cleanForm, form} = useForm();
+  const { addInputValue, validatedForm, cleanForm, form } = useForm();
   const [message, setMessage] = React.useState();
 
   const sendForm = (e) => {
@@ -20,10 +20,10 @@ const Register = () => {
     let validation = validatedForm();
     if (validation === '') {
       createUser(form.name, form.email, form.password, form.role)
-      .then((data) => {
-        data === '' ? validation = 'Funcionário(a) cadastrado(a)!' : validation = data;
-      })
-      .then(() => setMessage(validation));
+        .then((data) => {
+          data === '' ? validation = 'Funcionário(a) cadastrado(a)!' : validation = data;
+        })
+        .then(() => setMessage(validation));
     }
     setMessage(validation);
   }
@@ -31,70 +31,68 @@ const Register = () => {
   return (
     <>
       <Header text='CADASTRO DE FUNCIONÁRIOS' />
-      <Container>
-        <Form class='form-user'>
-          <p className='text-radio'>
-            CADASTRO DO (A):
-            <span className='container-radio'>
-              <Radio
-                label='form-label-radio'
-                class='input-radio'
-                name='role'
-                text={['ADMINISTRADOR', 'ATENDIMENTO', 'COZINHA']}
-                options={['admin', 'waiter', 'cook']}
-                onChange={addInputValue}
-              />
-            </span>
-          </p>
-          <Input
-            label='form-label'
-            name='name'
-            class='form-input'
-            value={form.name}
-            text='NOME'
-            type='text'
-            placeholder='Digite o nome do(a) funcionário(a)'
-            onChange={addInputValue} 
+      <Container containerGeneral='containerGeneral' container='container'>
+        <Form customClass='formUser'>
+          <Radio
+            textGeneral='CADASTRO DO (A):'
+            classText='textRadio'
+            classContainerRadio='containerRadio'
+            classLabel='formLabelRadio'
+            classInput='inputRadio'
+            name='role'
+            text={['ADMINISTRADOR', 'ATENDIMENTO', 'COZINHA']}
+            options={['admin', 'waiter', 'cook']}
+            onChange={addInputValue}
           />
           <Input
-            label='form-label'
+            classLabel='formLabel'
+            classInput='formInput'
+            type='text'
+            name='name'
+            value={form.name}
+            text='NOME'
+            placeholder='Digite o nome do(a) funcionário(a)'
+            onChange={addInputValue}
+          />
+          <Input
+            classLabel='formLabel'
+            classInput='formInput'
+            type='text'
             name='email'
-            class='form-input'
             value={form.email}
             text='EMAIL'
-            type='text'
             placeholder='Digite o email'
             onChange={addInputValue}
           />
           <Input
-            label='form-label'
+            classLabel='formLabel'
+            classInput='formInput'
+            type='password'
             name='password'
-            class='form-input'
             value={form.password}
             text='SENHA'
-            type='password'
             placeholder='Digite a senha'
             onChange={addInputValue}
           />
           <Input
-            label='form-label'
+            classLabel='formLabel'
+            classInput='formInput'
+            type='password'
             name='passwordRepeat'
-            class='form-input'
             value={form.passwordRepeat}
             text='REPITA A SENHA'
-            type='password'
             placeholder='Digite a senha novamente'
             onChange={addInputValue}
           />
-          {message && <Text class='form-message'>{message}</Text>}
-          <Grid class='register-button'>
-            <Button type='button' class='cancell-button' onClick={() => {
+          {message && <Text class='formMessage'>{message}</Text>}
+          <Grid customClass='registerButton'>
+            <Button type='button' customClass='cancellButton' onClick={() => {
               cleanForm();
-              setMessage(''); 
+              setMessage('');
             }} role='clean'>
               LIMPAR
             </Button>
-            <Button type='submit' class='confirm-button' onClick={sendForm} role='register'>
+            <Button type='submit' customClass='confirmButton' onClick={sendForm} role='register'>
               CADASTRAR
             </Button>
           </Grid>

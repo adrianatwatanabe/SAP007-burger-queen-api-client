@@ -1,4 +1,4 @@
-.form-login {
+.formLogin {
   max-width: 1300px;
   width: 90%;
   display: flex;
@@ -8,8 +8,8 @@
   align-items: center;
   margin: auto;
 }
-.form-user,
-.form-orders {
+.formUser,
+.formOrders {
   width: 100%;
   display: grid;
   grid-template-columns: 1fr;
@@ -17,13 +17,13 @@
   justify-items: center;
   margin-top: 1.375rem;
 }
-.form-orders {
+.formOrders {
   margin: 0 auto;
   row-gap: 1.125rem;
 }
 
 @media screen and (min-width: 600px) {
-  .form-user {
+  .formUser {
     margin-top: 0;
   }
 }

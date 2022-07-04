@@ -26,7 +26,7 @@ const useForm = () => {
       }
     } else if (form.email && validatedEmail && form.password) {
       return '';
-    } else if(!form.email || !form.password) {
+    } else if (!form.email || !form.password) {
       return 'Preencha todos os campos!';
     } else {
       return 'Preencha o campo de email corretamente!';
@@ -43,9 +43,9 @@ const useForm = () => {
     });
     const checked = window.document.querySelectorAll('[name="role"]');
     let index = 0;
-    checked.forEach((radio, position) => { return radio.checked === true ? index = position : null});
+    checked.forEach((radio, position) => { return radio.checked === true ? index = position : null });
     checked[index].checked = false;
-    checked[index].classList.remove('input-radio:checked:before');
+    checked[index].classList.remove('inputRadio:checked:before');
   }
 
   return { addInputValue, validatedForm, cleanForm, form, setForm };

@@ -1,5 +1,5 @@
 import { render, screen } from '@testing-library/react';
-import Text from '../Text';
+import Text from '.';
 
 describe('Text component', () => {
   it('Deve renderizar um texto de uma linha', () => {
@@ -7,13 +7,13 @@ describe('Text component', () => {
     const element = screen.getByText('Texto curto');
     expect(element).toBeInTheDocument();
   });
-  
+
   it('Deve renderizar um texto de um mais de um parágrafo', () => {
     render(
-    <>
-      <Text>Texto curto</Text>
-      <Text>Texto texto texto texto <br/> texto comprido.</Text>
-    </>
+      <>
+        <Text>Texto curto</Text>
+        <Text>Texto texto texto texto <br /> texto comprido.</Text>
+      </>
     );
     const element = screen.getByText('Texto curto');
     expect(element).toBeInTheDocument();

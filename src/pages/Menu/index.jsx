@@ -9,26 +9,26 @@ const Menu = () => {
   return (
     <>
       <Header text='MENU' />
-      <Container>
-        <Text class='text-menu'>
+      <Container containerGeneral='containerGeneral' container='container'>
+        <Text customClass='textMenu'>
           SEÇÃO DE ADMINISTRAÇÃO:
         </Text>
-        <Link href='/register' class='menu-button'>
+        <Link href='/register' customClass='menuButton'>
           CADASTRAR FUNCIONÁRIOS (AS)
         </Link>
-        <Link href='/employee' class='menu-button'>
+        <Link href='/employee' customClass='menuButton'>
           LISTA DE FUNCIONÁRIOS (AS)
         </Link>
-        <Text class='text-menu'>
+        <Text customClass='textMenu'>
           SEÇÃO DE ATENDIMENTO E COZINHA:
         </Text>
-        <Link href='/orders' class='menu-button'>
+        <Link href='/orders' customClass='menuButton'>
           PEDIDOS
         </Link>
-        <Link href='/orders-progress' class='menu-button'>
+        <Link href='/orders-progress' customClass='menuButton'>
           PEDIDOS EM ANDAMENTO
         </Link>
-        <Link href='/delivery' class='menu-button'>
+        <Link href='/delivery' customClass='menuButton'>
           PEDIDOS ENTREGUES
         </Link>
       </Container>

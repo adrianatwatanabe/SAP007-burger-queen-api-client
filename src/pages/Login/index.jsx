@@ -18,52 +18,52 @@ const Login = () => {
     let validation = validatedForm();
     if (validation === '') {
       userLogin(form.email, form.password)
-      .then((data) => {
-        validation = data;
-        switch (data.role) {
-          case 'admin':
-            navigate('../menu');
-            break;
-          case 'waiter':
-            navigate('../orders');
-            break;
-          case 'cook':
-            navigate('../orders-progress');
-            break;
-          default:
-            navigate('../');
-        }
-      })
-      .then(() => setMessage(validation));
+        .then((data) => {
+          validation = data;
+          switch (data.role) {
+            case 'admin':
+              navigate('../menu');
+              break;
+            case 'waiter':
+              navigate('../orders');
+              break;
+            case 'cook':
+              navigate('../orders-progress');
+              break;
+            default:
+              navigate('../');
+          }
+        })
+        .then(() => setMessage(validation));
     }
     setMessage(validation);
   }
 
   return (
-    <Form class='form-login'>
-      <Logo class='login-logo'/>
+    <Form customClass='formLogin'>
+      <Logo customClass='loginLogo' />
       <Input
-        label='form-label'
-        name='email'
-        class='form-input'
-        value={form.email}
+        classLabel='formLabel'
+        classInput='formInput'
         text='EMAIL'
         type='text'
+        name='email'
+        value={form.email}
         placeholder='Digite o seu email'
         onChange={addInputValue}
       />
       <Input
-        label='form-label'
-        name='password'
-        class='form-input'
-        value={form.password}
+        classLabel='formLabel'
+        classInput='formInput'
         text='SENHA'
         type='password'
+        name='password'
+        value={form.password}
         placeholder='Digite a sua senha'
         onChange={addInputValue}
       />
-      {message && <Text class='form-message'>{message}</Text>}
-      <Button type='submit' class='button' onClick={sendForm} role="login">
+      {message && <Text customClass='formMessage'>{message}</Text>}
+      <Button type='submit' customClass='button' onClick={sendForm} role="login">
         ENTRAR
       </Button>
     </Form>

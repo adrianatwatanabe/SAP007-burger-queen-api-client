@@ -49,7 +49,7 @@ const Orders = () => {
     counter.map((item, index) => {
       // console.log(item[index]);
       // console.log(product);
-      if(item[index] === product) indexCounter = index;
+      if (item[index] === product) indexCounter = index;
     });
     console.log(indexCounter);
     //add value
@@ -74,57 +74,57 @@ const Orders = () => {
   return (
     <>
       <Header text='PEDIDOS' />
-      <Container>
-        <Form class='form-orders'>
+      <Container containerGeneral='containerGeneral' container='container'>
+        <Form customClass='formOrders'>
           <Input
-            label='table-label'
-            class='orders-input table-input'
+            classLabel='tableLabel'
+            classInput='tableInput'
+            type='text'
             name='table'
             value={null}
             text='MESA'
-            type='text'
             placeholder='Digite o número da mesa'
             onChange={null}
           />
           <Input
-            label='orders-label'
-            class='orders-input'
+            classLabel='tableLabel'
+            classInput='tableInput'
+            type='text'
             name='client'
             value={null}
             text='NOME DO CLIENTE'
-            type='text'
             placeholder='Digite o nome do cliente'
             onChange={null}
           />
-          <Text class='text-menu text-orders'>CARDÁPIO</Text>
-          <Grid class='option-container'>
-            <Button type='button' class='option-button' onClick={() => showProducts('breakfast')}>
+          <Text customClass='textOrders'>CARDÁPIO</Text>
+          <Grid customClass='optionContainer'>
+            <Button type='button' customClass='optionButton' onClick={() => showProducts('breakfast')}>
               CAFÉ DA MANHÃ
             </Button>
-            <Button type='button' class='option-button' onClick={() => showHamburguer()}>
+            <Button type='button' customClass='optionButton' onClick={() => showHamburguer()}>
               HAMBÚRGUERES
             </Button>
-            <Button type='button' class='option-button' onClick={() => showProducts('side')}>
+            <Button type='button' customClass='optionButton' onClick={() => showProducts('side')}>
               PORÇÕES
             </Button>
-            <Button type='button' class='option-button' onClick={() => showProducts('drinks')}>
+            <Button type='button' customClass='optionButton' onClick={() => showProducts('drinks')}>
               BEBIDAS
             </Button>
           </Grid>
           {subMenu && (
-            <Grid class='sub-option-container'>
-              <Button type='button' class='sub-option-button' onClick={() => showHamburguer('carne')}>
+            <Grid customClass='subOptionContainer'>
+              <Button type='button' customClass='subOptionButton' onClick={() => showHamburguer('carne')}>
                 CARNE
               </Button>
-              <Button type='button' class='sub-option-button' onClick={() => showHamburguer('frango')}>
+              <Button type='button' customClass='subOptionButton' onClick={() => showHamburguer('frango')}>
                 FRANGO
               </Button>
-              <Button type='button' class='sub-option-button' onClick={() => showHamburguer('vegetariano')}>
+              <Button type='button' customClass='subOptionButton' onClick={() => showHamburguer('vegetariano')}>
                 VEGETARIANO
               </Button>
             </Grid>
           )}
-          <Grid class='menu-section'>
+          <Grid customClass='menuSection'>
             {refleshMenu &&
               products.map((item) => {
                 return (
@@ -141,8 +141,8 @@ const Orders = () => {
               })}
           </Grid>
           <Input
-            label='payment-label'
-            class='payment-input'
+            classLabel='paymentLabel'
+            classInput='paymentInput'
             name='payment'
             value={null}
             text='TOTAL'
@@ -151,11 +151,11 @@ const Orders = () => {
             onChange={null}
             disabled
           />
-          <Grid class='register-button'>
-            <Button type='button' class='cancell-button' onClick={null}>
+          <Grid customClass='registerButton'>
+            <Button type='button' customClass='cancellButton' onClick={null}>
               CANCELAR
             </Button>
-            <Button type='submit' class='confirm-button' onClick={null}>
+            <Button type='submit' customClass='confirmButton' onClick={null}>
               FINALIZAR
             </Button>
           </Grid>
