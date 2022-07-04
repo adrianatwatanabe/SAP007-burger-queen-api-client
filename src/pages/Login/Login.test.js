@@ -1,32 +1,33 @@
 import { MemoryRouter } from 'react-router-dom';
-import { render, screen } from '@testing-library/react';
+import { render, screen, waitFor } from '@testing-library/react';
 import user from '@testing-library/user-event';
+import { userLogin } from '../../services/user';
 import Login from '.';
 import * as storage from '../../services/storage';
 
-let email = '';
-let password = '';
+const mockedUseNavigate = jest.fn();
+jest.mock('react-router-dom', () => {
+  return {
+    ...jest.requireActual('react-router-dom'),
+    useNavigate: () => mockedUseNavigate,
+  };
+});
+jest.mock("../../services/user")
 
-const API = jest.mock('../../services/user', () => ({
-  ...jest.requireActual('../../services/user'),
-  userLogin: jest.fn()
-    .mockImplementation(email, password)
-    .mockResolvedValue('')
-}));
-
-describe('Login and UseForm', () => {
+describe('Login', () => {
   beforeEach(() => {
-    jest.clearAllMocks();
+    userLogin.mockClear();
   });
-
-  it('Deverá logar usuário corretamente, validanto todos os testes', async () => {
+  it('Deverá logar usuário corretamente', async () => {
+    userLogin.mockResolvedValueOnce({});
     render(
       <MemoryRouter>
         <Login />
       </MemoryRouter>
     );
-    email = 'tiemi@gmail.com';
-    password = '123456';
+
+    const email = 'exemplo@exemplo.com';
+    const password = '123456';
 
     /* Event change on input */
     const getEmail = screen.getByPlaceholderText('Digite o seu email');
@@ -34,16 +35,15 @@ describe('Login and UseForm', () => {
     user.type(getEmail, email);
     user.type(getPassword, password);
 
-    /* Saving value */
-    getEmail.value = email;
-    getPassword.value = password;
-
     /* Event click on ENTER button*/
-    const login = screen.getByRole('login');
-    user.click(login);
-    storage.setUserData('Tiemi', password, 'admin');
-    expect(API.userLogin).toHaveBeenCalled();
-    expect(API.userLogin).toHaveBeenCalledTimes(1);
+    const btnLogin = screen.getByRole('login');
+    user.click(btnLogin);
+
+    storage.setUserData('Nome', password, 'admin');
+    await waitFor(() => {
+      expect(userLogin).toHaveBeenCalledWith(email, password);
+    });
+    expect(userLogin).toHaveBeenCalledTimes(1);
     storage.deleteUserData();
   });
 });

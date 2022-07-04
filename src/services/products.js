@@ -26,6 +26,11 @@ export const getAllProducts = () => {
     return response.json();
   })
   .then((data) => {
-    return data.sort((a, b) => a.name.localeCompare(b.name));
+    const products = data.map((product) => ({
+      ...product,
+      counter:0,
+      subTotal: product.price,
+    }))
+    return products.sort((a, b) => a.name.localeCompare(b.name));
   });
 };

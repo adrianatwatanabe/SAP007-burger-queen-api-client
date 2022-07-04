@@ -19,7 +19,7 @@ const Login = () => {
     if (validation === '') {
       userLogin(form.email, form.password)
       .then((data) => {
-        data === '' ? validation = 'Funcionário(a) cadastrado(a)!' : validation = data;
+        validation = data;
         switch (data.role) {
           case 'admin':
             navigate('../menu');
@@ -34,6 +34,7 @@ const Login = () => {
             navigate('../');
         }
       })
+      .then(() => setMessage(validation));
     }
     setMessage(validation);
   }
