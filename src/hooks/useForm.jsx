@@ -2,11 +2,10 @@ import React from 'react';
 
 const useForm = () => {
   const [form, setForm] = React.useState({
-    name: '',
-    email: '',
-    password: '',
-    passwordRepeat: '',
-    role: '',
+    table: '',
+    client: '',
+    orders: '',
+    total: '',
   });
 
   const addInputValue = (e) => {

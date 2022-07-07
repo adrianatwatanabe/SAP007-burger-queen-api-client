@@ -7,21 +7,26 @@ const FoodCard = ({ flavor, text, complement, removeCounter, addCounter, counter
   return (
     <li className={styles.foodCard}>
       <Grid customClass='textContainer'>
-        {flavor ?
-          <Text customClass='title'>{text} {flavor.toUpperCase()}</Text> :
+        {flavor ? (
+          <Text customClass='title'>
+            {text} {flavor.toUpperCase()}
+          </Text>
+        ) : (
           <Text customClass='title'>{text}</Text>
-        }
-        {complement &&
-          <Text customClass='textComplement'>{complement}</Text>
-        }
+        )}
+        {complement && <Text customClass='textComplement'>{complement}</Text>}
       </Grid>
       <Grid customClass='counterContainer'>
-        <Button type='button' onClick={removeCounter} role='counter' customClass='counterRed'>-</Button>
+        <Button type='button' onClick={removeCounter} role='counter' customClass='counterRed'>
+          -
+        </Button>
         <Text customClass='textCounter'>{counter}</Text>
-        <Button type='button' onClick={addCounter} role='counter' customClass='counterGreen'>+</Button>
+        <Button type='button' onClick={addCounter} role='counter' customClass='counterGreen'>
+          +
+        </Button>
         <Text customClass='textTotal'>{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(price)}</Text>
-      </Grid >
-    </li >
+      </Grid>
+    </li>
   );
 };
 

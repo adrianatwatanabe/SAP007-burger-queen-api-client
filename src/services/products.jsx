@@ -20,17 +20,17 @@ export const getAllProducts = () => {
     headers: { 'Content-type': 'application/json', Authorization: getUserData()[1] },
   };
   return fetch(`${baseURL}/products`, config)
-  .then((response) => { 
-    const errors = error(response.status);
-    if(errors !== '') return errors;
-    return response.json();
-  })
-  .then((data) => {
-    const products = data.map((product) => ({
-      ...product,
-      counter:0,
-      subTotal: product.price,
-    }))
-    return products.sort((a, b) => a.name.localeCompare(b.name));
-  });
+    .then((response) => {
+      const errors = error(response.status);
+      if (errors !== '') return errors;
+      return response.json();
+    })
+    .then((data) => {
+      const products = data.map((product) => ({
+        ...product,
+        counter: 0,
+        subTotal: product.price,
+      }))
+      return products.sort((a, b) => a.name.localeCompare(b.name));
+    });
 };

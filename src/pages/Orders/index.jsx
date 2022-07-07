@@ -1,3 +1,4 @@
+/* eslint-disable array-callback-return */
 import React from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -12,10 +13,29 @@ import { getAllProducts } from '../../services/products';
 
 const Orders = () => {
   const [subMenu, setSubMenu] = React.useState(false);
+  const [showMenu, setShowMenu] = React.useState(false);
   const [sortProducts, setSortProducts] = React.useState([]);
   const [products, setProducts] = React.useState([]);
-  const [refleshMenu, setRefleshMenu] = React.useState(false);
-  const [counter, setCounter] = React.useState([]);
+  const [chosenMenu, setChosenMenu] = React.useState([]);
+
+  const [form, setForm] = React.useState({
+    table: '',
+    client: '',
+    orders: chosenMenu,
+    total: '', //formatar número
+  });
+
+  const showProducts = (option) => {
+    setSubMenu(false);
+    setProducts(sortProducts.filter((item) => item.sub_type === option));
+    setShowMenu(true);
+  };
+
+  const showHamburguer = (option) => {
+    setSubMenu(true);
+    setProducts(sortProducts.filter((item) => item.flavor === option));
+    setShowMenu(true);
+  };
 
   React.useEffect(() => {
     getProducts();
@@ -25,51 +45,35 @@ const Orders = () => {
     }
   }, []);
 
-  const showProducts = (option) => {
-    setSubMenu(false);
-    setProducts(sortProducts.filter((item) => item.sub_type === option));
-    setRefleshMenu(true);
+  const inputValue = (e) => {
+    const name = e.target.name;
+    const value = e.target.value;
+    setForm({ ...form, [name]: value });
   };
 
-  const showHamburguer = (option) => {
-    setSubMenu(true);
-    setProducts(sortProducts.filter((item) => item.flavor === option));
-    setRefleshMenu(true);
-  };
-
-  const productCounter = (idProduct, action) => {
-    //add or remove
-    let counterNumber = 0;
-    let indexCounter = 0;
-    if (action === 'add') counterNumber += 1;
-    if (action === 'remove' && counterNumber > 0) counterNumber -= 0;
-    //product always exists
-    let product = products.find((item) => item.id === idProduct);
-    //product index in count collection
-    counter.map((item, index) => {
-      // console.log(item[index]);
-      // console.log(product);
-      if (item[index] === product) indexCounter = index;
+  const addItems = async (item) => {
+    await products.filter(function (product) {
+      if (product.id === item.id) {
+        item.counter = item.counter >= 0 ? item.counter + 1 : item.counter = 0;
+        setChosenMenu(item);
+      }
     });
-    console.log(indexCounter);
-    //add value
-    setCounter([...counter, [product, counterNumber]]);
-    console.log(counter);
-    // if(index !== false) counterNumber = counter[index];
-    // console.log(counter);
-
-
-
-    //verifica se o objeto encontra-se na coleção de contagem: -1 é igual a false
-    // console.log(index);
-    // if(index !== -1){
-    //   index = counter[index];
-    //   counter.map(() => {
-    //     return counter[index]= [product ,counterNumber];
-    //   })
-    // }else setCounter([...counter, [product, counterNumber]]);
-    // console.log(counter);
+    console.log(chosenMenu);
   };
+
+  const removeItems = (item) => {
+    products.filter((product) => {
+      if (product.id === item.id) {
+        item.counter = item.counter > 0 ? item.counter - 1 : item.counter = 0;
+        setChosenMenu(item);
+      }
+    });
+    console.log(chosenMenu);
+  }
+
+  const numberOfOrders = () => {
+    return chosenMenu
+  }
 
   return (
     <>
@@ -79,22 +83,22 @@ const Orders = () => {
           <Input
             classLabel='tableLabel'
             classInput='tableInput'
-            type='text'
+            type='number'
             name='table'
-            value={null}
+            value={form.table}
             text='MESA'
             placeholder='Digite o número da mesa'
-            onChange={null}
+            onChange={inputValue}
           />
           <Input
             classLabel='tableLabel'
             classInput='tableInput'
             type='text'
             name='client'
-            value={null}
+            value={form.client}
             text='NOME DO CLIENTE'
             placeholder='Digite o nome do cliente'
-            onChange={null}
+            onChange={inputValue}
           />
           <Text customClass='textOrders'>CARDÁPIO</Text>
           <Grid customClass='optionContainer'>
@@ -125,30 +129,37 @@ const Orders = () => {
             </Grid>
           )}
           <Grid customClass='menuSection'>
-            {refleshMenu &&
-              products.map((item) => {
-                return (
-                  <FoodCard
-                    text={item.name}
-                    flavor={item.flavor}
-                    counter='0'
-                    price={item.price}
-                    complement={item.complement}
-                    removeCounter={() => productCounter(item.id, 'remove')}
-                    addCounter={() => productCounter(item.id, 'add')}
-                  />
-                );
-              })}
+            <ul>
+              {showMenu &&
+                products.map((item, index) => {
+                  return (
+                    <FoodCard
+                      key={item.id}
+                      text={item.name}
+                      flavor={item.flavor}
+                      price={item.price}
+                      complement={item.complement}
+                      counter={numberOfOrders(item)}
+                      addCounter={() => {
+                        addItems(item);
+                      }}
+                      removeCounter={() => {
+                        removeItems(item);
+                      }}
+                    />
+                  );
+                })}
+            </ul>
           </Grid>
           <Input
             classLabel='paymentLabel'
             classInput='paymentInput'
-            name='payment'
-            value={null}
-            text='TOTAL'
             type='number'
+            name='payment'
+            value={form.total}
+            text='TOTAL'
             placeholder='0,00'
-            onChange={null}
+            onChange={inputValue}
             disabled
           />
           <Grid customClass='registerButton'>

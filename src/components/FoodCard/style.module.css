@@ -5,5 +5,6 @@
   display: grid;
   grid-template-columns: 1.2fr 1fr;
   padding: 15px;
+  margin: 20px 0;
   column-gap: 10px;
 }
