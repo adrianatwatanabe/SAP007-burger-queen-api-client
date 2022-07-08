@@ -21,7 +21,7 @@ const Orders = () => {
   const [form, setForm] = React.useState({
     table: '',
     client: '',
-    orders: chosenMenu,
+    orders: '',
     total: '', //formatar número
   });
 
@@ -51,29 +51,16 @@ const Orders = () => {
     setForm({ ...form, [name]: value });
   };
 
-  const addItems = async (item) => {
-    await products.filter(function (product) {
-      if (product.id === item.id) {
-        item.counter = item.counter >= 0 ? item.counter + 1 : item.counter = 0;
-        setChosenMenu(item);
-      }
-    });
-    console.log(chosenMenu);
-  };
-
-  const removeItems = (item) => {
+  const addRemoveItems = (action, item) => {
     products.filter((product) => {
       if (product.id === item.id) {
-        item.counter = item.counter > 0 ? item.counter - 1 : item.counter = 0;
-        setChosenMenu(item);
+        if (action === 'add') item.counter = item.counter >= 0 ? item.counter + 1 : (item.counter = 0);
+        if (action === 'remove') item.counter = item.counter > 0 ? item.counter - 1 : (item.counter = 0);
+        item.subTotal = item.counter > 0 ? item.price * item.counter : item.price;
+        setChosenMenu([...chosenMenu, item]);
       }
     });
-    console.log(chosenMenu);
-  }
-
-  const numberOfOrders = () => {
-    return chosenMenu
-  }
+  };
 
   return (
     <>
@@ -105,7 +92,7 @@ const Orders = () => {
             <Button type='button' customClass='optionButton' onClick={() => showProducts('breakfast')}>
               CAFÉ DA MANHÃ
             </Button>
-            <Button type='button' customClass='optionButton' onClick={() => showHamburguer()}>
+            <Button type='button' customClass='optionButton' onClick={() => showHamburguer('')}>
               HAMBÚRGUERES
             </Button>
             <Button type='button' customClass='optionButton' onClick={() => showProducts('side')}>
@@ -131,20 +118,20 @@ const Orders = () => {
           <Grid customClass='menuSection'>
             <ul>
               {showMenu &&
-                products.map((item, index) => {
+                products.map((item) => {
                   return (
                     <FoodCard
                       key={item.id}
                       text={item.name}
                       flavor={item.flavor}
-                      price={item.price}
+                      price={item.subTotal}
                       complement={item.complement}
-                      counter={numberOfOrders(item)}
+                      counter={item.counter}
                       addCounter={() => {
-                        addItems(item);
+                        addRemoveItems('add', item);
                       }}
                       removeCounter={() => {
-                        removeItems(item);
+                        addRemoveItems('remove', item);
                       }}
                     />
                   );
