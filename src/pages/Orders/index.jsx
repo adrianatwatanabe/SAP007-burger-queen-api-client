@@ -10,6 +10,7 @@ import Button from '../../components/Button';
 import Form from '../../components/Form';
 import FoodCard from '../../components/FoodCard';
 import { getAllProducts } from '../../services/products';
+import Table from '../../components/Table';
 
 const Orders = () => {
   const [subMenu, setSubMenu] = React.useState(false);
@@ -84,6 +85,11 @@ const Orders = () => {
     }
   }
 
+  const changeOrder = (item, counter) => {
+    if (item.counter < Number(counter)) addItems(item);
+    if (item.counter > Number(counter)) removeItems(item);
+  }
+
   React.useEffect(() => {
     console.log(chosenMenu);
     //lista de produtos adicionados
@@ -150,21 +156,45 @@ const Orders = () => {
                     key={item.id}
                     text={item.name}
                     flavor={item.flavor}
-                    price={item.subTotal}
                     complement={item.complement}
                     counter={item.counter}
+                    price={item.subTotal}
                     addCounter={() => addItems(item)}
                     removeCounter={() => item.counter === 0 ? null : removeItems(item)}
                   />
                 );
               })}
           </List>
-          <Text customClass='paymentLabel'>
-            TOTAL
-          </Text>
-          <Text customClass='paymentInput'>
+          <Text customClass='textOrders'>TOTAL</Text>
+          <List customClass='menuSection'>
+
+            {chosenMenu.map((item) => {
+              return (item.counter > 0 &&
+                <Table>
+                  <Grid customClass='tableContainer'>
+                    {item.flavor ? (
+                      <Text customClass='title'>
+                        {item.name} {item.flavor.toUpperCase()}
+                      </Text>
+                    ) : (
+                      <Text customClass='title'>{item.name}</Text>
+                    )}
+                    {item.complement && <Text customClass='textComplement'>{item.complement}</Text>}
+                  </Grid>
+                  <Input
+                    type='number'
+                    value={item.counter}
+                    onChange={(e) => changeOrder(item, e.target.value)}
+                  />
+                  <Text>{item.price}</Text>
+                  <Text>{item.subTotal}</Text>
+                  <Button type='button' onChange={null} >Excluir Pedido</Button>
+                </Table>
+              );
+            })}
+
             {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(totalPrice)}
-          </Text>
+          </List>
           <Grid customClass='registerButton'>
             <Button type='button' customClass='cancellButton' onClick={null}>
               CANCELAR

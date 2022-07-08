@@ -1,15 +1,13 @@
 import styles from './style.module.css';
 
-const Input = ({ classLabel, text, type, name, classInput, value, placeholder, onChange, ...props }) => {
+const Input = ({ classLabel, text, type, classInput, value, onChange, ...props }) => {
   return (
     <label className={styles[classLabel]}>
       <p>{text}</p>
       <input
         type={type}
-        name={name}
         className={styles[classInput]}
         value={value}
-        placeholder={placeholder}
         onChange={onChange}
         {...props}
       />

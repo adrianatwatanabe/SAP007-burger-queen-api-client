@@ -2,9 +2,9 @@ import styles from './style.module.css';
 
 const Grid = ({ customClass, children }) => {
   return (
-    <section className={styles[customClass]} role="grid">
+    <div className={styles[customClass]} role="grid">
       {children}
-    </section>
+    </div>
   )
 }
 
