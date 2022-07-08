@@ -59,6 +59,32 @@
   color: var(--color-white);
   font-size: 1.25rem;
 }
+.paymentLabel {
+  width: 100%;
+  color: var(--color-orange-highlight);
+  font-size: 1.25rem;
+  font-weight: 600;
+}
+.paymentInput {
+  width: 100%;
+  margin-top: 0.625rem;
+  padding: 8px 10px;
+  background-color: transparent;
+  border: 3px solid var(--color-orange-background);
+  border-radius: 0.625rem;
+  color: var(--color-yellow-highlight);
+  font-size: 1rem;
+  border-radius: 0;
+  border-right-style: none;
+  border-bottom-style: none;
+  border-left-style: none;
+}
+.paymentInput,
+.paymentInput::placeholder {
+  font-size: 2rem;
+  color: var(--color-white);
+  text-align: right;
+}
 
 @media screen and (min-width: 600px) {
   .textMenu,

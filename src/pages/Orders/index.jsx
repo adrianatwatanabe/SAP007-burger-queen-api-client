@@ -17,12 +17,11 @@ const Orders = () => {
   const [sortProducts, setSortProducts] = React.useState([]);
   const [products, setProducts] = React.useState([]);
   const [chosenMenu, setChosenMenu] = React.useState([]);
+  const [totalPrice, setTotalPrice] = React.useState(0);
 
   const [form, setForm] = React.useState({
     table: '',
     client: '',
-    orders: '',
-    total: '', //formatar número
   });
 
   const showProducts = (option) => {
@@ -31,7 +30,7 @@ const Orders = () => {
     setShowMenu(true);
   };
 
-  const showHamburguer = (option) => {
+  const showBurgerMenu = (option) => {
     setSubMenu(true);
     setProducts(sortProducts.filter((item) => item.flavor === option));
     setShowMenu(true);
@@ -51,16 +50,30 @@ const Orders = () => {
     setForm({ ...form, [name]: value });
   };
 
-  const addRemoveItems = (action, item) => {
+  const addItems = (item) => {
     products.forEach((product) => {
       if (product.id === item.id) {
-        if (action === 'add') item.counter = item.counter >= 0 ? item.counter + 1 : (item.counter = 0);
-        if (action === 'remove') item.counter = item.counter > 0 ? item.counter - 1 : (item.counter = 0);
+        item.counter = item.counter >= 0 ? item.counter + 1 : (item.counter = 0);
         item.subTotal = item.counter > 0 ? item.price * item.counter : item.price;
         setChosenMenu([...chosenMenu, item]);
       }
     });
+    setTotalPrice(totalPrice + item.price);
   };
+
+  const removeItems = (item) => {
+    products.forEach((product) => {
+      if (product.id === item.id) {
+        item.counter = item.counter > 0 ? item.counter - 1 : (item.counter = 0);
+        item.subTotal = item.counter > 0 ? item.price * item.counter : item.price;
+        setChosenMenu([...chosenMenu, item]);
+        if (item.counter > 0)
+          setTotalPrice((totalPrice > 0) ? totalPrice - item.price : totalPrice);
+        else
+          setTotalPrice((totalPrice > 0) ? totalPrice - item.price : 0);
+      }
+    });
+  }
 
   return (
     <>
@@ -78,8 +91,8 @@ const Orders = () => {
             onChange={inputValue}
           />
           <Input
-            classLabel='tableLabel'
-            classInput='tableInput'
+            classLabel='clientLabel'
+            classInput='clientInput'
             type='text'
             name='client'
             value={form.client}
@@ -92,7 +105,7 @@ const Orders = () => {
             <Button type='button' customClass='optionButton' onClick={() => showProducts('breakfast')}>
               CAFÉ DA MANHÃ
             </Button>
-            <Button type='button' customClass='optionButton' onClick={() => showHamburguer('')}>
+            <Button type='button' customClass='optionButton' onClick={() => showBurgerMenu('')}>
               HAMBÚRGUERES
             </Button>
             <Button type='button' customClass='optionButton' onClick={() => showProducts('side')}>
@@ -104,13 +117,13 @@ const Orders = () => {
           </Grid>
           {subMenu && (
             <Grid customClass='subOptionContainer'>
-              <Button type='button' customClass='subOptionButton' onClick={() => showHamburguer('carne')}>
+              <Button type='button' customClass='subOptionButton' onClick={() => showBurgerMenu('carne')}>
                 CARNE
               </Button>
-              <Button type='button' customClass='subOptionButton' onClick={() => showHamburguer('frango')}>
+              <Button type='button' customClass='subOptionButton' onClick={() => showBurgerMenu('frango')}>
                 FRANGO
               </Button>
-              <Button type='button' customClass='subOptionButton' onClick={() => showHamburguer('vegetariano')}>
+              <Button type='button' customClass='subOptionButton' onClick={() => showBurgerMenu('vegetariano')}>
                 VEGETARIANO
               </Button>
             </Grid>
@@ -126,27 +139,18 @@ const Orders = () => {
                     price={item.subTotal}
                     complement={item.complement}
                     counter={item.counter}
-                    addCounter={() => {
-                      addRemoveItems('add', item);
-                    }}
-                    removeCounter={() => {
-                      addRemoveItems('remove', item);
-                    }}
+                    addCounter={() => addItems(item)}
+                    removeCounter={() => removeItems(item)}
                   />
                 );
               })}
           </List>
-          <Input
-            classLabel='paymentLabel'
-            classInput='paymentInput'
-            type='number'
-            name='payment'
-            value={form.total}
-            text='TOTAL'
-            placeholder='0,00'
-            onChange={inputValue}
-            disabled
-          />
+          <Text customClass='paymentLabel'>
+            TOTAL
+          </Text>
+          <Text customClass='paymentInput'>
+            {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(totalPrice)}
+          </Text>
           <Grid customClass='registerButton'>
             <Button type='button' customClass='cancellButton' onClick={null}>
               CANCELAR

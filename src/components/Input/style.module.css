@@ -1,6 +1,5 @@
 .formLabel,
-.ordersLabel,
-.paymentLabel {
+.ordersLabel {
   width: 100%;
   color: var(--color-orange-highlight);
   font-size: 0.875rem;
@@ -9,8 +8,8 @@
 }
 .formInput,
 .ordersInput,
-.paymentInput,
-.tableInput {
+.tableInput,
+.clientInput {
   width: 100%;
   margin-top: 0.625rem;
   padding: 8px 10px;
@@ -22,27 +21,20 @@
 }
 .formInput::placeholder,
 .ordersInput::placeholder,
-.tableInput::placeholder {
+.tableInput::placeholder,
+.clientInput::placeholder  {
   color: var(--color-orange-background);
   opacity: 0.7;
   font-size: 0.875rem;
 }
-.paymentInput,
-.paymentInput::placeholder {
-  font-size: 2rem;
-  color: var(--color-white);
-  text-align: right;
-}
 .tableInput {
   max-width: 300px;
 }
-.paymentInput {
-  border-radius: 0;
-  border-right-style: none;
-  border-bottom-style: none;
-  border-left-style: none;
+.clientInput {
+  max-width: 600px;
 }
-.tableLabel {
+.tableLabel, 
+.clientLabel {
   width: 100%;
   display: flex;
   flex-direction: row;
@@ -53,12 +45,8 @@
   font-size: 1.25rem;
   font-weight: 600;
 }
-.ordersLabel,
-.paymentLabel {
+.ordersLabel {
   margin-top: 0;
-}
-.paymentLabel {
-  font-size: 1.25rem;
 }
 
 @media screen and (min-width: 600px) {
