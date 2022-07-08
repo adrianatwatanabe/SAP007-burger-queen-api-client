@@ -67,10 +67,23 @@ const Orders = () => {
         item.counter = item.counter > 0 ? item.counter - 1 : (item.counter = 0);
         item.subTotal = item.counter > 0 ? item.price * item.counter : item.price;
         setChosenMenu([...chosenMenu, item]);
+
         if (item.counter > 0)
           setTotalPrice((totalPrice > 0) ? totalPrice - item.price : totalPrice);
         else
           setTotalPrice((totalPrice > 0) ? totalPrice - item.price : 0);
+
+
+        /* 
+          preço total 0 --> não pode excluir, pois o valor será negativo e não existe compra negativa
+          um item com contador 0 -> não pode continuar excluindo no preço total
+
+          PRODUTO INDIVIDUAL
+          click_remove      totalPrice>0    counter>0      totalPrice - item.price  ou  totalPrice
+                            20              2             
+          1                 20              1              20 - 10 = 10
+          2                 10              0               //inverter a ordem totalPrice ? total.... 
+        */
       }
     });
   }
@@ -140,7 +153,7 @@ const Orders = () => {
                     complement={item.complement}
                     counter={item.counter}
                     addCounter={() => addItems(item)}
-                    removeCounter={() => removeItems(item)}
+                    removeCounter={() => item.counter === 0 ? null : removeItems(item)}
                   />
                 );
               })}
