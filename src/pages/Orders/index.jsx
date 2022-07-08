@@ -10,7 +10,7 @@ import Button from '../../components/Button';
 import Form from '../../components/Form';
 import FoodCard from '../../components/FoodCard';
 import { getAllProducts } from '../../services/products';
-import Table from '../../components/Table';
+import OrderTable from '../../components/OrderTable';
 
 const Orders = () => {
   const [subMenu, setSubMenu] = React.useState(false);
@@ -77,11 +77,14 @@ const Orders = () => {
     const indexProduct = chosenMenu.findIndex((product) => product.id === item.id);
     if (chosenMenu.length === 0)
       setChosenMenu(item);
-    if (indexProduct === -1)
+    if (indexProduct === -1) {
       setChosenMenu([...chosenMenu, item]);
+      chosenMenu.sort((a, b) => a.name.localeCompare(b.name))
+    }
     else {
       setChosenMenu(chosenMenu.splice(indexProduct, 1));
       setChosenMenu([...chosenMenu, item]);
+      chosenMenu.sort((a, b) => a.name.localeCompare(b.name))
     }
   }
 
@@ -90,10 +93,11 @@ const Orders = () => {
     if (item.counter > Number(counter)) removeItems(item);
   }
 
-  React.useEffect(() => {
-    console.log(chosenMenu);
-    //lista de produtos adicionados
-  }, [chosenMenu])
+  const deleteOrder = (item) => {
+    item.counter = 0;
+    removeItems(item);
+    chosenMenu.sort((a, b) => a.name.localeCompare(b.name))
+  }
 
   return (
     <>
@@ -170,27 +174,17 @@ const Orders = () => {
 
             {chosenMenu.map((item) => {
               return (item.counter > 0 &&
-                <Table>
-                  <Grid customClass='tableContainer'>
-                    {item.flavor ? (
-                      <Text customClass='title'>
-                        {item.name} {item.flavor.toUpperCase()}
-                      </Text>
-                    ) : (
-                      <Text customClass='title'>{item.name}</Text>
-                    )}
-                    {item.complement && <Text customClass='textComplement'>{item.complement}</Text>}
-                  </Grid>
-                  <Input
-                    type='number'
-                    value={item.counter}
-                    onChange={(e) => changeOrder(item, e.target.value)}
-                  />
-                  <Text>{item.price}</Text>
-                  <Text>{item.subTotal}</Text>
-                  <Button type='button' onChange={null} >Excluir Pedido</Button>
-                </Table>
-              );
+                <OrderTable
+                  key={item.id}
+                  flavor={item.flavor}
+                  name={item.name}
+                  complement={item.complement}
+                  counter={item.counter}
+                  price={item.price}
+                  subTotal={item.subTotal}
+                  changeCounter={(e) => changeOrder(item, e.target.value)}
+                  deleteProduct={() => deleteOrder(item)}
+                />);
             })}
 
             {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(totalPrice)}
