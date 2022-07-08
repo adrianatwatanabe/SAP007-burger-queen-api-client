@@ -1,4 +1,3 @@
-/* eslint-disable array-callback-return */
 import React from 'react';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
@@ -6,6 +5,7 @@ import Container from '../../components/Container';
 import Input from '../../components/Input';
 import Text from '../../components/Text';
 import Grid from '../../components/Grid';
+import List from '../../components/List';
 import Button from '../../components/Button';
 import Form from '../../components/Form';
 import FoodCard from '../../components/FoodCard';
@@ -52,7 +52,7 @@ const Orders = () => {
   };
 
   const addRemoveItems = (action, item) => {
-    products.filter((product) => {
+    products.forEach((product) => {
       if (product.id === item.id) {
         if (action === 'add') item.counter = item.counter >= 0 ? item.counter + 1 : (item.counter = 0);
         if (action === 'remove') item.counter = item.counter > 0 ? item.counter - 1 : (item.counter = 0);
@@ -115,29 +115,27 @@ const Orders = () => {
               </Button>
             </Grid>
           )}
-          <Grid customClass='menuSection'>
-            <ul>
-              {showMenu &&
-                products.map((item) => {
-                  return (
-                    <FoodCard
-                      key={item.id}
-                      text={item.name}
-                      flavor={item.flavor}
-                      price={item.subTotal}
-                      complement={item.complement}
-                      counter={item.counter}
-                      addCounter={() => {
-                        addRemoveItems('add', item);
-                      }}
-                      removeCounter={() => {
-                        addRemoveItems('remove', item);
-                      }}
-                    />
-                  );
-                })}
-            </ul>
-          </Grid>
+          <List customClass='menuSection'>
+            {showMenu &&
+              products.map((item) => {
+                return (
+                  <FoodCard
+                    key={item.id}
+                    text={item.name}
+                    flavor={item.flavor}
+                    price={item.subTotal}
+                    complement={item.complement}
+                    counter={item.counter}
+                    addCounter={() => {
+                      addRemoveItems('add', item);
+                    }}
+                    removeCounter={() => {
+                      addRemoveItems('remove', item);
+                    }}
+                  />
+                );
+              })}
+          </List>
           <Input
             classLabel='paymentLabel'
             classInput='paymentInput'
