@@ -24,6 +24,14 @@ const Orders = () => {
     client: '',
   });
 
+  React.useEffect(() => {
+    getProducts();
+    async function getProducts() {
+      const azProducts = await getAllProducts();
+      return setSortProducts(azProducts);
+    }
+  }, []);
+
   const showProducts = (option) => {
     setSubMenu(false);
     setProducts(sortProducts.filter((item) => item.sub_type === option));
@@ -36,14 +44,6 @@ const Orders = () => {
     setShowMenu(true);
   };
 
-  React.useEffect(() => {
-    getProducts();
-    async function getProducts() {
-      const azProducts = await getAllProducts();
-      return setSortProducts(azProducts);
-    }
-  }, []);
-
   const inputValue = (e) => {
     const name = e.target.name;
     const value = e.target.value;
@@ -55,10 +55,10 @@ const Orders = () => {
       if (product.id === item.id) {
         item.counter = item.counter >= 0 ? item.counter + 1 : (item.counter = 0);
         item.subTotal = item.counter > 0 ? item.price * item.counter : item.price;
-        setChosenMenu([...chosenMenu, item]);
+        noRepeatItems(item);
+        setTotalPrice(totalPrice + item.price);
       }
     });
-    setTotalPrice(totalPrice + item.price);
   };
 
   const removeItems = (item) => {
@@ -66,11 +66,28 @@ const Orders = () => {
       if (product.id === item.id) {
         item.counter = item.counter > 0 ? item.counter - 1 : (item.counter = 0);
         item.subTotal = item.counter > 0 ? item.price * item.counter : item.price;
-        setChosenMenu([...chosenMenu, item]);
+        noRepeatItems(item);
         setTotalPrice((totalPrice > 0) ? totalPrice - item.price : totalPrice);
       }
     });
   }
+
+  const noRepeatItems = (item) => {
+    const indexProduct = chosenMenu.findIndex((product) => product.id === item.id);
+    if (chosenMenu.length === 0)
+      setChosenMenu(item);
+    if (indexProduct === -1)
+      setChosenMenu([...chosenMenu, item]);
+    else {
+      setChosenMenu(chosenMenu.splice(indexProduct, 1));
+      setChosenMenu([...chosenMenu, item]);
+    }
+  }
+
+  React.useEffect(() => {
+    console.log(chosenMenu);
+    //lista de produtos adicionados
+  }, [chosenMenu])
 
   return (
     <>
