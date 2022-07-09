@@ -176,29 +176,25 @@ const Orders = () => {
             <Button
               type='button'
               customClass={`${toggleMenu === 'breakfast' ? 'activeMenu' : 'optionButton'}`}
-              onClick={() => showProducts('breakfast')}
-            >
+              onClick={() => showProducts('breakfast')}>
               CAFÉ DA MANHÃ
             </Button>
             <Button
               type='button'
               customClass={`${toggleMenu === 'hamburger' ? 'activeMenu' : 'optionButton'}`}
-              onClick={() => showBurgerMenu('hamburger')}
-            >
+              onClick={() => showBurgerMenu('hamburger')}>
               HAMBÚRGUERES
             </Button>
             <Button
               type='button'
               customClass={`${toggleMenu === 'side' ? 'activeMenu' : 'optionButton'}`}
-              onClick={() => showProducts('side')}
-            >
+              onClick={() => showProducts('side')}>
               PORÇÕES
             </Button>
             <Button
               type='button'
               customClass={`${toggleMenu === 'drinks' ? 'activeMenu' : 'optionButton'}`}
-              onClick={() => showProducts('drinks')}
-            >
+              onClick={() => showProducts('drinks')}>
               BEBIDAS
             </Button>
           </Grid>
@@ -207,22 +203,19 @@ const Orders = () => {
               <Button
                 type='button'
                 customClass={`${(toggleSubMenu === 'carne') ? 'activeSubMenu' : 'subOptionButton'}`}
-                onClick={() => showBurgerMenu('carne')}
-              >
+                onClick={() => showBurgerMenu('carne')}>
                 CARNE
               </Button>
               <Button
                 type='button'
                 customClass={`${(toggleSubMenu === 'frango') ? 'activeSubMenu' : 'subOptionButton'}`}
-                onClick={() => showBurgerMenu('frango')}
-              >
+                onClick={() => showBurgerMenu('frango')}>
                 FRANGO
               </Button>
               <Button
                 type='button'
                 customClass={`${(toggleSubMenu === 'vegetariano') ? 'activeSubMenu' : 'subOptionButton'}`}
-                onClick={() => showBurgerMenu('vegetariano')}
-              >
+                onClick={() => showBurgerMenu('vegetariano')}>
                 VEGETARIANO
               </Button>
             </Grid>
@@ -245,6 +238,15 @@ const Orders = () => {
               })}
           </List>
           <Text customClass='textOrders'>TOTAL</Text>
+          <Grid customClass='listOrders'>
+            <Text customClass='orderTableTitle'>PRODUTO</Text>
+            <Grid customClass='orderTableInfo'>
+              <Text customClass='orderTableTitle'>QUANT.</Text>
+              <Text customClass='orderTableTitle'>P. U.</Text>
+              <Text customClass='orderTableTitle'>P. T.</Text>
+              <Text customClass='orderTableTitle'>EXCLUIR</Text>
+            </Grid>
+          </Grid>
           <List customClass='orderList'>
             {chosenMenu.sort((a, b) => a.name.localeCompare(b.name)) &&
               chosenMenu.map((item) => {

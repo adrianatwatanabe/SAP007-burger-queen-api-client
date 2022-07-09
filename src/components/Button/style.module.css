@@ -91,7 +91,11 @@
   align-items: center;
   background: var(--color-red-highlight);
 } 
-
+.deleteProduct {
+  width: 100%;
+  background: transparent;
+  border: none;
+}
 .button:active,
 .buttonCounter:active,
 .cancellButton:active,
