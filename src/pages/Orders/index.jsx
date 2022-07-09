@@ -74,17 +74,14 @@ const Orders = () => {
   }
 
   const noRepeatItems = (item) => {
-    const indexProduct = chosenMenu.findIndex((product) => product.id === item.id);
+    const indexOrder = chosenMenu.findIndex((product) => product.id === item.id);
     if (chosenMenu.length === 0)
       setChosenMenu(item);
-    if (indexProduct === -1) {
+    if (indexOrder === -1)
       setChosenMenu([...chosenMenu, item]);
-      chosenMenu.sort((a, b) => a.name.localeCompare(b.name))
-    }
     else {
-      setChosenMenu(chosenMenu.splice(indexProduct, 1));
+      setChosenMenu(chosenMenu.splice(indexOrder, 1));
       setChosenMenu([...chosenMenu, item]);
-      chosenMenu.sort((a, b) => a.name.localeCompare(b.name))
     }
   }
 
@@ -96,7 +93,6 @@ const Orders = () => {
   const deleteOrder = (item) => {
     item.counter = 0;
     removeItems(item);
-    chosenMenu.sort((a, b) => a.name.localeCompare(b.name))
   }
 
   return (
@@ -172,20 +168,21 @@ const Orders = () => {
           <Text customClass='textOrders'>TOTAL</Text>
           <List customClass='menuSection'>
 
-            {chosenMenu.map((item) => {
-              return (item.counter > 0 &&
-                <OrderTable
-                  key={item.id}
-                  flavor={item.flavor}
-                  name={item.name}
-                  complement={item.complement}
-                  counter={item.counter}
-                  price={item.price}
-                  subTotal={item.subTotal}
-                  changeCounter={(e) => changeOrder(item, e.target.value)}
-                  deleteProduct={() => deleteOrder(item)}
-                />);
-            })}
+            {chosenMenu.sort((a, b) => a.name.localeCompare(b.name)) &&
+              chosenMenu.map((item) => {
+                return (item.counter > 0 &&
+                  <OrderTable
+                    key={item.id}
+                    flavor={item.flavor}
+                    name={item.name}
+                    complement={item.complement}
+                    counter={item.counter}
+                    price={item.price}
+                    subTotal={item.subTotal}
+                    changeCounter={(e) => changeOrder(item, e.target.value)}
+                    deleteProduct={() => deleteOrder(item)}
+                  />);
+              })}
 
             {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(totalPrice)}
           </List>
