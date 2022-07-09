@@ -29,9 +29,9 @@ export const createUser = (name, email, password, role) => {
     }),
   };
   return fetch(`${baseURL}/users`, config)
-  .then((response) => {
-    return error(response.status);
-  });
+    .then((response) => {
+      return error(response.status);
+    });
 }
 
 export const userLogin = (email, password) => {
@@ -45,10 +45,10 @@ export const userLogin = (email, password) => {
       password,
     }),
   }
-  return fetch('https://lab-api-bq.herokuapp.com/auth', config)
-    .then((response) => { 
+  return fetch(`${baseURL}/auth`, config)
+    .then((response) => {
       const errors = error(response.status);
-      if(errors !== '') return errors;
+      if (errors !== '') return errors;
       return response.json();
     })
     .then((data) => {

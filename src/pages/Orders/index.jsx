@@ -15,6 +15,8 @@ import OrderTable from '../../components/OrderTable';
 const Orders = () => {
   const [subMenu, setSubMenu] = React.useState(false);
   const [showMenu, setShowMenu] = React.useState(false);
+  const [toggleMenu, setToggleMenu] = React.useState('');
+  const [toggleSubMenu, setToggleSubMenu] = React.useState('');
   const [sortProducts, setSortProducts] = React.useState([]);
   const [products, setProducts] = React.useState([]);
   const [chosenMenu, setChosenMenu] = React.useState([]);
@@ -23,6 +25,7 @@ const Orders = () => {
   const [form, setForm] = React.useState({
     table: '',
     client: '',
+    products: '',
   });
 
   React.useEffect(() => {
@@ -34,12 +37,16 @@ const Orders = () => {
   }, []);
 
   const showProducts = (option) => {
+    setToggleSubMenu('');
+    setToggleMenu(option);
     setSubMenu(false);
     setProducts(sortProducts.filter((item) => item.sub_type === option));
     setShowMenu(true);
   };
 
   const showBurgerMenu = (option) => {
+    setToggleMenu('hamburger');
+    setToggleSubMenu(option);
     setSubMenu(true);
     setProducts(sortProducts.filter((item) => item.flavor === option));
     setShowMenu(true);
@@ -95,6 +102,50 @@ const Orders = () => {
     removeItems(item);
   }
 
+  const sendOrders = (e) => {
+    e.preventDefault();
+    const orderData = {
+      client: form.client,
+      table: form.table,
+      products:
+        chosenMenu.map((item) => {
+          const infosProduct = {
+            id: item.id,
+            name: item.name,
+            price: item.price,
+            flavor: item.flavor,
+            complement: item.complement,
+            qtd: item.counter,
+          };
+          return infosProduct
+        }),
+    };
+    console.log(orderData);
+  }
+
+  //   if (infosClient.name === "" || infosClient.table === "") {
+  //     setIsModalVisible(true)
+  //     setErrorMessage("Preencha todos os campos")
+  //   } else if (orderList.length === 0) {
+  //     setIsModalVisible(true)
+  //     setErrorMessage("Adicione produtos ao pedido")
+  //   } else {
+  //     setIsModalVisible(true)
+  //     setErrorMessage("Pedidos finalizado com sucesso!")
+  //     try {
+  //       await createOrder(orderData)
+  //       setOrderList([]);
+  //     } catch (error) {
+  //       setIsModalVisible(true)
+  //       setErrorMessage(error)
+  //     }
+  //   }
+  //   setInfosClient({
+  //     name: "",
+  //     table: ""
+  //   })
+  // }
+
   return (
     <>
       <Header text='PEDIDOS' />
@@ -122,28 +173,56 @@ const Orders = () => {
           />
           <Text customClass='textOrders'>CARDÁPIO</Text>
           <Grid customClass='optionContainer'>
-            <Button type='button' customClass='optionButton' onClick={() => showProducts('breakfast')}>
+            <Button
+              type='button'
+              customClass={`${toggleMenu === 'breakfast' ? 'activeMenu' : 'optionButton'}`}
+              onClick={() => showProducts('breakfast')}
+            >
               CAFÉ DA MANHÃ
             </Button>
-            <Button type='button' customClass='optionButton' onClick={() => showBurgerMenu('')}>
+            <Button
+              type='button'
+              customClass={`${toggleMenu === 'hamburger' ? 'activeMenu' : 'optionButton'}`}
+              onClick={() => showBurgerMenu('hamburger')}
+            >
               HAMBÚRGUERES
             </Button>
-            <Button type='button' customClass='optionButton' onClick={() => showProducts('side')}>
+            <Button
+              type='button'
+              customClass={`${toggleMenu === 'side' ? 'activeMenu' : 'optionButton'}`}
+              onClick={() => showProducts('side')}
+            >
               PORÇÕES
             </Button>
-            <Button type='button' customClass='optionButton' onClick={() => showProducts('drinks')}>
+            <Button
+              type='button'
+              customClass={`${toggleMenu === 'drinks' ? 'activeMenu' : 'optionButton'}`}
+              onClick={() => showProducts('drinks')}
+            >
               BEBIDAS
             </Button>
           </Grid>
           {subMenu && (
             <Grid customClass='subOptionContainer'>
-              <Button type='button' customClass='subOptionButton' onClick={() => showBurgerMenu('carne')}>
+              <Button
+                type='button'
+                customClass={`${(toggleSubMenu === 'carne') ? 'activeSubMenu' : 'subOptionButton'}`}
+                onClick={() => showBurgerMenu('carne')}
+              >
                 CARNE
               </Button>
-              <Button type='button' customClass='subOptionButton' onClick={() => showBurgerMenu('frango')}>
+              <Button
+                type='button'
+                customClass={`${(toggleSubMenu === 'frango') ? 'activeSubMenu' : 'subOptionButton'}`}
+                onClick={() => showBurgerMenu('frango')}
+              >
                 FRANGO
               </Button>
-              <Button type='button' customClass='subOptionButton' onClick={() => showBurgerMenu('vegetariano')}>
+              <Button
+                type='button'
+                customClass={`${(toggleSubMenu === 'vegetariano') ? 'activeSubMenu' : 'subOptionButton'}`}
+                onClick={() => showBurgerMenu('vegetariano')}
+              >
                 VEGETARIANO
               </Button>
             </Grid>
@@ -166,8 +245,7 @@ const Orders = () => {
               })}
           </List>
           <Text customClass='textOrders'>TOTAL</Text>
-          <List customClass='menuSection'>
-
+          <List customClass='orderList'>
             {chosenMenu.sort((a, b) => a.name.localeCompare(b.name)) &&
               chosenMenu.map((item) => {
                 return (item.counter > 0 &&
@@ -183,14 +261,13 @@ const Orders = () => {
                     deleteProduct={() => deleteOrder(item)}
                   />);
               })}
-
-            {new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(totalPrice)}
           </List>
+          <Text customClass='payment'>{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(totalPrice)}</Text>
           <Grid customClass='registerButton'>
             <Button type='button' customClass='cancellButton' onClick={null}>
               CANCELAR
             </Button>
-            <Button type='submit' customClass='confirmButton' onClick={null}>
+            <Button type='submit' customClass='confirmButton' onClick={sendOrders}>
               FINALIZAR
             </Button>
           </Grid>

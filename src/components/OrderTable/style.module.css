@@ -1,0 +1,8 @@
+.listOrders {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 350px));
+  justify-content: start;
+  align-items: baseline;
+  justify-items: start;
+}
