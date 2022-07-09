@@ -100,6 +100,7 @@ const Orders = () => {
   const deleteOrder = (item) => {
     item.counter = 0;
     removeItems(item);
+    setTotalPrice((totalPrice > 0) ? totalPrice - item.subTotal : totalPrice);
   }
 
   const sendOrders = (e) => {
