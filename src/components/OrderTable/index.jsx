@@ -6,31 +6,31 @@ import styles from './style.module.css';
 
 import iconDelete from '../../img/icons/delete.png';
 
-const OrderTable = ({ flavor, name, complement, counter, price, subTotal, changeCounter, deleteProduct }) => {
+const OrderTable = ({ flavor, productName, complement, tableCounter, price, subTotal, onChangeTableCounter, deleteProduct }) => {
   return (
     <li className={styles.listOrders}>
       {flavor && complement ? (
         <Text customClass='tableText'>
-          {name} {' - ' + flavor.toUpperCase()} {'- com adicional de ' + complement.toUpperCase()}
+          {productName} {' - ' + flavor.toUpperCase()} {'- com adicional de ' + complement.toUpperCase()}
         </Text>
       ) : null}
       {flavor && complement === null ? (
         <Text customClass='tableText'>
-          {name} {' - ' + flavor.toUpperCase()}
+          {productName} {' - ' + flavor.toUpperCase()}
         </Text>
       ) : null}
       {flavor === null && complement === null ? (
         <Text customClass='tableText'>
-          {name}
+          {productName}
         </Text>
       ) : null}
       <Grid customClass='orderTableInfo'>
         <Input
-          type='number'
-          name='counterTable'
-          value={counter}
-          onChange={changeCounter}
           classInput='orderTableInput'
+          type='number'
+          name='tableCounter'
+          value={tableCounter}
+          onChange={onChangeTableCounter}
         />
         <Text customClass='tablePrice'>{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(price)}</Text>
         <Text customClass='tablePrice'>{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(subTotal)}</Text>

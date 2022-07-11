@@ -250,12 +250,12 @@ const Orders = () => {
                   <OrderTable
                     key={item.id}
                     flavor={item.flavor}
-                    name={item.name}
+                    productName={item.name}
                     complement={item.complement}
-                    counter={item.counter}
                     price={item.price}
                     subTotal={item.subtotal}
-                    changeCounter={(e) => changeOrder(item, e.target.value)}
+                    tableCounter={item.counter}
+                    onChangeTableCounter={(e) => counterInputValue(item, e.target.value)}
                     deleteProduct={() => deleteOrder(item)}
                   />);
               })}
