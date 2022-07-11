@@ -25,7 +25,8 @@ const Orders = () => {
   const [form, setForm] = React.useState({
     table: '',
     client: '',
-    products: '',
+    products: [],
+    counter: {},
   });
 
   React.useEffect(() => {
@@ -58,11 +59,23 @@ const Orders = () => {
     setForm({ ...form, [name]: value });
   };
 
+  const counterInputValue = (item, counter) => {
+    products.forEach((product) => {
+      if (product.id === item.id) {
+        setTotalPrice(totalPrice - (item.price * item.counter));
+        item.counter = counter;
+        item.subtotal = item.price * item.counter;
+        setTotalPrice(totalPrice + (item.price * item.counter));
+        noRepeatItems(item);
+      }
+    });
+  }
+
   const addItems = (item) => {
     products.forEach((product) => {
       if (product.id === item.id) {
-        item.counter = item.counter >= 0 ? item.counter + 1 : (item.counter = 0);
-        item.subTotal = item.counter > 0 ? item.price * item.counter : item.price;
+        item.counter = item.counter >= 0 ? Number(item.counter) + 1 : (item.counter = 0);
+        item.subtotal = item.counter > 0 ? item.price * item.counter : item.price;
         noRepeatItems(item);
         setTotalPrice(totalPrice + item.price);
       }
@@ -73,9 +86,19 @@ const Orders = () => {
     products.forEach((product) => {
       if (product.id === item.id) {
         item.counter = item.counter > 0 ? item.counter - 1 : (item.counter = 0);
-        item.subTotal = item.counter > 0 ? item.price * item.counter : item.price;
+        item.subtotal = item.counter > 0 ? item.price * item.counter : item.price;
         noRepeatItems(item);
         setTotalPrice((totalPrice > 0) ? totalPrice - item.price : totalPrice);
+      }
+    });
+  }
+
+  const deleteOrder = (item) => {
+    products.forEach((product) => {
+      if (product.id === item.id) {
+        item.counter = 0;
+        noRepeatItems(item);
+        setTotalPrice((totalPrice > 0) ? totalPrice - item.subtotal : totalPrice);
       }
     });
   }
@@ -95,12 +118,6 @@ const Orders = () => {
   const changeOrder = (item, counter) => {
     if (item.counter < Number(counter)) addItems(item);
     if (item.counter > Number(counter)) removeItems(item);
-  }
-
-  const deleteOrder = (item) => {
-    item.counter = 0;
-    removeItems(item);
-    setTotalPrice((totalPrice > 0) ? totalPrice - item.subTotal : totalPrice);
   }
 
   const sendOrders = (e) => {
@@ -123,29 +140,6 @@ const Orders = () => {
     };
     console.log(orderData);
   }
-
-  //   if (infosClient.name === "" || infosClient.table === "") {
-  //     setIsModalVisible(true)
-  //     setErrorMessage("Preencha todos os campos")
-  //   } else if (orderList.length === 0) {
-  //     setIsModalVisible(true)
-  //     setErrorMessage("Adicione produtos ao pedido")
-  //   } else {
-  //     setIsModalVisible(true)
-  //     setErrorMessage("Pedidos finalizado com sucesso!")
-  //     try {
-  //       await createOrder(orderData)
-  //       setOrderList([]);
-  //     } catch (error) {
-  //       setIsModalVisible(true)
-  //       setErrorMessage(error)
-  //     }
-  //   }
-  //   setInfosClient({
-  //     name: "",
-  //     table: ""
-  //   })
-  // }
 
   return (
     <>
@@ -230,8 +224,9 @@ const Orders = () => {
                     text={item.name}
                     flavor={item.flavor}
                     complement={item.complement}
+                    price={item.subtotal}
                     counter={item.counter}
-                    price={item.subTotal}
+                    onChangeCounter={(e) => counterInputValue(item, e.target.value)}
                     addCounter={() => addItems(item)}
                     removeCounter={() => item.counter === 0 ? null : removeItems(item)}
                   />
@@ -259,7 +254,7 @@ const Orders = () => {
                     complement={item.complement}
                     counter={item.counter}
                     price={item.price}
-                    subTotal={item.subTotal}
+                    subTotal={item.subtotal}
                     changeCounter={(e) => changeOrder(item, e.target.value)}
                     deleteProduct={() => deleteOrder(item)}
                   />);

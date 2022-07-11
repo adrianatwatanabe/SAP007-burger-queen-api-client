@@ -1,0 +1,50 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@400;700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Caesar+Dressing&display=swap');
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: var(--font-default);
+}
+body {
+  background-color: var(--color-wine-background);
+}
+#root {
+  height: 100vh;
+  width: 100vw;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+:root {
+  --font-default: 'Lato', sans-serif;
+  --font-header: 'Caesar Dressing', cursive;
+  --color-white: #fdfdfd;
+  --color-black-text: #292929;
+  --color-white-text: #cacaca;
+
+  --color-green-highlight: #418a2f;
+  --color-yellow-highlight: #ffb649;
+  --color-orange-highlight: #fb8c25;
+  --color-red-highlight: #d71515;
+
+  --color-wine-background: #500f0f;
+  --color-red-background: #a60000;
+  --color-orange-background: #ff9735;
+  --color-green-background: #065535;
+  --color-dark-red-background: #971a1a;
+  --color-gray-background: #ababab;
+
+  --color-dark-orange: #be610a;
+  --color-dark-green: #008138;
+
+  --color-dark-green-icon: #075c2c;
+  --color-green-icon: #7cc743;
+  --color-oragen-title: #fe7b00;
+
+  --color-green-opacity: rgba(30, 129, 0, 0.3);
+  --color-orange-opacity: rgba(196, 103, 16, 0.3);
+}

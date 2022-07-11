@@ -32,7 +32,7 @@ export const getAllProducts = () => {
       const products = data.map((product) => ({
         ...product,
         counter: 0,
-        subTotal: product.price,
+        subtotal: product.price,
       }))
       return products.sort((a, b) => a.name.localeCompare(b.name));
     });

@@ -58,11 +58,6 @@
 .tableText {
   font-weight: normal;
 }
-.textCounter {
-  text-align: center;
-  color: var(--color-white);
-  font-size: 1.25rem;
-}
 .payment {
   width: 100%;
   margin-top: 0.625rem;
@@ -72,7 +67,7 @@
   text-align: right;
 }
 .orderTableTitle {
-  font-size: 1rem;
+  font-size: 0.75rem;
   font-weight: 600;
   text-align: center;
   color: var(--color-oragen-title);
@@ -87,6 +82,13 @@
   text-align: center;
   font-size: 0.875rem;
   font-weight: 600;
+}
+
+@media screen and (min-width: 370px){
+  .orderTableTitle {
+    font-size: 1rem;
+  }
+
 }
 
 @media screen and (min-width: 600px) {

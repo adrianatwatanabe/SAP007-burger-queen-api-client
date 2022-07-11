@@ -27,6 +27,7 @@ const OrderTable = ({ flavor, name, complement, counter, price, subTotal, change
       <Grid customClass='orderTableInfo'>
         <Input
           type='number'
+          name='counterTable'
           value={counter}
           onChange={changeCounter}
           classInput='orderTableInput'
