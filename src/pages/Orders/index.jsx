@@ -59,13 +59,14 @@ const Orders = () => {
     setForm({ ...form, [name]: value });
   };
 
-  const counterInputValue = (item, counter) => {
+  const counterInputValue = (item, e) => {
     products.forEach((product) => {
       if (product.id === item.id) {
-        setTotalPrice(totalPrice - (item.price * item.counter));
-        item.counter = counter;
+        const previousCounter = item.counter;
+        item.counter = e.value;
         item.subtotal = item.price * item.counter;
-        setTotalPrice(totalPrice + (item.price * item.counter));
+        if (previousCounter < item.counter) setTotalPrice(totalPrice + ((e.value - previousCounter) * item.price));
+        else setTotalPrice(totalPrice - ((previousCounter - e.value) * item.price));
         noRepeatItems(item);
       }
     });
@@ -96,9 +97,10 @@ const Orders = () => {
   const deleteOrder = (item) => {
     products.forEach((product) => {
       if (product.id === item.id) {
+        setTotalPrice((totalPrice > 0) ? totalPrice - item.subtotal : 0);
         item.counter = 0;
+        item.subtotal = item.price;
         noRepeatItems(item);
-        setTotalPrice((totalPrice > 0) ? totalPrice - item.subtotal : totalPrice);
       }
     });
   }
@@ -113,11 +115,6 @@ const Orders = () => {
       setChosenMenu(chosenMenu.splice(indexOrder, 1));
       setChosenMenu([...chosenMenu, item]);
     }
-  }
-
-  const changeOrder = (item, counter) => {
-    if (item.counter < Number(counter)) addItems(item);
-    if (item.counter > Number(counter)) removeItems(item);
   }
 
   const sendOrders = (e) => {
@@ -225,8 +222,8 @@ const Orders = () => {
                     flavor={item.flavor}
                     complement={item.complement}
                     price={item.subtotal}
-                    counter={item.counter}
-                    onChangeCounter={(e) => counterInputValue(item, e.target.value)}
+                    counter={item.counter} e
+                    onChangeCounter={(e) => counterInputValue(item, e.target)}
                     addCounter={() => addItems(item)}
                     removeCounter={() => item.counter === 0 ? null : removeItems(item)}
                   />

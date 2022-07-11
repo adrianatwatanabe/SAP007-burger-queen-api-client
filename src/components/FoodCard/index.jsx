@@ -4,7 +4,7 @@ import Button from '../Button';
 import styles from './style.module.css';
 import Input from '../Input';
 
-const FoodCard = ({ flavor, text, complement, removeCounter, addCounter, counter, price, onChangeCounter }) => {
+const FoodCard = ({ flavor, text, complement, removeCounter, addCounter, counter, price, onChangeCounter, onKeyCounter }) => {
   return (
     <li className={styles.foodCard}>
       <Grid customClass='textContainer'>
@@ -27,6 +27,8 @@ const FoodCard = ({ flavor, text, complement, removeCounter, addCounter, counter
           name='counter'
           value={counter}
           onChange={onChangeCounter}
+          onKeyUp={onKeyCounter}
+          placeholder='0'
         />
         <Button type='button' onClick={addCounter} role='counter' customClass='counterGreen'>
           +

@@ -22,10 +22,13 @@
 .formInput::placeholder,
 .ordersInput::placeholder,
 .tableInput::placeholder,
-.clientInput::placeholder  {
+.clientInput::placeholder {
   color: var(--color-orange-background);
   opacity: 0.7;
   font-size: 0.875rem;
+}
+.textCardCounter::placeholder {
+  color: var(--color-white);
 }
 .tableInput {
   max-width: 300px;
