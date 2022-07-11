@@ -1,0 +1,19 @@
+.menuSection {
+  width: 100%;
+  margin: 20px 0;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 280px);
+  justify-content: center;
+  align-items: start;
+  row-gap: 35px;
+  column-gap: 35px;
+}
+.orderList {
+  width: 100%;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  row-gap: 12px;
+  column-gap: 20px;
+}

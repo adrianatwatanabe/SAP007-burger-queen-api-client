@@ -1,0 +1,33 @@
+#footerMenu {
+  width: 100%;
+  padding: 10px 0;
+  position: fixed;
+  bottom: 0;
+  background: var(--color-wine-background);
+  z-index: 1;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.listContainer {
+  max-width: 1300px;
+  width: 90%;
+  display: flex;
+  align-items: center;
+  flex-direction: row-reverse;
+  justify-content: space-between;
+}
+.listContainer li {
+  list-style: none;
+}
+.icon {
+  width: 15px;
+  height: 15px;
+}
+
+@media screen and (min-width: 600px) {
+  .icon {
+    width: 20px;
+    height: 20px;
+  }
+}

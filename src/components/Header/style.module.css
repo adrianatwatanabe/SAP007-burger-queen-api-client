@@ -1,0 +1,37 @@
+#containerHeaderGeneral {
+  width: 100%;
+  padding: 10px 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  position: fixed;
+  top: 0;
+  background: var(--color-wine-background);
+  color: var(--color-green-highlight);
+  z-index: 1;
+}
+#containerHeader {
+  max-width: 1300px;
+  width: 90%;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  column-gap: 2rem;
+}
+.headerText {
+  width: 70%;
+  font-family: var(--font-header);
+  font-size: 1.5rem;
+  font-weight: 400;
+}
+
+@media screen and (min-width: 600px) {
+  .headerLogo {
+    width: 5rem;
+    height: 5rem;
+  }
+  .headerText {
+    font-size: 2.3rem;
+  }
+}

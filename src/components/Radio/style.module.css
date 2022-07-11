@@ -1,0 +1,64 @@
+.containerRadio {
+  display: flex;
+  flex-direction: column;
+  row-gap: 0.625rem;
+  margin-top: 1rem;
+}
+.formLabelRadio {
+  width: 100%;
+  color: var(--color-white-text);
+  font-size: 0.875rem;
+}
+.textRadio {
+  width: 100%;
+  color: var(--color-orange-highlight);
+  font-size: 0.875rem;
+  font-weight: 600;
+}
+.inputRadio {
+  appearance: none;
+  margin-left: 2.5rem;
+  margin-right: 0.625rem;
+  width: 18px;
+  height: 18px;
+  border-radius: 50%;
+  background-color: var(--color-orange-background);
+  vertical-align: text-bottom;
+  position: relative;
+}
+.inputRadio:before {
+  display: block;
+  opacity: 0;
+  content: '';
+  background-color: var(--color-green-background);
+  width: 12px;
+  height: 12px;
+  border-radius: 50%;
+  position: absolute;
+  top: 3px;
+  left: 3px;
+}
+.inputRadio:checked:before {
+  opacity: 1;
+}
+
+@media screen and (min-width: 600px) {
+  .containerRadio {
+    display: inline-block;
+    width: 100%;
+  }
+  .formLabelRadio {
+    font-size: 1rem;
+  }
+  .inputRadio {
+    width: 20px;
+    height: 20px;
+  }
+  .inputRadio:before {
+    width: 14px;
+    height: 14px;
+  }
+  .textRadio {
+    font-size: 1.25rem;
+  }
+}

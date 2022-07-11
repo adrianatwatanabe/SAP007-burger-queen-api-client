@@ -1,0 +1,29 @@
+.formLogin {
+  max-width: 1300px;
+  width: 90%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 1.5rem;
+  justify-content: center;
+  align-items: center;
+  margin: auto;
+}
+.formUser,
+.formOrders {
+  width: 100%;
+  display: grid;
+  grid-template-columns: 1fr;
+  row-gap: 1.6rem;
+  justify-items: center;
+  margin-top: 1.375rem;
+}
+.formOrders {
+  margin: 0 auto;
+  row-gap: 1.125rem;
+}
+
+@media screen and (min-width: 600px) {
+  .formUser {
+    margin-top: 0;
+  }
+}

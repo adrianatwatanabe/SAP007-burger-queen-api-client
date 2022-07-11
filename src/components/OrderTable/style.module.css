@@ -1,0 +1,13 @@
+.listOrders {
+  width: 100%;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(100px, 400px));
+  justify-content: center;
+  align-items: baseline;
+  justify-items: start;
+  column-gap: 15px;
+  row-gap: 10px;
+}
+.icon {
+  width: 20px;
+}
