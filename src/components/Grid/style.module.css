@@ -53,7 +53,7 @@
 
 @media screen and (min-width: 370px) {
   .orderTableInfo {
-    grid-template-columns: 60px 90px 90px 60px;
+    grid-template-columns: 80px 110px 110px 80px;
   }
 }
 

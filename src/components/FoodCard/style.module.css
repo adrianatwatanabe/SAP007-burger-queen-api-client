@@ -1,7 +1,7 @@
 .foodCard {
   width: 275px;
-  border-radius: 10px;
-  background: rgb(207 100 38);
+  border-radius: 6px;
+  background: var(--color-oragen-card);
   display: grid;
   grid-template-columns: 1fr 0.9fr;
   padding: 15px;

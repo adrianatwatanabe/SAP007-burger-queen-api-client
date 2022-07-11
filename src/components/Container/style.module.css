@@ -1,7 +1,7 @@
 .containerGeneral {
   width: 100%;
   height: 100vh;
-  margin: 97.5px 0 60px 0;
+  margin: 76px 0 55px 0;
   overflow-y: visible;
   overflow-x: hidden;
   display: flex;
@@ -18,16 +18,16 @@
 }
 .containerGeneral::-webkit-scrollbar-track {
   background: var(--color-black-text);
-  border-radius: 10px;
+  border-radius: 6px;
 }
 .containerGeneral::-webkit-scrollbar-thumb {
   background-color: var(--color-gray-background);
-  border-radius: 20px;
+  border-radius: 6px;
 }
 
 @media screen and (min-width: 600px) {
   .containerGeneral {
-    margin-top: 113.5px;
-    margin-bottom: 70px;
+    margin-top: 87px;
+    margin-bottom: 65px;
   }
 }

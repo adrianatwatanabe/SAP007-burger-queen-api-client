@@ -26,6 +26,13 @@
   border-top-style: none;
   border-left-style: none;
 }
+.textErrors {
+  width: 100%;
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+  color: var(--color-white);
+}
 .textTotal {
   width: 100%;
   font-size: 1.125rem;

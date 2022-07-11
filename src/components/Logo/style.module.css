@@ -3,8 +3,8 @@
   height: 9rem;
 }
 .loginHeader {
-  width: 4rem;
-  height: 4rem;
+  width: 3.3rem;
+  height: 3.3rem;
 }
 
 @media screen and (min-width: 600px) {
@@ -13,7 +13,7 @@
     height: 10rem;
   }
   .loginHeader {
-    width: 5rem;
-    height: 5rem;
+    width: 4rem;
+    height: 4rem;
   }
 }

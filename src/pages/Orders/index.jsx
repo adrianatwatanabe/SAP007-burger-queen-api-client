@@ -1,4 +1,5 @@
 import React from 'react';
+import { getAllProducts, createOrders } from '../../services/products';
 import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Container from '../../components/Container';
@@ -9,8 +10,8 @@ import List from '../../components/List';
 import Button from '../../components/Button';
 import Form from '../../components/Form';
 import FoodCard from '../../components/FoodCard';
-import { getAllProducts } from '../../services/products';
 import OrderTable from '../../components/OrderTable';
+import Modal from '../../components/Modal';
 
 const Orders = () => {
   const [subMenu, setSubMenu] = React.useState(false);
@@ -21,6 +22,9 @@ const Orders = () => {
   const [products, setProducts] = React.useState([]);
   const [chosenMenu, setChosenMenu] = React.useState([]);
   const [totalPrice, setTotalPrice] = React.useState(0);
+  const [errorMessage, setErrorMessage] = React.useState("");
+  const [modal, setModal] = React.useState(false);
+  const [orderList, setOrderList] = React.useState([]);
 
   const [form, setForm] = React.useState({
     table: '',
@@ -117,7 +121,7 @@ const Orders = () => {
     }
   }
 
-  const sendOrders = (e) => {
+  const sendOrders = async (e) => {
     e.preventDefault();
     const orderData = {
       client: form.client,
@@ -135,7 +139,42 @@ const Orders = () => {
           return infosProduct
         }),
     };
-    console.log(orderData);
+
+    const regex = /[0-9]/gi;
+    setTimeout(() => setModal(false), 5000);
+    setModal(true);
+
+    if (form.client === "" || form.table === "") {
+      setErrorMessage('Preencha todos os campos!');
+    } else if (form.table < 1 || form.table > 35) {
+      setErrorMessage('O número das mesas vão de 1 a 35!');
+    } else if (!regex.test(form.table)) {
+      setErrorMessage('Digite somente números de 1 a 35 para o campo da mesa!');
+    } else if (chosenMenu.length === 0) {
+      setErrorMessage('Adicione produtos ao pedido!');
+    } else {
+      try {
+        await createOrders(orderData);
+        setErrorMessage('Pedidos finalizado com sucesso!');
+        setOrderList([...orderList, orderData]);
+        cleanOrder();
+      } catch (error) {
+        setErrorMessage(error);
+      }
+    }
+  }
+
+  const cleanOrder = () => {
+    setProducts([]);
+    setChosenMenu([]);
+    setTotalPrice(0);
+    setForm({
+      table: '',
+      client: '',
+      products: [],
+      counter: {},
+    });
+    setErrorMessage('');
   }
 
   return (
@@ -146,7 +185,7 @@ const Orders = () => {
           <Input
             classLabel='tableLabel'
             classInput='tableInput'
-            type='number'
+            type='text'
             name='table'
             value={form.table}
             text='MESA'
@@ -259,7 +298,7 @@ const Orders = () => {
           </List>
           <Text customClass='payment'>{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(totalPrice)}</Text>
           <Grid customClass='registerButton'>
-            <Button type='button' customClass='cancellButton' onClick={null}>
+            <Button type='button' customClass='cancellButton' onClick={cleanOrder}>
               CANCELAR
             </Button>
             <Button type='submit' customClass='confirmButton' onClick={sendOrders}>
@@ -269,6 +308,14 @@ const Orders = () => {
         </Form>
       </Container>
       <Footer />
+      {modal &&
+        <Modal classContainer="containerGeneralOrders" classSubContainer="subContainerOrders">
+          <Button type="button" onClick={() => setModal(false)} customClass="closeModal">
+            X
+          </Button>
+          <Text customClass='textErrors'>{errorMessage}</Text>
+        </Modal>
+      }
     </>
   );
 };
