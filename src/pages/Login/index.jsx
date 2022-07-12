@@ -1,7 +1,8 @@
 import React from 'react';
 import { userLogin } from '../../services/user';
 import { useNavigate } from 'react-router-dom';
-import useForm from '../../hooks/useForm';
+import useEmployee from '../../hooks/useEmployee';
+import { setUserData } from '../../services/storage';
 import Form from '../../components/Form';
 import Logo from '../../components/Logo';
 import Input from '../../components/Input';
@@ -10,33 +11,43 @@ import Text from '../../components/Text';
 
 const Login = () => {
   const navigate = useNavigate();
-  const { addInputValue, validatedForm, form } = useForm();
-  const [message, setMessage] = React.useState();
+  const { addInputValue, validatedForm, form, setErrorMessage, errorMessage } = useEmployee();
 
-  const sendForm = (e) => {
-    e.preventDefault();
-    let validation = validatedForm();
-    if (validation === '') {
-      userLogin(form.email, form.password)
-        .then((data) => {
-          validation = data;
-          switch (data.role) {
-            case 'admin':
-              navigate('../menu');
-              break;
-            case 'waiter':
-              navigate('../orders');
-              break;
-            case 'cook':
-              navigate('../orders-progress');
-              break;
-            default:
-              navigate('../');
-          }
-        })
-        .then(() => setMessage(validation));
+  const authenticatedUser = (role) => {
+    switch (role) {
+      case 'admin':
+        navigate('../menu');
+        break;
+      case 'waiter':
+        navigate('../orders');
+        break;
+      case 'cook':
+        navigate('../orders-progress');
+        break;
+      default:
+        navigate('../');
     }
-    setMessage(validation);
+  }
+
+  const sendForm = async (e) => {
+    e.preventDefault();
+    const validation = validatedForm();
+    if (validation !== false) {
+      const response = await userLogin(form.email, form.password);
+      switch (response.status) {
+        case 200:
+          const data = await response.json();
+          setUserData(data.name, data.token, data.role);
+          authenticatedUser(data.role);
+          break;
+        case 400:
+          setErrorMessage('Email e/ou senha incorretos. Tente novamente!');
+          break;
+        default:
+          setErrorMessage('Erro, tente novamente!');
+      }
+    }
+    setTimeout(() => setErrorMessage(''), 5000);
   }
 
   return (
@@ -62,7 +73,7 @@ const Login = () => {
         placeholder='Digite a sua senha'
         onChange={addInputValue}
       />
-      {message && <Text customClass='formMessage'>{message}</Text>}
+      {errorMessage && <Text customClass='formMessage'>{errorMessage}</Text>}
       <Button type='submit' customClass='button' onClick={sendForm} role="login">
         ENTRAR
       </Button>

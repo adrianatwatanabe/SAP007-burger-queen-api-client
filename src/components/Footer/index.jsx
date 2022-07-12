@@ -12,10 +12,10 @@ import styles from './style.module.css';
 const Footer = () => {
   const navigate = useNavigate();
 
-  const logout = async (e) => {
+  const logout = (e) => {
     e.preventDefault();
-    await deleteUserData()
-      .then(() => navigate('/'));
+    deleteUserData();
+    navigate('/');
   };
 
   const location = useLocation();
