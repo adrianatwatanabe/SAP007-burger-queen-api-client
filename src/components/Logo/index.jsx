@@ -1,4 +1,4 @@
-import logoBurgerQueen from '../../img/logo-burger-queen.png';
+import logoBurgerQueen from '../../assets/logo-burger-queen.png';
 import styles from './style.module.css';
 
 const Logo = ({ customClass }) => {

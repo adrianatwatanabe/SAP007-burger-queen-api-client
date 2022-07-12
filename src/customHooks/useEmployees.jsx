@@ -1,6 +1,6 @@
 import React from 'react';
 
-const useEmployee = () => {
+const useEmployees = () => {
   const [errorMessage, setErrorMessage] = React.useState('');
   const [modal, setModal] = React.useState(false);
   const [form, setForm] = React.useState({
@@ -57,4 +57,4 @@ const useEmployee = () => {
   return { addInputValue, validatedForm, cleanForm, form, setForm, setErrorMessage, errorMessage, setModal, modal };
 }
 
-export default useEmployee;
+export default useEmployees;

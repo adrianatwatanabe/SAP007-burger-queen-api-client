@@ -12,28 +12,23 @@ import Form from '../../components/Form';
 import FoodCard from '../../components/FoodCard';
 import OrderTable from '../../components/OrderTable';
 import Modal from '../../components/Modal';
+import useOrderForm from '../../customHooks/useOrderForm';
+import useOrders from '../../customHooks/useOrders';
+
+export let menuProducts = '';
 
 const Orders = () => {
+  const { chosenMenu, setChosenMenu, totalPrice, setTotalPrice, counterInputValue, addItems, removeItems, deleteOrder } = useOrders();
+  const { errorMessage, setErrorMessage, modal, setModal, orderList, setOrderList, formOrders, inputValue, validatedForm, cleanForm } = useOrderForm();
+
   const [subMenu, setSubMenu] = React.useState(false);
   const [showMenu, setShowMenu] = React.useState(false);
   const [toggleMenu, setToggleMenu] = React.useState('');
   const [toggleSubMenu, setToggleSubMenu] = React.useState('');
-  const [sortProducts, setSortProducts] = React.useState([]);
   const [products, setProducts] = React.useState([]);
-  const [chosenMenu, setChosenMenu] = React.useState([]);
-  const [totalPrice, setTotalPrice] = React.useState(0);
-  const [errorMessage, setErrorMessage] = React.useState('');
-  const [errorMessageSend, setErrorMessageSend] = React.useState('');
-  const [modal, setModal] = React.useState(false);
+  const [sortProducts, setSortProducts] = React.useState([]);
   const [modalOrder, setModalOrder] = React.useState(false);
-  const [orderList, setOrderList] = React.useState([]);
-
-  const [form, setForm] = React.useState({
-    table: '',
-    client: '',
-    products: [],
-    counter: {},
-  });
+  const [errorMessageSend, setErrorMessageSend] = React.useState('');
 
   React.useEffect(() => {
     getProducts();
@@ -47,7 +42,7 @@ const Orders = () => {
             counter: 0,
             subtotal: product.price,
           }))
-          products.sort((a, b) => a.name.localeCompare(b.name));
+          menuProducts = products.sort((a, b) => a.name.localeCompare(b.name));
           setSortProducts(products);
           break;
         case 401:
@@ -59,8 +54,8 @@ const Orders = () => {
           setModal(true);
       }
     }
-    setTimeout(() => setModal(false), 5000);
-  }, []);
+    setTimeout(() => setModal(false), 3000);
+  }, [setErrorMessage, setModal, setSortProducts]);
 
   const showProducts = (option) => {
     setToggleSubMenu('');
@@ -78,101 +73,13 @@ const Orders = () => {
     setShowMenu(true);
   };
 
-  const inputValue = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setForm({ ...form, [name]: value });
-  };
-
-  const counterInputValue = (item, e) => {
-    products.forEach((product) => {
-      if (product.id === item.id) {
-        const previousCounter = item.counter;
-        item.counter = e.value;
-        item.subtotal = item.price * item.counter;
-        if (previousCounter < item.counter) setTotalPrice(totalPrice + ((e.value - previousCounter) * item.price));
-        else setTotalPrice(totalPrice - ((previousCounter - e.value) * item.price));
-        noRepeatItems(item);
-      }
-    });
-  }
-
-  const addItems = (item) => {
-    products.forEach((product) => {
-      if (product.id === item.id) {
-        item.counter = item.counter >= 0 ? Number(item.counter) + 1 : (item.counter = 0);
-        item.subtotal = item.counter > 0 ? item.price * item.counter : item.price;
-        noRepeatItems(item);
-        setTotalPrice(totalPrice + item.price);
-      }
-    });
-  };
-
-  const removeItems = (item) => {
-    products.forEach((product) => {
-      if (product.id === item.id) {
-        item.counter = item.counter > 0 ? item.counter - 1 : (item.counter = 0);
-        item.subtotal = item.counter > 0 ? item.price * item.counter : item.price;
-        noRepeatItems(item);
-        setTotalPrice((totalPrice > 0) ? totalPrice - item.price : totalPrice);
-      }
-    });
-  }
-
-  const deleteOrder = (item) => {
-    products.forEach((product) => {
-      if (product.id === item.id) {
-        setTotalPrice((totalPrice > 0) ? totalPrice - item.subtotal : 0);
-        item.counter = 0;
-        item.subtotal = item.price;
-        noRepeatItems(item);
-      }
-    });
-  }
-
-  const noRepeatItems = (item) => {
-    const indexOrder = chosenMenu.findIndex((product) => product.id === item.id);
-    if (chosenMenu.length === 0)
-      setChosenMenu(item);
-    if (indexOrder === -1)
-      setChosenMenu([...chosenMenu, item]);
-    else {
-      setChosenMenu(chosenMenu.splice(indexOrder, 1));
-      setChosenMenu([...chosenMenu, item]);
-    }
-  }
-
-  const validatedForm = () => {
-    const regex = /[0-9]/gi;
-    setTimeout(() => setModal(false), 3000);
-    if (form.client === '' || form.table === '') {
-      setErrorMessage('Preencha os campos da mesa e nome do cliente!');
-      setModal(true);
-      return false;
-    } else if (form.table < 1 || form.table > 35) {
-      setErrorMessage('O número das mesas vão de 1 a 35!');
-      setModal(true);
-      return false;
-    } else if (!regex.test(form.table)) {
-      setErrorMessage('Digite somente números de 1 a 35 para o campo da mesa!');
-      setModal(true);
-      return false;
-    } else if (chosenMenu.length === 0) {
-      setErrorMessage('Adicione produtos ao pedido!');
-      setModal(true);
-      return false;
-    } else {
-      return true;
-    }
-  }
-
   const sendOrders = async (e) => {
     e.preventDefault();
-    const validation = validatedForm();
+    const validation = validatedForm(chosenMenu);
     if (validation !== false) {
       const orderData = {
-        client: form.client,
-        table: form.table,
+        client: formOrders.client,
+        table: formOrders.table,
         products:
           chosenMenu.map((item) => {
             const infosProduct = {
@@ -214,13 +121,7 @@ const Orders = () => {
     setProducts([]);
     setChosenMenu([]);
     setTotalPrice(0);
-    setForm({
-      table: '',
-      client: '',
-      products: [],
-      counter: {},
-    });
-    setErrorMessage('');
+    cleanForm();
   }
 
   return (
@@ -233,7 +134,7 @@ const Orders = () => {
             classInput='tableInput'
             type='text'
             name='table'
-            value={form.table}
+            value={formOrders.table}
             text='MESA'
             placeholder='Digite o número da mesa'
             onChange={inputValue}
@@ -243,7 +144,7 @@ const Orders = () => {
             classInput='clientInput'
             type='text'
             name='client'
-            value={form.client}
+            value={formOrders.client}
             text='NOME DO CLIENTE'
             placeholder='Digite o nome do cliente'
             onChange={inputValue}

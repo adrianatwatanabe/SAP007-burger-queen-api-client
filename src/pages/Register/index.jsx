@@ -1,5 +1,5 @@
 import React from 'react';
-import useEmployee from '../../hooks/useEmployee';
+import useEmployee from '../../customHooks/useEmployees';
 import { createUser } from '../../services/user';
 import Form from '../../components/Form';
 import Input from '../../components/Input';

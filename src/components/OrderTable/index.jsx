@@ -4,7 +4,7 @@ import Button from '../Button';
 import Grid from '../Grid';
 import styles from './style.module.css';
 
-import iconDelete from '../../img/icons/delete.png';
+import iconDelete from '../../assets/icons/delete.png';
 
 const OrderTable = ({ flavor, productName, complement, tableCounter, price, subTotal, onChangeTableCounter, deleteProduct }) => {
   return (
