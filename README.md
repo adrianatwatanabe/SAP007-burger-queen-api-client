@@ -10,6 +10,9 @@
   <a href="https://developer.mozilla.org/pt-BR/docs/Web/CSSL" target="_blank"><img alt="CSS" height="45" width="45" src="https://github.com/devicons/devicon/blob/master/icons/css3/css3-plain-wordmark.svg"></a>
   <a href="https://developer.mozilla.org/pt-BR/docs/Web/JavaScript" target="_blank"><img alt="JavaScript" height="35" width="35" src="https://raw.githubusercontent.com/devicons/devicon/master/icons/javascript/javascript-plain.svg"></a>
   <a hred="https://beta.reactjs.org/"><img alt="React" width="45" height="45" src="https://github.com/devicons/devicon/blob/master/icons/react/react-original-wordmark.svg" /></a>
+  <img alt="Jest" width="40" height="40" src="https://github.com/devicons/devicon/blob/master/icons/jest/jest-plain.svg" />    
+  <img alt="Trello" height="60" width="60" src="https://github.com/devicons/devicon/blob/master/icons/trello/trello-plain-wordmark.svg">
+  <img alt="Figma" height="35" width="40" src="https://github.com/devicons/devicon/blob/master/icons/figma/figma-original.svg">
 </div>
    
 </div>
