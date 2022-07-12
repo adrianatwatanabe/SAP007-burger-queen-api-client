@@ -1,10 +1,10 @@
 import { useLocation, useNavigate } from 'react-router-dom';
 import { getUserData, deleteUserData } from '../../services/storage';
-import OrdersList from '../../img/icons/orders-list.png';
-import FinalizeOrders from '../../img/icons/finalize-orders.png';
-import OrdersDelivered from '../../img/icons/orders-delivered.png';
-import Logout from '../../img/icons/logout.png';
-import Back from '../../img/icons/back.png';
+import OrdersList from '../../assets/icons/orders-list.png';
+import FinalizeOrders from '../../assets/icons/finalize-orders.png';
+import OrdersDelivered from '../../assets/icons/orders-delivered.png';
+import Logout from '../../assets/icons/logout.png';
+import Back from '../../assets/icons/back.png';
 import Button from '../Button';
 import Link from '../Link';
 import styles from './style.module.css';
@@ -12,10 +12,10 @@ import styles from './style.module.css';
 const Footer = () => {
   const navigate = useNavigate();
 
-  const logout = async (e) => {
+  const logout = (e) => {
     e.preventDefault();
-    await deleteUserData()
-      .then(() => navigate('/'));
+    deleteUserData();
+    navigate('/');
   };
 
   const location = useLocation();

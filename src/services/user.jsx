@@ -1,20 +1,6 @@
-import { setUserData } from './storage';
 const baseURL = 'https://lab-api-bq.herokuapp.com';
 
-const error = (status) => {
-  switch (status) {
-    case 200:
-      return '';
-    case 400:
-      return 'Email e/ou senha incorretos. Tente novamente!';
-    case 403:
-      return 'Email já cadastrado!';
-    default:
-      return 'Erro, tente novamente!';
-  }
-}
-
-export const createUser = (name, email, password, role) => {
+export const createUser = async (name, email, password, role) => {
   const config = {
     method: 'POST',
     headers: {
@@ -28,13 +14,10 @@ export const createUser = (name, email, password, role) => {
       restaurant: 'BURGER Queen',
     }),
   };
-  return fetch(`${baseURL}/users`, config)
-    .then((response) => {
-      return error(response.status);
-    });
+  return await fetch(`${baseURL}/users`, config);
 }
 
-export const userLogin = (email, password) => {
+export const userLogin = async (email, password) => {
   const config = {
     method: 'POST',
     headers: {
@@ -45,14 +28,5 @@ export const userLogin = (email, password) => {
       password,
     }),
   }
-  return fetch(`${baseURL}/auth`, config)
-    .then((response) => {
-      const errors = error(response.status);
-      if (errors !== '') return errors;
-      return response.json();
-    })
-    .then((data) => {
-      setUserData(data.name, data.token, data.role);
-      return data;
-    });
+  return await fetch(`${baseURL}/auth`, config);
 }

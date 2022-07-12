@@ -12,34 +12,50 @@ import Form from '../../components/Form';
 import FoodCard from '../../components/FoodCard';
 import OrderTable from '../../components/OrderTable';
 import Modal from '../../components/Modal';
+import useOrderForm from '../../customHooks/useOrderForm';
+import useOrders from '../../customHooks/useOrders';
+
+export let menuProducts = '';
 
 const Orders = () => {
+  const { chosenMenu, setChosenMenu, totalPrice, setTotalPrice, counterInputValue, addItems, removeItems, deleteOrder } = useOrders();
+  const { errorMessage, setErrorMessage, modal, setModal, orderList, setOrderList, formOrders, inputValue, validatedForm, cleanForm } = useOrderForm();
+
   const [subMenu, setSubMenu] = React.useState(false);
   const [showMenu, setShowMenu] = React.useState(false);
   const [toggleMenu, setToggleMenu] = React.useState('');
   const [toggleSubMenu, setToggleSubMenu] = React.useState('');
-  const [sortProducts, setSortProducts] = React.useState([]);
   const [products, setProducts] = React.useState([]);
-  const [chosenMenu, setChosenMenu] = React.useState([]);
-  const [totalPrice, setTotalPrice] = React.useState(0);
-  const [errorMessage, setErrorMessage] = React.useState("");
-  const [modal, setModal] = React.useState(false);
-  const [orderList, setOrderList] = React.useState([]);
-
-  const [form, setForm] = React.useState({
-    table: '',
-    client: '',
-    products: [],
-    counter: {},
-  });
+  const [sortProducts, setSortProducts] = React.useState([]);
+  const [modalOrder, setModalOrder] = React.useState(false);
+  const [errorMessageSend, setErrorMessageSend] = React.useState('');
 
   React.useEffect(() => {
     getProducts();
     async function getProducts() {
-      const azProducts = await getAllProducts();
-      return setSortProducts(azProducts);
+      const response = await getAllProducts();
+      switch (response.status) {
+        case 200:
+          const data = await response.json();
+          const products = data.map((product) => ({
+            ...product,
+            counter: 0,
+            subtotal: product.price,
+          }))
+          menuProducts = products.sort((a, b) => a.name.localeCompare(b.name));
+          setSortProducts(products);
+          break;
+        case 401:
+          setErrorMessage('Usuário não autenticado!');
+          setModal(true);
+          break;
+        default:
+          setErrorMessage('Erro, tente novamente!');
+          setModal(true);
+      }
     }
-  }, []);
+    setTimeout(() => setModal(false), 3000);
+  }, [setErrorMessage, setModal, setSortProducts]);
 
   const showProducts = (option) => {
     setToggleSubMenu('');
@@ -57,124 +73,55 @@ const Orders = () => {
     setShowMenu(true);
   };
 
-  const inputValue = (e) => {
-    const name = e.target.name;
-    const value = e.target.value;
-    setForm({ ...form, [name]: value });
-  };
-
-  const counterInputValue = (item, e) => {
-    products.forEach((product) => {
-      if (product.id === item.id) {
-        const previousCounter = item.counter;
-        item.counter = e.value;
-        item.subtotal = item.price * item.counter;
-        if (previousCounter < item.counter) setTotalPrice(totalPrice + ((e.value - previousCounter) * item.price));
-        else setTotalPrice(totalPrice - ((previousCounter - e.value) * item.price));
-        noRepeatItems(item);
-      }
-    });
-  }
-
-  const addItems = (item) => {
-    products.forEach((product) => {
-      if (product.id === item.id) {
-        item.counter = item.counter >= 0 ? Number(item.counter) + 1 : (item.counter = 0);
-        item.subtotal = item.counter > 0 ? item.price * item.counter : item.price;
-        noRepeatItems(item);
-        setTotalPrice(totalPrice + item.price);
-      }
-    });
-  };
-
-  const removeItems = (item) => {
-    products.forEach((product) => {
-      if (product.id === item.id) {
-        item.counter = item.counter > 0 ? item.counter - 1 : (item.counter = 0);
-        item.subtotal = item.counter > 0 ? item.price * item.counter : item.price;
-        noRepeatItems(item);
-        setTotalPrice((totalPrice > 0) ? totalPrice - item.price : totalPrice);
-      }
-    });
-  }
-
-  const deleteOrder = (item) => {
-    products.forEach((product) => {
-      if (product.id === item.id) {
-        setTotalPrice((totalPrice > 0) ? totalPrice - item.subtotal : 0);
-        item.counter = 0;
-        item.subtotal = item.price;
-        noRepeatItems(item);
-      }
-    });
-  }
-
-  const noRepeatItems = (item) => {
-    const indexOrder = chosenMenu.findIndex((product) => product.id === item.id);
-    if (chosenMenu.length === 0)
-      setChosenMenu(item);
-    if (indexOrder === -1)
-      setChosenMenu([...chosenMenu, item]);
-    else {
-      setChosenMenu(chosenMenu.splice(indexOrder, 1));
-      setChosenMenu([...chosenMenu, item]);
-    }
-  }
-
   const sendOrders = async (e) => {
     e.preventDefault();
-    const orderData = {
-      client: form.client,
-      table: form.table,
-      products:
-        chosenMenu.map((item) => {
-          const infosProduct = {
-            id: item.id,
-            name: item.name,
-            price: item.price,
-            flavor: item.flavor,
-            complement: item.complement,
-            qtd: item.counter,
-          };
-          return infosProduct
-        }),
-    };
-
-    const regex = /[0-9]/gi;
-    setTimeout(() => setModal(false), 5000);
-    setModal(true);
-
-    if (form.client === "" || form.table === "") {
-      setErrorMessage('Preencha todos os campos!');
-    } else if (form.table < 1 || form.table > 35) {
-      setErrorMessage('O número das mesas vão de 1 a 35!');
-    } else if (!regex.test(form.table)) {
-      setErrorMessage('Digite somente números de 1 a 35 para o campo da mesa!');
-    } else if (chosenMenu.length === 0) {
-      setErrorMessage('Adicione produtos ao pedido!');
-    } else {
-      try {
-        await createOrders(orderData);
-        setErrorMessage('Pedidos finalizado com sucesso!');
-        setOrderList([...orderList, orderData]);
-        cleanOrder();
-      } catch (error) {
-        setErrorMessage(error);
+    const validation = validatedForm(chosenMenu);
+    if (validation !== false) {
+      const orderData = {
+        client: formOrders.client,
+        table: formOrders.table,
+        products:
+          chosenMenu.map((item) => {
+            const infosProduct = {
+              id: item.id,
+              name: item.name,
+              price: item.price,
+              flavor: item.flavor,
+              complement: item.complement,
+              qtd: item.counter,
+            };
+            return infosProduct
+          }),
+      };
+      const response = await createOrders(orderData);
+      switch (response.status) {
+        case 200:
+          setOrderList([...orderList, orderData]);
+          setErrorMessageSend('Pedido finalizado com sucesso!');
+          setModalOrder(true);
+          cleanOrder();
+          break;
+        case 400:
+          setErrorMessageSend('Dados obrigatórios de pedido faltando!');
+          setModalOrder(true);
+          break;
+        case 401:
+          setErrorMessageSend('Usuário não autenticado!');
+          setModalOrder(true);
+          break;
+        default:
+          setErrorMessageSend('Erro, tente novamente!');
+          setModalOrder(true);
       }
     }
+    setTimeout(() => setModalOrder(false), 3000);
   }
 
   const cleanOrder = () => {
     setProducts([]);
     setChosenMenu([]);
     setTotalPrice(0);
-    setForm({
-      table: '',
-      client: '',
-      products: [],
-      counter: {},
-    });
-    setErrorMessage('');
+    cleanForm();
   }
 
   return (
@@ -187,7 +134,7 @@ const Orders = () => {
             classInput='tableInput'
             type='text'
             name='table'
-            value={form.table}
+            value={formOrders.table}
             text='MESA'
             placeholder='Digite o número da mesa'
             onChange={inputValue}
@@ -197,7 +144,7 @@ const Orders = () => {
             classInput='clientInput'
             type='text'
             name='client'
-            value={form.client}
+            value={formOrders.client}
             text='NOME DO CLIENTE'
             placeholder='Digite o nome do cliente'
             onChange={inputValue}
@@ -297,6 +244,19 @@ const Orders = () => {
               })}
           </List>
           <Text customClass='payment'>{new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(totalPrice)}</Text>
+
+          {modal &&
+            <Modal classContainer="containerGeneralOrders" classSubContainer="subContainerOrders">
+              <Text customClass='textErrors'>{errorMessage}</Text>
+            </Modal>
+          }
+
+          {modalOrder &&
+            <Modal classContainer="containerGeneralOrders" classSubContainer="subContainerOrders">
+              <Text customClass='textErrors'>{errorMessageSend}</Text>
+            </Modal>
+          }
+
           <Grid customClass='registerButton'>
             <Button type='button' customClass='cancellButton' onClick={cleanOrder}>
               CANCELAR
@@ -308,16 +268,8 @@ const Orders = () => {
         </Form>
       </Container>
       <Footer />
-      {modal &&
-        <Modal classContainer="containerGeneralOrders" classSubContainer="subContainerOrders">
-          <Button type="button" onClick={() => setModal(false)} customClass="closeModal">
-            X
-          </Button>
-          <Text customClass='textErrors'>{errorMessage}</Text>
-        </Modal>
-      }
     </>
   );
-};
+}
 
 export default Orders;

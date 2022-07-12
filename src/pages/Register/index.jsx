@@ -1,5 +1,5 @@
 import React from 'react';
-import useForm from '../../hooks/useForm';
+import useEmployee from '../../customHooks/useEmployees';
 import { createUser } from '../../services/user';
 import Form from '../../components/Form';
 import Input from '../../components/Input';
@@ -9,23 +9,37 @@ import Header from '../../components/Header';
 import Footer from '../../components/Footer';
 import Container from '../../components/Container';
 import Grid from '../../components/Grid';
+import Modal from '../../components/Modal';
 import Text from '../../components/Text';
 
 const Register = () => {
-  const { addInputValue, validatedForm, cleanForm, form } = useForm();
-  const [message, setMessage] = React.useState();
+  const { addInputValue, validatedForm, cleanForm, form, setErrorMessage, errorMessage, setModal, modal } = useEmployee();
 
-  const sendForm = (e) => {
+  const sendForm = async (e) => {
     e.preventDefault();
-    let validation = validatedForm();
-    if (validation === '') {
-      createUser(form.name, form.email, form.password, form.role)
-        .then((data) => {
-          data === '' ? validation = 'Funcionário(a) cadastrado(a)!' : validation = data;
-        })
-        .then(() => setMessage(validation));
+    const validation = validatedForm();
+    if (validation !== false) {
+      const response = await createUser(form.name, form.email, form.password, form.role);
+      switch (response.status) {
+        case 200:
+          setErrorMessage('Funcionário(a) cadastrado(a)!');
+          setModal(true);
+          cleanForm();
+          break;
+        case 400:
+          setErrorMessage('Preencha todos os campos!');
+          setModal(true);
+          break;
+        case 403:
+          setErrorMessage('Email já cadastrado');
+          setModal(true);
+          break;
+        default:
+          setErrorMessage('Erro, tente novamente');
+          setModal(true);
+      }
     }
-    setMessage(validation);
+    setTimeout(() => setModal(false), 1500);
   }
 
   return (
@@ -84,12 +98,14 @@ const Register = () => {
             placeholder='Digite a senha novamente'
             onChange={addInputValue}
           />
-          {message && <Text class='formMessage'>{message}</Text>}
+
+          {modal &&
+            <Modal classContainer="containerGeneralOrders" classSubContainer="subContainerOrders">
+              <Text customClass='textErrors'>{errorMessage}</Text>
+            </Modal>}
+
           <Grid customClass='registerButton'>
-            <Button type='button' customClass='cancellButton' onClick={() => {
-              cleanForm();
-              setMessage('');
-            }} role='clean'>
+            <Button type='button' customClass='cancellButton' onClick={() => cleanForm()} role='clean'>
               LIMPAR
             </Button>
             <Button type='submit' customClass='confirmButton' onClick={sendForm} role='register'>

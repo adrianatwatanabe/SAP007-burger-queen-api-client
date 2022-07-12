@@ -2,7 +2,7 @@ import styles from './style.module.css';
 
 const Radio = ({ classText, classContainerRadio, textGeneral, options, classLabel, classInput, name, onChange, text }) => {
   return (
-    <p className={styles[classText]}>
+    <section className={styles[classText]}>
       {textGeneral}
       <div className={styles[classContainerRadio]}>
         {options && options.map((option, index) => (
@@ -19,7 +19,7 @@ const Radio = ({ classText, classContainerRadio, textGeneral, options, classLabe
           </label>
         ))}
       </div>
-    </p>
+    </section>
   );
 };
 
