@@ -98,10 +98,12 @@ const Register = () => {
             placeholder='Digite a senha novamente'
             onChange={addInputValue}
           />
+
           {modal &&
             <Modal classContainer="containerGeneralOrders" classSubContainer="subContainerOrders">
               <Text customClass='textErrors'>{errorMessage}</Text>
             </Modal>}
+
           <Grid customClass='registerButton'>
             <Button type='button' customClass='cancellButton' onClick={() => cleanForm()} role='clean'>
               LIMPAR
