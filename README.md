@@ -1,5 +1,5 @@
 <div align="center">
-   <img alt="Logo BURGUER Queen" src="/src/img/logo-burger-queen.png" height=200>
+   <img alt="Logo BURGUER Queen" src="/src/assets/logo-burger-queen.png" height=200>
 
 ##
 
@@ -161,7 +161,7 @@ _**Definição de pronto:**_
   PEDIDOS ENTREGUES.
 
   <div>
-    <img alt="Fluxograma de funcionamento do site BURGER Queen" src="/src/img/to-readme/flowchart.png">
+    <img alt="Fluxograma de funcionamento do site BURGER Queen" src="/src/assets/to-readme/flowchart.png">
   </div>
 
 ## 3.2. CORES DO SITE
@@ -173,13 +173,13 @@ _**Definição de pronto:**_
 ### 3.2.1. Cores Principais
 
    <div>
-    <img alt="Cartela de cores principais do site BURGER Queen" src="/src/img/to-readme/main-colors.png">
+    <img alt="Cartela de cores principais do site BURGER Queen" src="/src/assets/to-readme/main-colors.png">
    </div>
 
 ### 3.2.2. Cores Secundárias
 
    <div>
-     <img alt="Cartela de cores secundárias do site BURGER Queen" src="/src/img/to-readme/secondary-colors.png">
+     <img alt="Cartela de cores secundárias do site BURGER Queen" src="/src/assets/to-readme/secondary-colors.png">
    </div>
    
 # 4. PROTÓTIPOS
@@ -198,7 +198,7 @@ _**Definição de pronto:**_
          </td>
          <td>
             <div>
-               <img alt="Protótipo de baixa fidelidade dos Atendentes" src="/src/img/to-readme/attendant-paper-prototype.gif">
+               <img alt="Protótipo de baixa fidelidade dos Atendentes" src="/src/assets/to-readme/attendant-paper-prototype.gif">
             </div>
          </td>
       </tr>
@@ -208,7 +208,7 @@ _**Definição de pronto:**_
          </td>
          <td>
             <div>
-               <img alt="Protótipo de baixa fidelidade do Cozinheiro" src="/src/img/to-readme/cooker-paper-prototype.gif">
+               <img alt="Protótipo de baixa fidelidade do Cozinheiro" src="/src/assets/to-readme/cooker-paper-prototype.gif">
             </div>
          </td>
       </tr>
@@ -240,7 +240,7 @@ _**Definição de pronto:**_
             </td>
             <td>
                <div>
-                  <img alt="Protótipo tablet de alta fidelidade dos Atendentes" src="/src/img/to-readme/attendant-tablet-prototype.gif">
+                  <img alt="Protótipo tablet de alta fidelidade dos Atendentes" src="/src/assets/to-readme/attendant-tablet-prototype.gif">
                </div>
             </td>
          </tr>
@@ -250,7 +250,7 @@ _**Definição de pronto:**_
             </td>
             <td>
                <div>
-                  <img alt="Protótipo tablet de alta fidelidade do Cozinheiro" src="/src/img/to-readme/cooker-tablet-prototype.gif">
+                  <img alt="Protótipo tablet de alta fidelidade do Cozinheiro" src="/src/assets/to-readme/cooker-tablet-prototype.gif">
                </div>
             </td>
          </tr>
